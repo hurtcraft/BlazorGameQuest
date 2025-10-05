@@ -1,0 +1,15 @@
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\obj\Debug\net9.0\BlazorGameQuestConsole.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\obj\Debug\net9.0\BlazorGameQuestConsole.AssemblyInfoInputs.cache
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\obj\Debug\net9.0\BlazorGameQuestConsole.AssemblyInfo.cs
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\obj\Debug\net9.0\BlazorGameQuestConsole.csproj.CoreCompileInputs.cache
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\obj\Debug\net9.0\BlazorGameQuestConsole.sourcelink.json
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\bin\Debug\net9.0\BlazorGameQuestConsole.exe
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\bin\Debug\net9.0\BlazorGameQuestConsole.deps.json
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\bin\Debug\net9.0\BlazorGameQuestConsole.runtimeconfig.json
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\bin\Debug\net9.0\BlazorGameQuestConsole.dll
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\bin\Debug\net9.0\BlazorGameQuestConsole.pdb
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\obj\Debug\net9.0\BlazorGameQuestConsole.dll
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\obj\Debug\net9.0\refint\BlazorGameQuestConsole.dll
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\obj\Debug\net9.0\BlazorGameQuestConsole.pdb
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\obj\Debug\net9.0\BlazorGameQuestConsole.genruntimeconfig.cache
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestConsole\obj\Debug\net9.0\ref\BlazorGameQuestConsole.dll
