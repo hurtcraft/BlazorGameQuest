@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj": {}
+    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj": {
+    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
+        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
         "projectName": "BlazorGameClient",
-        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
+        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
         "packagesPath": "C:\\Users\\Hurtcraft\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\obj\\",
+        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hurtcraft\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[9.0.9, )",
               "autoReferenced": true
+            },
+            "MudBlazor": {
+              "target": "Package",
+              "version": "[8.13.0, )"
             }
           },
           "imports": [

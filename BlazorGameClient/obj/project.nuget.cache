@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N715oYg1VrM=",
+  "dgSpecHash": "1q/1/SXX+Lk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
+  "projectFilePath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.9\\microsoft.aspnetcore.authorization.9.0.9.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.9\\microsoft.aspnetcore.components.9.0.9.nupkg.sha512",
@@ -22,6 +22,8 @@
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\9.0.9\\microsoft.extensions.fileproviders.abstractions.9.0.9.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\9.0.9\\microsoft.extensions.fileproviders.physical.9.0.9.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\9.0.9\\microsoft.extensions.filesystemglobbing.9.0.9.nupkg.sha512",
+    "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.extensions.localization\\9.0.1\\microsoft.extensions.localization.9.0.1.nupkg.sha512",
+    "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\9.0.1\\microsoft.extensions.localization.abstractions.9.0.1.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.extensions.logging\\9.0.9\\microsoft.extensions.logging.9.0.9.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.9\\microsoft.extensions.logging.abstractions.9.0.9.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.extensions.options\\9.0.9\\microsoft.extensions.options.9.0.9.nupkg.sha512",
@@ -30,6 +32,7 @@
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.jsinterop.webassembly\\9.0.9\\microsoft.jsinterop.webassembly.9.0.9.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.9\\microsoft.net.illink.tasks.9.0.9.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\9.0.9\\microsoft.net.sdk.webassembly.pack.9.0.9.nupkg.sha512",
+    "C:\\Users\\Hurtcraft\\.nuget\\packages\\mudblazor\\8.13.0\\mudblazor.8.13.0.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\9.0.9\\microsoft.netcore.app.runtime.mono.browser-wasm.9.0.9.nupkg.sha512"
   ],
   "logs": []
