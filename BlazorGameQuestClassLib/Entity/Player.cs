@@ -1,11 +1,11 @@
 
 namespace BlazorGameQuestClassLib
 {
-    public class Player(int Id, string Name, int Score)
+    public class Player
     {
-        public int Id { get; set; } = Id;
-        public string Name { get; set; } = Name;
-        public int Score { get; set; } = Score;
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public int Score { get; set; }
         
     }
 }
