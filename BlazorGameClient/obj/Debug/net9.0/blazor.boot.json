@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BlazorGameClient",
   "resources": {
-    "hash": "sha256-30+4FrrSI5ZClIKIX1xxTjh+jpoKr38z3KpXq7hcoYo=",
+    "hash": "sha256-KyZqn6Y7C4XfCH2mL9eAiy1J1whCfOJqO5ZolJi6S5A=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.z6jo10m0rd.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.65wbz7t8mt.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -204,8 +204,10 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "BlazorGameClient.t6dagtcbtl.wasm": "BlazorGameClient.wasm",
-      "BlazorGameClient.ztxvxm2pfk.pdb": "BlazorGameClient.pdb"
+      "BlazorGameQuestClassLib.8vpdglhqws.wasm": "BlazorGameQuestClassLib.wasm",
+      "BlazorGameQuestClassLib.lvkci2z0ff.pdb": "BlazorGameQuestClassLib.pdb",
+      "BlazorGameClient.x1kb138zbo.wasm": "BlazorGameClient.wasm",
+      "BlazorGameClient.taiyggpbga.pdb": "BlazorGameClient.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.9ih887ebfz.js": "sha256-oS7IRiQoVt9ThQ7Y2UM3XoeY0JqPD02cg9IvRdufn2w="
@@ -418,10 +420,12 @@
       "WindowsBase.vy2l5u79y6.wasm": "sha256-ufB9Mo5joMyUs3DzXWWBFFIZNEVrt6h9N5stYB6Oln4=",
       "mscorlib.xd6mv31d55.wasm": "sha256-1YSLR2eZt3ceALFV//vZUF2AloxVil3VlrW1zZYPSEI=",
       "netstandard.kaml52uspo.wasm": "sha256-HLEwBpLfzKw2/zGSVzHzFJxznCkt/WIjahrziiMrOpA=",
-      "BlazorGameClient.t6dagtcbtl.wasm": "sha256-RYWo7255xjsbJAopifcE7Gqtt0acdT9/GprraBuPt5U="
+      "BlazorGameQuestClassLib.8vpdglhqws.wasm": "sha256-NNilzZuWN6R8MajFZHir/ZCuSunzcVJmYDQ7s4U+kVg=",
+      "BlazorGameClient.x1kb138zbo.wasm": "sha256-RQcYHWhUbdts0nYKhGICC0/BgDOm61xgIhBHlS1wwcc="
     },
     "pdb": {
-      "BlazorGameClient.ztxvxm2pfk.pdb": "sha256-B/Y/ZvHvRYJaamha+VNjumAcuZJ4Db3YQ2SoORnSTF4="
+      "BlazorGameQuestClassLib.lvkci2z0ff.pdb": "sha256-T0HacnDCN5/E4WCCBenjIxLV2pCqJPFP7FM+kSLAo08=",
+      "BlazorGameClient.taiyggpbga.pdb": "sha256-JTEqMBv4Ihh1z2yeX+G75cXe5tiM4HTUILcyEOZJRp0="
     }
   },
   "cacheBootResources": true,
