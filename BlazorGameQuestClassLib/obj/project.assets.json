@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
+      "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
       "projectName": "BlazorGameQuestClassLib",
-      "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
+      "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
       "packagesPath": "C:\\Users\\Hurtcraft\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\obj\\",
+      "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Hurtcraft\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VwHr0vnaT3k=",
+  "dgSpecHash": "cfYDMR8rh2I=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj",
+  "projectFilePath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.9\\microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.9\\microsoft.entityframeworkcore.9.0.9.nupkg.sha512",

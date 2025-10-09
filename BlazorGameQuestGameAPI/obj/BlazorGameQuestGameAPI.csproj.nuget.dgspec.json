@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj": {}
+    "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
+    "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
+        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
         "projectName": "BlazorGameQuestClassLib",
-        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
+        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
         "packagesPath": "C:\\Users\\Hurtcraft\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\obj\\",
+        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hurtcraft\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -63,14 +63,14 @@
         }
       }
     },
-    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj": {
+    "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj",
         "projectName": "BlazorGameQuestGameAPI",
-        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj",
+        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj",
         "packagesPath": "C:\\Users\\Hurtcraft\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\obj\\",
+        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestGameAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hurtcraft\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -85,8 +85,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
-                "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj"
+              "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
+                "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj"
               }
             }
           }
