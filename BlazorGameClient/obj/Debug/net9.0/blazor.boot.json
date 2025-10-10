@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BlazorGameClient",
   "resources": {
-    "hash": "sha256-anCKllRmQpYt1vZbnkmf7Vc+e6RPCqVzQMD7JQkKrRk=",
+    "hash": "sha256-5tgGu9vCVErBpGKSdkYeHuWXVZjfabPanB0SjKHcuPI=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.z6jo10m0rd.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.65wbz7t8mt.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -19,12 +19,15 @@
       "Microsoft.Extensions.FileProviders.Abstractions.gyyn78xplr.wasm": "Microsoft.Extensions.FileProviders.Abstractions.wasm",
       "Microsoft.Extensions.FileProviders.Physical.fwg0p8qiey.wasm": "Microsoft.Extensions.FileProviders.Physical.wasm",
       "Microsoft.Extensions.FileSystemGlobbing.wpqn02ct4s.wasm": "Microsoft.Extensions.FileSystemGlobbing.wasm",
+      "Microsoft.Extensions.Localization.bvn14pws96.wasm": "Microsoft.Extensions.Localization.wasm",
+      "Microsoft.Extensions.Localization.Abstractions.o4jp2hcm79.wasm": "Microsoft.Extensions.Localization.Abstractions.wasm",
       "Microsoft.Extensions.Logging.2h3t8m6coa.wasm": "Microsoft.Extensions.Logging.wasm",
       "Microsoft.Extensions.Logging.Abstractions.ni4towxuts.wasm": "Microsoft.Extensions.Logging.Abstractions.wasm",
       "Microsoft.Extensions.Options.2nlpwp09nn.wasm": "Microsoft.Extensions.Options.wasm",
       "Microsoft.Extensions.Primitives.08rjikrqbs.wasm": "Microsoft.Extensions.Primitives.wasm",
       "Microsoft.JSInterop.9ydsnriizw.wasm": "Microsoft.JSInterop.wasm",
       "Microsoft.JSInterop.WebAssembly.v6rnols3v9.wasm": "Microsoft.JSInterop.WebAssembly.wasm",
+      "MudBlazor.845kbj1w9a.wasm": "MudBlazor.wasm",
       "Microsoft.CSharp.j3zkownjjr.wasm": "Microsoft.CSharp.wasm",
       "Microsoft.VisualBasic.Core.qljjwgjnrn.wasm": "Microsoft.VisualBasic.Core.wasm",
       "Microsoft.VisualBasic.ocn5mkr2m2.wasm": "Microsoft.VisualBasic.wasm",
@@ -201,8 +204,8 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "BlazorGameClient.mczctgiubg.wasm": "BlazorGameClient.wasm",
-      "BlazorGameClient.akg3fyy30i.pdb": "BlazorGameClient.pdb"
+      "BlazorGameClient.x5ec3y4v34.wasm": "BlazorGameClient.wasm",
+      "BlazorGameClient.jfium9zmpl.pdb": "BlazorGameClient.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.9ih887ebfz.js": "sha256-oS7IRiQoVt9ThQ7Y2UM3XoeY0JqPD02cg9IvRdufn2w="
@@ -239,12 +242,15 @@
       "Microsoft.Extensions.FileProviders.Abstractions.gyyn78xplr.wasm": "sha256-SBignQhR5OehDa078KhZs6MJ37jZaMAXwBOJv/+aPtc=",
       "Microsoft.Extensions.FileProviders.Physical.fwg0p8qiey.wasm": "sha256-j06UStE6FBwEz3CJbgLfbKKSePh0FaT4PK7wtDoUXs0=",
       "Microsoft.Extensions.FileSystemGlobbing.wpqn02ct4s.wasm": "sha256-BC/MCU6S9BBMqOrRwZh0plnIpsYyZKyENCmb6p3Acsk=",
+      "Microsoft.Extensions.Localization.bvn14pws96.wasm": "sha256-6UgMJoVZBfDdfzYR0aKVK6BWArxpXC1qiQDDjiXw/L4=",
+      "Microsoft.Extensions.Localization.Abstractions.o4jp2hcm79.wasm": "sha256-GJNjpp2mlMIYboBhzukWw5r2Z24PsB0E9Gj9VoTGKEI=",
       "Microsoft.Extensions.Logging.2h3t8m6coa.wasm": "sha256-1jYRjcDI2/MnB5Htgj4yUaHr8gA/poI4oLgWUMZYnV0=",
       "Microsoft.Extensions.Logging.Abstractions.ni4towxuts.wasm": "sha256-H+TpHvK/z4RGb8EfLe1cGb1TwnCKZAmNxt8e3s3CUSM=",
       "Microsoft.Extensions.Options.2nlpwp09nn.wasm": "sha256-zp3zuBmKVlE6HjY0Br1uj3fY9sU7ET4ITzgpnpmj9V0=",
       "Microsoft.Extensions.Primitives.08rjikrqbs.wasm": "sha256-cJ0bTIChHCfvdOf7OUoTnjDep6XHMKViMUTyqAiaD48=",
       "Microsoft.JSInterop.9ydsnriizw.wasm": "sha256-oZgTa/to3sE2tSzwcZQ0GIX1meeIGAYVE7IoJDL4RkI=",
       "Microsoft.JSInterop.WebAssembly.v6rnols3v9.wasm": "sha256-Z/XKvzIKcHVmnvT7y1f4/N5zSNqzNAfjsLaBDIyCkYs=",
+      "MudBlazor.845kbj1w9a.wasm": "sha256-6H3anvXkkN9V1Gxb+Ul/S1lH5SsXdXFbL0IXDHFkVlY=",
       "Microsoft.CSharp.j3zkownjjr.wasm": "sha256-r7YS8Hp01zUR3LoH5JsS7IrucOta+FnV199bCLii7Pk=",
       "Microsoft.VisualBasic.Core.qljjwgjnrn.wasm": "sha256-/jlp74GLHWhrCfjAmWlVClO68H3wIk+kVx9A/gjByls=",
       "Microsoft.VisualBasic.ocn5mkr2m2.wasm": "sha256-eNtd5fm3g/oUf5hiuJ1DpH74Qzd5eTxbpPOEunY0DZQ=",
@@ -412,10 +418,10 @@
       "WindowsBase.vy2l5u79y6.wasm": "sha256-ufB9Mo5joMyUs3DzXWWBFFIZNEVrt6h9N5stYB6Oln4=",
       "mscorlib.xd6mv31d55.wasm": "sha256-1YSLR2eZt3ceALFV//vZUF2AloxVil3VlrW1zZYPSEI=",
       "netstandard.kaml52uspo.wasm": "sha256-HLEwBpLfzKw2/zGSVzHzFJxznCkt/WIjahrziiMrOpA=",
-      "BlazorGameClient.mczctgiubg.wasm": "sha256-CqVfOk6P1ib2Wez8teiWJ08RFo9IgsBGb1KctNLN21k="
+      "BlazorGameClient.x5ec3y4v34.wasm": "sha256-S4I3s4LiksrBhELu3Dcl/MYzsd7XSz/6GCwV7UKM1Mo="
     },
     "pdb": {
-      "BlazorGameClient.akg3fyy30i.pdb": "sha256-ZnKge1L9h8OZvPlfJAOi9erE7VNU2fDcO2601e6A7Ug="
+      "BlazorGameClient.jfium9zmpl.pdb": "sha256-zwK/Fkj8HREiFUHncVJzxdbatxB9QT/ESmzWXAfrDFA="
     }
   },
   "cacheBootResources": true,

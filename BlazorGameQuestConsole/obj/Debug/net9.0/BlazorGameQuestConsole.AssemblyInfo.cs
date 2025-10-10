@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlazorGameQuestConsole")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79868bc2d7d24bab6d3a66da12427b8970ed836b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+313296a705f42312eb1efa524aa54390ce752d36")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlazorGameQuestConsole")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlazorGameQuestConsole")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
