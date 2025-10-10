@@ -6,7 +6,7 @@
 
 
 
-### =========================================TEST=========================================
+## TEST
 ## Tests liés au joueur
 -  Tester la **création d’un joueur** (nom, classe, points de vie, inventaire vide).  
 -  Tester la **connexion** du joueur.  
@@ -29,7 +29,7 @@
 -  Tester l’**affichage du joueur** (nom, PV).  
 -  Tester l’**affichage des salles**.  
 
-## =========================================V1=========================================
+## V1
 - ✅ création du projet Blazor et sa structure de base 
 - ✅ implémentation des pages de base (accueil, connexion admin, connexion joueur, leaderboard, joueur, admin)
 - ✅ mise en place du routing vers les differentes page apres connexion 
