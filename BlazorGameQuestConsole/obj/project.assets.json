@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Hurtcraft\\.nuget\\packages\\": {}
+    "C:\\Users\\Patrick WU\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestConsole\\BlazorGameQuestConsole.csproj",
+      "projectUniqueName": "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestConsole\\BlazorGameQuestConsole.csproj",
       "projectName": "BlazorGameQuestConsole",
-      "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestConsole\\BlazorGameQuestConsole.csproj",
-      "packagesPath": "C:\\Users\\Hurtcraft\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestConsole\\obj\\",
+      "projectPath": "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestConsole\\BlazorGameQuestConsole.csproj",
+      "packagesPath": "C:\\Users\\Patrick WU\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestConsole\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Hurtcraft\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Patrick WU\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj": {}
+    "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
+    "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
+        "projectUniqueName": "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
         "projectName": "BlazorGameQuestClassLib",
-        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
-        "packagesPath": "C:\\Users\\Hurtcraft\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\obj\\",
+        "projectPath": "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
+        "packagesPath": "C:\\Users\\Patrick WU\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Hurtcraft\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Patrick WU\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -63,17 +63,17 @@
         }
       }
     },
-    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj": {
+    "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj",
         "projectName": "BlazorGameQuestGameAPI",
-        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj",
-        "packagesPath": "C:\\Users\\Hurtcraft\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\obj\\",
+        "projectPath": "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\BlazorGameQuestGameAPI.csproj",
+        "packagesPath": "C:\\Users\\Patrick WU\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestGameAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Hurtcraft\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Patrick WU\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -85,8 +85,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
-                "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj"
+              "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
+                "projectPath": "C:\\Users\\Patrick WU\\Desktop\\Inge2\\C#\\Projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj"
               }
             }
           }

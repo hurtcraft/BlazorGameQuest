@@ -16,61 +16,61 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = BlazorGameClient
 build_property.RootNamespace = BlazorGameClient
-build_property.ProjectDir = C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\
+build_property.ProjectDir = C:\Users\Patrick WU\Desktop\Inge2\C#\Projet\BlazorGameQuest\BlazorGameClient\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = false
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient
+build_property.MSBuildProjectDirectory = C:\Users\Patrick WU\Desktop\Inge2\C#\Projet\BlazorGameQuest\BlazorGameClient
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/App.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Components/Game.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/Components/Game.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHYW1lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Components/LeaderBoard.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/Components/LeaderBoard.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMZWFkZXJCb2FyZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Components/LoginForm.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/Components/LoginForm.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2dpbkZvcm0ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Pages/Admin.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/Pages/Admin.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Pages/Counter.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Pages/Joueur.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/Pages/Joueur.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSm91ZXVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Pages/Login.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Pages/Weather.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/Pages/Weather.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2VhdGhlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/_Imports.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Layout/MainLayout.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-8y8y6ff6rl
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Layout/NavMenu.razor]
+[C:/Users/Patrick WU/Desktop/Inge2/C\#/Projet/BlazorGameQuest/BlazorGameClient/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-qb1u35u051
