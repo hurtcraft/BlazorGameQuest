@@ -1,0 +1,35 @@
+@using System.Net.Http.Json
+@using BlazorGameQuestClassLib
+@inject HttpClient httpClient
+
+<h1>Admin Pannel</h1>
+<MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
+    <Columns>
+        <PropertyColumn Property="x => x.Name" Title="Nom" />
+        <PropertyColumn Property="x => x.Score" Title="Score" />
+        <TemplateColumn CellClass="d-flex justify-end">
+            <CellTemplate>
+                <MudStack Row>
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Modifier</MudButton>
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Supprimer</MudButton>
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>
+
+@code {
+    public record Employee(string Name, int Score);
+    public IEnumerable<Employee> employees;
+
+    protected override void OnInitialized()
+    {
+        employees = new List<Employee>
+        {
+            new Employee("Sam", 87000),
+            new Employee("Alicia", 143000),
+            new Employee("Ira", 92000),
+            new Employee("John", 229000),
+        };
+    }
+}
