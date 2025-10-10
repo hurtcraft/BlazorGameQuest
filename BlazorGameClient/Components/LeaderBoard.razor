@@ -1,0 +1,43 @@
+@using MudBlazor
+@using BlazorGameQuestClassLib
+
+<MudDataGrid T="Player" Items="@Joueurs" SortMode="SortMode.Single" Height="50vh"
+             style="box-shadow: 10px 10px 10px rgba(0,0,0,0.3); border: 4mm ridge rgba(192, 50, 220, 0.6);">
+    <Columns>
+        <PropertyColumn Property="x => x.Name">
+            <HeaderTemplate>
+                <b>Nom</b>
+            </HeaderTemplate>
+        </PropertyColumn>
+        <PropertyColumn Property="x => x.Score">
+            <HeaderTemplate>
+                <b>Score</b>
+            </HeaderTemplate>
+        </PropertyColumn>
+    </Columns>
+</MudDataGrid>
+
+@code {
+    private IEnumerable<Player> Joueurs = new List<Player>
+    {
+        new Player { Id = 0, Name = "Alpha", Score = 1200 },
+        new Player { Id = 1, Name = "Bravo", Score = 950 },
+        new Player { Id = 2, Name = "Charlie", Score = 1300 },
+        new Player { Id = 3, Name = "Delta", Score = 1100 },
+        new Player { Id = 4, Name = "Echo", Score = 1400 },
+        new Player { Id = 5, Name = "Foxtrot", Score = 1250 },
+        new Player { Id = 6, Name = "Golf", Score = 870 },
+        new Player { Id = 7, Name = "Hotel", Score = 1180 },
+        new Player { Id = 8, Name = "India", Score = 1020 },
+        new Player { Id = 9, Name = "Juliet", Score = 1360 },
+        new Player { Id = 10, Name = "Kilo", Score = 940 },
+        new Player { Id = 11, Name = "Lima", Score = 1280 },
+        new Player { Id = 12, Name = "Mike", Score = 1110 },
+        new Player { Id = 13, Name = "November", Score = 1220 },
+    };
+
+    protected override void OnInitialized()
+    {
+        Joueurs = Joueurs.OrderByDescending(x => x.Score).ToList();
+    }
+}

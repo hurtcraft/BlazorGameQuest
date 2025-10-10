@@ -31,12 +31,20 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Components/LoginForm.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2dpbkZvcm0ucmF6b3I=
+[C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Components/AdminPannel.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBZG1pblBhbm5lbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Pages/Admin.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW4ucmF6b3I=
+[C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Components/Game.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHYW1lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Components/LeaderBoard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMZWFkZXJCb2FyZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Components/LoginForm.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2dpbkZvcm0ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Pages/Counter.razor]
@@ -47,8 +55,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSm91ZXVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Pages/Loggin.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nZ2luLnJhem9y
+[C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Pages/Weather.razor]
@@ -59,6 +67,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Layout/AdminNavbar.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XEFkbWluTmF2YmFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-18il5xhyw8
+
 [C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-8y8y6ff6rl
@@ -66,3 +78,7 @@ build_metadata.AdditionalFiles.CssScope = b-8y8y6ff6rl
 [C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-qb1u35u051
+
+[C:/Users/Hurtcraft/Desktop/CSHARP/BlazorGameQuest/BlazorGameClient/Pages/Admin.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-2wvu2pjg4t

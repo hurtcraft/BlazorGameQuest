@@ -1,15 +1,3 @@
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\bin\Debug\net9.0\BlazorGameQuestClassLib.deps.json
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\bin\Debug\net9.0\BlazorGameQuestClassLib.dll
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\bin\Debug\net9.0\BlazorGameQuestClassLib.pdb
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\obj\Debug\net9.0\BlazorGameQuestClassLib.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\obj\Debug\net9.0\BlazorGameQuestClassLib.AssemblyInfoInputs.cache
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\obj\Debug\net9.0\BlazorGameQuestClassLib.AssemblyInfo.cs
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\obj\Debug\net9.0\BlazorGameQuestClassLib.csproj.CoreCompileInputs.cache
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\obj\Debug\net9.0\BlazorGameQuestClassLib.sourcelink.json
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\obj\Debug\net9.0\BlazorGameQuestClassLib.dll
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\obj\Debug\net9.0\refint\BlazorGameQuestClassLib.dll
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\obj\Debug\net9.0\BlazorGameQuestClassLib.pdb
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestClassLib\obj\Debug\net9.0\ref\BlazorGameQuestClassLib.dll
 C:\Users\Hurtcraft\Desktop\CSHARP\BlazorGameQuest\BlazorGameQuestClassLib\bin\Debug\net9.0\BlazorGameQuestClassLib.deps.json
 C:\Users\Hurtcraft\Desktop\CSHARP\BlazorGameQuest\BlazorGameQuestClassLib\bin\Debug\net9.0\BlazorGameQuestClassLib.dll
 C:\Users\Hurtcraft\Desktop\CSHARP\BlazorGameQuest\BlazorGameQuestClassLib\bin\Debug\net9.0\BlazorGameQuestClassLib.pdb

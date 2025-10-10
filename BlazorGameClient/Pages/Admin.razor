@@ -1,4 +1,10 @@
 @page "/admin"
+@using BlazorGameClient.Components
+@using BlazorGameClient.Layout
 
-
-<h1>admin</h1>
+<div class="admin-page">
+    <AdminNavbar />
+    <div class="admin-content">
+        <AdminPannel />
+    </div>
+</div>
