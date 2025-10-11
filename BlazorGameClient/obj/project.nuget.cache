@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Xuni/2/LLUw=",
+  "dgSpecHash": "bqMzCxuE/ik=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
+  "projectFilePath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Hurtcraft\\.nuget\\packages\\blazor.extensions.canvas\\1.1.1\\blazor.extensions.canvas.1.1.1.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.9\\microsoft.aspnetcore.authorization.9.0.9.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.9\\microsoft.aspnetcore.components.9.0.9.nupkg.sha512",
     "C:\\Users\\Hurtcraft\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\9.0.9\\microsoft.aspnetcore.components.analyzers.9.0.9.nupkg.sha512",

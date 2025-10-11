@@ -1,7 +1,28 @@
 @page "/joueur"
 @using BlazorGameClient.Components
+@inject NavigationManager NavigationManager
 
 
-<div>
-    <Game/>
+<div style="display:flex; justify-content:center; margin-top:10vh; ">
+    <div style="width:50%; text-align:center; display:flex; flex-direction:column; gap:5vh;">
+        <h2>LeaderBoard</h2>
+        
+        <LeaderBoard/>
+
+        
+        <div>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" style="width:50%;"
+                       @onclick="GoToGame">
+                Nouvelle aventure
+            </MudButton>
+        </div>
+    </div>
 </div>
+
+
+@code {
+    private void GoToGame()
+    {
+        NavigationManager.NavigateTo("/game");
+    }
+}

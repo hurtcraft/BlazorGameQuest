@@ -1,0 +1,24 @@
+@using Blazor.Extensions
+@using Blazor.Extensions.Canvas
+@using Blazor.Extensions.Canvas.Canvas2D
+
+@* <BECanvas @ref="canvasReference" Width="500" Height="500">
+</BECanvas>
+
+
+@code {
+    private BECanvasComponent canvasReference;
+    private Canvas2DContext context;
+    private readonly int NB_SPRITE_LARGEUR = 30;
+    private readonly int NB_SPRITE_LONGUEUR = 30;
+    private readonly int TAILLE_SPRITE = 32;
+    private readonly int CANVA_X = 0;
+    private readonly int CANVA_Y = 0;
+    private readonly int CANVA_WIDTH;
+    private readonly int CANVA_HEIGHT;
+    public Grid()
+    {
+        CANVA_WIDTH = NB_SPRITE_LARGEUR * TAILLE_SPRITE;
+        CANVA_HEIGHT = NB_SPRITE_LONGUEUR * TAILLE_SPRITE;
+    }
+} *@

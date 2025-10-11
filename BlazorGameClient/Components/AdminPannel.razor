@@ -21,16 +21,14 @@
 
 @code {
     public record Employee(string Name, int Score);
-    public IEnumerable<Employee> employees;
-
-    protected override void OnInitialized()
-    {
-        employees = new List<Employee>
+    //valeurs statiques temporaires
+    public IEnumerable<Employee> employees=new List<Employee>
         {
             new Employee("Sam", 87000),
             new Employee("Alicia", 143000),
             new Employee("Ira", 92000),
             new Employee("John", 229000),
         };
-    }
+
+
 }

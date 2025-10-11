@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj": {}
+    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj": {
+    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
+        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
         "projectName": "BlazorGameClient",
-        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
+        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\BlazorGameClient.csproj",
         "packagesPath": "C:\\Users\\Hurtcraft\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameClient\\obj\\",
+        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameClient\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hurtcraft\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,8 +26,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
-                "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj"
+              "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
+                "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj"
               }
             }
           }
@@ -48,6 +48,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Blazor.Extensions.Canvas": {
+              "target": "Package",
+              "version": "[1.1.1, )"
+            },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
               "version": "[9.0.9, )"
@@ -105,14 +109,14 @@
         }
       }
     },
-    "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
+    "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
+        "projectUniqueName": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
         "projectName": "BlazorGameQuestClassLib",
-        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
+        "projectPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\BlazorGameQuestClassLib.csproj",
         "packagesPath": "C:\\Users\\Hurtcraft\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\CSHARP\\BlazorGameQuest\\BlazorGameQuestClassLib\\obj\\",
+        "outputPath": "C:\\Users\\Hurtcraft\\Desktop\\csharp\\projet\\BlazorGameQuest\\BlazorGameQuestClassLib\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hurtcraft\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -17,7 +17,7 @@
         <MudText Typo="Typo.caption" Color="Color.Secondary">
             Dans le cadre de la v1, l'identifiant temporaire est : <b>"@_selectedRole"</b>  et le mot de passe temporaire : <b>"@_selectedRole"</b>.
         </MudText>
-        <MudForm @ref="_form" OnValidSubmit="HandleValidSubmit" Class="mt-4">
+        <MudForm @ref="_form" Class="mt-4">
             <MudTextField @bind-Value="_identifiant"
                           Label=@("Id " + _selectedRole)
                           Required="true"
@@ -109,10 +109,7 @@
         
     }
 
-    private void HandleValidSubmit()
-    {
-        Console.WriteLine("Formulaire valide !");
-    }
+
     private async void SetRole(string role)
     {
         if(role==_selectedRole){
