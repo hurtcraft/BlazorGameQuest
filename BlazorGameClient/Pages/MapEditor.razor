@@ -1,6 +1,44 @@
 @page "/MapEditor"
-
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 20px;">
+@using Blazor.Extensions
+@using Blazor.Extensions.Canvas
+@using Blazor.Extensions.Canvas.Canvas2D
+@using BlazorGameQuestClassLib
+@using BlazorGameClient.Components.GamePlay
+@* <div style="display:inline-block; position:relative;" @onmousemove="OnMouseMove" @onclick="OnMouseClick">
     <AdminNavbar />
-    <h1>Map Editor en construction</h1>
+    
+    <GridCanva/>
+
+
+</div> *@
+<div style="display:flex; height:100vh;">
+    <AdminNavbar />
+
+    <div
+        style="flex:1; padding: 5rem; overflow:auto; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <h1 style="margin-bottom:2rem;">Map Editor en construction</h1>
+        <GridCanva />
+    </div>
+<MapEditorTools/>
+
 </div>
+
+@code {
+    private int _mouseX;
+    private int _mouseY;
+    private void OnMouseMove(MouseEventArgs e)
+    {
+        // inversion pour la cohérence de la matrice grid
+        _mouseX = (int)(e.OffsetY / GameGrid.SPRITE_SIZE);
+        _mouseY = (int)(e.OffsetX / GameGrid.SPRITE_SIZE);
+
+
+
+        //Console.WriteLine($"Cellule : {cellX}, {cellY}");
+    }
+    private void OnMouseClick(MouseEventArgs e)
+    {
+        Console.WriteLine($"Cellule : {_mouseX}, {_mouseY}");
+    }
+
+}
