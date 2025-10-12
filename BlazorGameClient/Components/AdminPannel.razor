@@ -2,23 +2,25 @@
 @using BlazorGameQuestClassLib
 @inject HttpClient httpClient
 
-<h1>Admin Pannel</h1>
-<MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
-    <Columns>
-        <PropertyColumn Property="x => x.Name" Title="Nom" />
-        <PropertyColumn Property="x => x.Score" Title="Score" />
-        <TemplateColumn CellClass="d-flex justify-end">
-            <CellTemplate>
-                <MudStack Row>
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Modifier</MudButton>
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Supprimer</MudButton>
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Bloquer</MudButton>
-                </MudStack>
-            </CellTemplate>
-        </TemplateColumn>
-    </Columns>
-</MudDataGrid>
+<MudStack  Spacing="2">
+    <h1>Admin Panel</h1>
 
+    <MudDataGrid Items="@employees" Filterable="false" SortMode="@SortMode.None" Groupable="false">
+        <Columns>
+            <PropertyColumn Property="x => x.Name" Title="Nom" />
+            <PropertyColumn Property="x => x.Score" Title="Score" />
+            <TemplateColumn CellClass="d-flex justify-end">
+                <CellTemplate>
+                    <MudStack Row Spacing="1">
+                        <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Modifier</MudButton>
+                        <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Supprimer</MudButton>
+                        <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Bloquer</MudButton>
+                    </MudStack>
+                </CellTemplate>
+            </TemplateColumn>
+        </Columns>
+    </MudDataGrid>
+</MudStack>
 @code {
     public record Employee(string Name, int Score);
     //valeurs statiques temporaires

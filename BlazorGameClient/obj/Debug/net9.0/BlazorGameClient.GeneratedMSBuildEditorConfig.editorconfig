@@ -35,8 +35,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBZG1pblBhbm5lbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Components/GamePlay/Grid.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHYW1lUGxheVxHcmlkLnJhem9y
+[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Components/GamePlay/GameRulesCard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHYW1lUGxheVxHYW1lUnVsZXNDYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Components/GamePlay/GridCanva.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHYW1lUGxheVxHcmlkQ2FudmEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Components/GamePlay/MapEditorTools.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHYW1lUGxheVxNYXBFZGl0b3JUb29scy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Components/LeaderBoard.razor]

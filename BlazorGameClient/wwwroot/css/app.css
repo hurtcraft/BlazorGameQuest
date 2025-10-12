@@ -11,6 +11,8 @@
 
 body, html {
     font-family: 'determinationFont', sans-serif;
+    overflow: hidden;
+
 }
 h1:focus {
     outline: none;
