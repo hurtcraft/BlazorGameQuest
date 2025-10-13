@@ -1,10 +1,21 @@
 @page "/admin"
 @using BlazorGameClient.Components
-@using BlazorGameClient.Layout
+@* @using BlazorGameClient.Layout *@
 
-<div class="admin-page">
+@* <div class="admin-page">
     <AdminNavbar />
     <div class="admin-content">
         <AdminPannel />
     </div>
 </div>
+ *@
+
+
+<div style="display:flex; height:100vh;">
+    <AdminNavbar />
+
+    <div  style="flex:1; padding:16px; overflow:auto;">
+        <AdminPannel />
+    </div>
+</div>
+

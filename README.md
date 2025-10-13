@@ -35,3 +35,10 @@
 - ✅ mise en place du routing vers les differentes page apres connexion 
 - ✅ Création "nouvelle interface"
 - ✅ Création d'un composant Blazor pour une salle statique
+
+Code en cours de construction, ne pas effacer le code commenter
+
+
+## assets utilisés
+- https://xzany.itch.io/top-down-adventurer-character
+- https://pixel-poem.itch.io/dungeon-assetpuck
