@@ -1,76 +1,136 @@
-@using Blazor.Extensions
-@using Blazor.Extensions.Canvas
-@using Blazor.Extensions.Canvas.Canvas2D
+@using BlazorGameClient.Pages
 @using BlazorGameQuestClassLib
 
-<BECanvas @ref="canvasReference"
-            Width="@CANVA_WIDTH"
-            Height="@CANVA_HEIGHT">
-</BECanvas>
+
+<canvas id="myCanvas" @onmousemove="OnMouseMove" @onmousedown="OnMouseDown" @onmouseup="OnMouseUp"
+    @onclick="OnMouseClick" @oncontextmenu="PreventContextMenu" width=@CANVA_WIDTH height=@CANVA_HEIGHT
+    style="border:1px solid black;"></canvas>
 
 
 @code {
-    private BECanvasComponent? canvasReference;
-    private Canvas2DContext context=null!;
+    @inject IJSRuntime JS
+    [Parameter] public bool IsEditing { get; set; }
     private GameGrid gameGrid;
-    public readonly int NB_SPRITE_LARGEUR = GameGrid.NB_SPRITE_LARGEUR;
-    public readonly int NB_SPRITE_LONGUEUR = GameGrid.NB_SPRITE_LONGUEUR;
+    public readonly int NB_SPRITE_LARGEUR = GameGrid.NB_SPRITE_LARGEUR; //20
+    public readonly int NB_SPRITE_LONGUEUR = GameGrid.NB_SPRITE_LONGUEUR; //30
     public readonly int SPRITE_SIZE = GameGrid.SPRITE_SIZE;
     public readonly int CANVA_X = 0;
     public readonly int CANVA_Y = 0;
     public readonly int CANVA_WIDTH;
     public readonly int CANVA_HEIGHT;
 
-    @* private int _mouseX;
-    private int _mouseY; *@
+    private int mouseX;
+    private int mouseY;
+    private bool isLeftClick = false;
+    private bool isRightClick = false;
+
     public GridCanva()
     {
         gameGrid = new GameGrid { Id = 0, Name = "test.csv" };
-        CANVA_WIDTH =  NB_SPRITE_LONGUEUR* SPRITE_SIZE;
+        CANVA_WIDTH = NB_SPRITE_LONGUEUR * SPRITE_SIZE;
         CANVA_HEIGHT = NB_SPRITE_LARGEUR * SPRITE_SIZE;
+        PrintGrid();
 
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            context = await canvasReference.CreateCanvas2DAsync();
             await DrawGrid();
         }
     }
+
     private async Task DrawGrid()
     {
-        await context.ClearRectAsync(0, 0, CANVA_WIDTH, CANVA_HEIGHT);
+        await JS.InvokeVoidAsync("drawGrid", NB_SPRITE_LONGUEUR, NB_SPRITE_LARGEUR, SPRITE_SIZE);
+    }
 
 
-        for (int y = 0; y < NB_SPRITE_LARGEUR; y++)
+    private async Task DrawSelectedTile(int x, int y)
+    {
+        if (!IsEditing) return;
+        if (GameAsset.currentMapTile.HasValue)
         {
-            for (int x = 0; x < NB_SPRITE_LONGUEUR; x++)
-            {
-                var color = (x + y) % 2 == 0 ? "lightgray" : "white";
-
-                await context.SetFillStyleAsync(color);
-                await context.FillRectAsync(x * SPRITE_SIZE, y * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
-                
-                await context.SetStrokeStyleAsync("black");
-                await context.StrokeRectAsync(x * SPRITE_SIZE, y * SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE);
-            }
+            int indexTile = GameAsset.currentMapTile.Value;
+            string tilePath = GameAsset.ListMapTile[indexTile];
+            gameGrid.grid[y][x] = indexTile;
+            await JS.InvokeVoidAsync("drawTile", tilePath, x, y, SPRITE_SIZE);
         }
     }
 
-    @* private void OnMouseMove(MouseEventArgs e)
+    private void OnMouseDown(MouseEventArgs e)
     {
-        // inversion pour la cohérence de la matrice grid
-        _mouseX = (int)(e.OffsetY/SPRITE_SIZE);
-        _mouseY = (int)(e.OffsetX/SPRITE_SIZE);
+        if (!IsEditing) return;
+        isLeftClick = e.Button == 0;
+        isRightClick = e.Button == 2;
 
+        if (isRightClick)
+        {
+            _ = EraseTile(mouseX, mouseY);
+            isLeftClick = false;
+        }
+        if (isLeftClick)
+        {
+            _ = DrawSelectedTile(mouseX, mouseY);
+        }
+    ;
 
-
-        //Console.WriteLine($"Cellule : {cellX}, {cellY}");
     }
-    private void OnMouseClick(MouseEventArgs e)
-    {
-        Console.WriteLine($"Cellule : {_mouseX}, {_mouseY}");
-    } *@
 
+    private void OnMouseUp(MouseEventArgs e)
+    {
+        if (!IsEditing) return;
+
+        isLeftClick = false;
+        isRightClick = false;
+
+
+    }
+    private void OnMouseMove(MouseEventArgs e)
+    {
+        if (!IsEditing) return;
+        mouseX = (int)e.OffsetX / SPRITE_SIZE;
+        mouseY = (int)e.OffsetY / SPRITE_SIZE;
+        if (isLeftClick)
+        {
+            _ = DrawSelectedTile(mouseX, mouseY);
+        }
+        if (isRightClick)
+        {
+            _ = EraseTile(mouseX, mouseY);
+        }
+
+
+    }
+    private async Task EraseTile(int x, int y)
+    {
+        if (!IsEditing)
+        {
+            return;
+        }
+        await JS.InvokeVoidAsync("eraseTile", x, y, SPRITE_SIZE);
+        gameGrid.grid[y][x] = -1;
+    }
+    private async Task OnMouseClick(MouseEventArgs e)
+    {
+        if (!IsEditing) return;
+
+        if (e.Button == 0)
+        {
+            await DrawSelectedTile(mouseX, mouseY);
+        }
+        if (e.Button == 2)
+        {
+            await EraseTile(mouseX, mouseY);
+        }
+    }
+    private void PrintGrid()
+    {
+        // Sérialise directement la grille en JSON
+        Console.WriteLine(gameGrid.grid[0][0]);
+    }
+    private void PreventContextMenu(MouseEventArgs e)
+    {
+
+    }
 }
