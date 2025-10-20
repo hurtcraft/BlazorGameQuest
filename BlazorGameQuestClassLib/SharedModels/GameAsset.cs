@@ -1,5 +1,5 @@
 using System.Diagnostics;
-
+namespace BlazorGameQuestClassLib;
 public static class GameAsset
 {
     public static List<string> ListMapTile { get; private set; } = new List<string>();

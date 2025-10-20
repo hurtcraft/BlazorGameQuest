@@ -1,3 +1,6 @@
+## Groupe
+Patrick Wu, Julien Weng
+
 ## Comment lancer le projet
 
 - Cloner le projet en local **git clone https://github.com/hurtcraft/BlazorGameQuest**

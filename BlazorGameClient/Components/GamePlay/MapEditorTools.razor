@@ -1,10 +1,21 @@
+@using BlazorGameQuestClassLib
 @using MudBlazor
+@inject DonjonService DonjonService
+
+@inject HttpClient Http
+@inject IDialogService DialogService
 
 <MudPaper Class="w-80" Style="max-width: 350px;">
 
     <MudList T="string">
-        <MudListItem Text="Charger map" Icon="@Icons.Material.Filled.Download" />
-        <MudListItem Text="Déployer map" Icon="@Icons.Material.Filled.Send" />
+        <MudListItem Text="Charger map" Icon="@Icons.Material.Filled.Download" >
+           
+        </MudListItem>
+        <MudListItem @onclick="OpenDialog" Text="Déployer map" Icon="@Icons.Material.Filled.Send" />
+
+        
+
+
         <MudDivider />
 
         <MudListItem Icon="@Icons.Material.Filled.Image" Text="Map Assets">
@@ -55,13 +66,40 @@
 
 @code {
     private int? selectedTile = null;
+    private string LastMapName=string.Empty;
+
+    [Parameter] public required Donjon donjon { get; set; }
+
 
     private void TileOnClick(int index)
     {
         selectedTile = selectedTile == index ? null : index;
         GameAsset.currentMapTile=selectedTile;
 
-        
         Console.WriteLine("tile : "+GameAsset.currentMapTile);
     }
+
+    private async Task OpenDialog()
+    {   
+        var parameters=new DialogParameters<DeployMapDialog>{{x=>x.donjon,donjon}};
+        var dialog = await DialogService.ShowAsync<DeployMapDialog>("deploy map",parameters);
+        var result = await dialog.Result;
+
+        if (result is not null && !result.Canceled && result.Data is Donjon d)
+        {
+            donjon.Difficulty=d.Difficulty;
+            donjon.Name=d.Name;
+            string t= await DonjonService.TestAsync();
+            Console.WriteLine(t);
+
+            await SaveDonjon(donjon);
+            Console.WriteLine($"Nom : {donjon.Name}, Difficulty : {donjon.Difficulty} {donjon.Id}");
+        }
+    }
+    private async Task SaveDonjon(Donjon donjon)
+    {
+        await DonjonService.SaveDonjonAsync(donjon);
+
+    }
+
 }

@@ -4,6 +4,8 @@
 @using Blazor.Extensions.Canvas.Canvas2D
 @using BlazorGameQuestClassLib
 @using BlazorGameClient.Components.GamePlay
+@inject HttpClient Http
+
 @* <div style="display:inline-block; position:relative;" @onmousemove="OnMouseMove" @onclick="OnMouseClick">
     <AdminNavbar />
     
@@ -17,13 +19,18 @@
     <div
         style="flex:1; padding: 5rem; overflow:auto; display:flex; flex-direction:column; align-items:center; justify-content:center;">
         <h1 style="margin-bottom:2rem;">Map Editor en construction</h1>
-        <GridCanva IsEditing=true/>
+        <GridCanva gameGrid="@gameGrid" IsEditing=true />
     </div>
-<MapEditorTools/>
+    <MapEditorTools donjon="@donjon" />
 
 </div>
 
 @code {
+
+    private GameGrid gameGrid = new GameGrid();
+
+    private Donjon? donjon;
+
     private int _mouseX;
     private int _mouseY;
     private void OnMouseMove(MouseEventArgs e)
@@ -31,14 +38,22 @@
         // inversion pour la cohérence de la matrice grid
         _mouseX = (int)(e.OffsetY / GameGrid.SPRITE_SIZE);
         _mouseY = (int)(e.OffsetX / GameGrid.SPRITE_SIZE);
-
-
-
         //Console.WriteLine($"Cellule : {cellX}, {cellY}");
     }
+    protected override void OnInitialized()
+    {
+        donjon = new Donjon
+        {
+            Id = 12345,
+            Name = "donjon1",
+            GameGrid = gameGrid
+        };
+    }
+
     private void OnMouseClick(MouseEventArgs e)
     {
         Console.WriteLine($"Cellule : {_mouseX}, {_mouseY}");
     }
+
 
 }

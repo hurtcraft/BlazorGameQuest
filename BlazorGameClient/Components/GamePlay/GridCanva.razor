@@ -10,7 +10,7 @@
 @code {
     @inject IJSRuntime JS
     [Parameter] public bool IsEditing { get; set; }
-    private GameGrid gameGrid;
+    [Parameter] public required GameGrid gameGrid{get;set;}
     public readonly int NB_SPRITE_LARGEUR = GameGrid.NB_SPRITE_LARGEUR; //20
     public readonly int NB_SPRITE_LONGUEUR = GameGrid.NB_SPRITE_LONGUEUR; //30
     public readonly int SPRITE_SIZE = GameGrid.SPRITE_SIZE;
@@ -26,10 +26,9 @@
 
     public GridCanva()
     {
-        gameGrid = new GameGrid { Id = 0, Name = "test.csv" };
         CANVA_WIDTH = NB_SPRITE_LONGUEUR * SPRITE_SIZE;
         CANVA_HEIGHT = NB_SPRITE_LARGEUR * SPRITE_SIZE;
-        PrintGrid();
+        //PrintGrid();
 
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)

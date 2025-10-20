@@ -6,8 +6,7 @@ namespace BlazorGameQuestClassLib
         public static readonly int NB_SPRITE_LARGEUR = 20;
         public static readonly int NB_SPRITE_LONGUEUR = 30;
         public static readonly int SPRITE_SIZE = 32;
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+
 
         public List<List<int>> grid { get; set; } = new List<List<int>>();
 
@@ -23,7 +22,17 @@ namespace BlazorGameQuestClassLib
                 grid.Add(row);
             }
         }
-        
+        public string ToCsv()
+        {
+            var sb = new System.Text.StringBuilder();
+
+            for (int y = 0; y < grid.Count; y++)
+            {
+                sb.AppendLine(string.Join(",", grid[y]));
+            }
+
+            return sb.ToString();
+        }
 
     }
 }

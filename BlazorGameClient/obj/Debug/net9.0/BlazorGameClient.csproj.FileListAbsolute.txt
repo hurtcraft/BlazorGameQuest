@@ -2,10 +2,6 @@ C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\De
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\Blazor.Extensions.Canvas.JS.iokb7a5y98.wasm
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\Blazor.Extensions.Canvas.45bjdsigtk.wasm
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\blazor.webassembly.js
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameClient.vg6e7ucubl.pdb
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameClient.y96ovoj2hk.wasm
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameQuestClassLib.1onegw20cn.pdb
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameQuestClassLib.jzhe476vjy.wasm
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\dotnet.js
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\dotnet.js.map
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\dotnet.native.9ih887ebfz.js
@@ -276,10 +272,8 @@ C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\De
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Threading.Tasks.Parallel.n02pnhiuoi.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\dotnet.js.map.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.Serialization.Json.57n7mkio0p.wasm.gz
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameClient.y96ovoj2hk.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Private.DataContractSerialization.5st6hct31n.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Threading.Thread.ela0zpa4cu.wasm.gz
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameQuestClassLib.1onegw20cn.pdb.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Diagnostics.Tracing.5l18zgsm1q.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Diagnostics.Process.pxizkgy5ym.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Diagnostics.Tools.i1rtuy3ws8.wasm.gz
@@ -288,7 +282,6 @@ C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\De
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Net.Primitives.t29gzklln2.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Collections.ejndmmtq8p.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Diagnostics.DiagnosticSource.onf7a771xa.wasm.gz
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameQuestClassLib.jzhe476vjy.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Net.Mail.x2t68znxj5.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.ComponentModel.EventBasedAsync.xwxd57h7as.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.InteropServices.RuntimeInformation.whqysb3ecz.wasm.gz
@@ -405,7 +398,6 @@ C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\De
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.Extensions.te5ibe9mop.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Diagnostics.FileVersionInfo.3u9sednzu3.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.Serialization.6y35mmxzrq.wasm.gz
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameClient.vg6e7ucubl.pdb.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.ComponentModel.Annotations.v1y4pnhy9x.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\System.Security.SecureString.z1o1nfpyhv.wasm.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\Microsoft.VisualBasic.Core.qljjwgjnrn.wasm.gz
@@ -1109,11 +1101,6 @@ C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\De
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\5t4axzrid8-tjcz0u77k5.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\jg4sh50nrb-tptq2av103.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\qsblngcqbp-lfu7j35m59.gz
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\cqa4vffzxt-jzhe476vjy.gz
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\ata2ow1sox-1onegw20cn.gz
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\a3dhvte1pz-y96ovoj2hk.gz
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\ws4j5f4bz7-vg6e7ucubl.gz
-C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\f1jpsha8gl-4yq7j0ylbt.gz
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\staticwebassets.development.json
@@ -1123,3 +1110,16 @@ C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\De
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\refint\BlazorGameClient.dll
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\BlazorGameClient.pdb
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\ref\BlazorGameClient.dll
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameClient.tuvcwce6gp.pdb
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameClient.pe57oiajj5.wasm
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameQuestClassLib.vka7dpl6hj.pdb
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameQuestClassLib.gkmray9wl7.wasm
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameClient.pe57oiajj5.wasm.gz
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameQuestClassLib.vka7dpl6hj.pdb.gz
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameQuestClassLib.gkmray9wl7.wasm.gz
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\bin\Debug\net9.0\wwwroot\_framework\BlazorGameClient.tuvcwce6gp.pdb.gz
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\cqa4vffzxt-gkmray9wl7.gz
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\ata2ow1sox-vka7dpl6hj.gz
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\a3dhvte1pz-pe57oiajj5.gz
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\ws4j5f4bz7-tuvcwce6gp.gz
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameClient\obj\Debug\net9.0\compressed\f1jpsha8gl-l19beg6f1g.gz
