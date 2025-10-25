@@ -50,9 +50,16 @@
         if (!IsEditing) return;
         if (GameAsset.currentMapTile.HasValue)
         {
+            Console.WriteLine("appel drw tata");
+
             int indexTile = GameAsset.currentMapTile.Value;
             string tilePath = GameAsset.ListMapTile[indexTile];
-            gameGrid.grid[y][x] = indexTile;
+            if(gameGrid.grid[y][x][^1]!=indexTile){// si dernier elt == elt courant ne pas ajouter pour eco mémoire
+                gameGrid.grid[y][x].Add(indexTile) ;
+            }
+            
+
+
             await JS.InvokeVoidAsync("drawTile", tilePath, x, y, SPRITE_SIZE);
         }
     }
@@ -108,7 +115,7 @@
             return;
         }
         await JS.InvokeVoidAsync("eraseTile", x, y, SPRITE_SIZE);
-        gameGrid.grid[y][x] = -1;
+        gameGrid.grid[y][x]=new List<int>{-1};
     }
     private async Task OnMouseClick(MouseEventArgs e)
     {

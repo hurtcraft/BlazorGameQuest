@@ -8,16 +8,18 @@ namespace BlazorGameQuestClassLib
         public static readonly int SPRITE_SIZE = 32;
 
 
-        public List<List<int>> grid { get; set; } = new List<List<int>>();
+        public List<List<List<int>>> grid { get; set; } = new List<List<List<int>>>();
 
         public GameGrid()
         {
             for (int y = 0; y < NB_SPRITE_LARGEUR; y++)
             {
-                var row = new List<int>();
+                var row = new List<List<int>>();
                 for (int x = 0; x < NB_SPRITE_LONGUEUR; x++)
                 {
-                    row.Add(-1);
+                    var cell = new List<int> { -1 };
+
+                    row.Add(cell);
                 }
                 grid.Add(row);
             }
@@ -26,9 +28,15 @@ namespace BlazorGameQuestClassLib
         {
             var sb = new System.Text.StringBuilder();
 
-            for (int y = 0; y < grid.Count; y++)
+            for (int i = 0; i < grid.Count; i++)
             {
-                sb.AppendLine(string.Join(",", grid[y]));
+                for (int j = 0; j < grid[0].Count; j++)
+                {
+                    string cellString = "[" + string.Join(",", grid[i][j]) + "]";
+                    sb.Append(cellString);
+
+                }
+                sb.AppendLine();
             }
 
             return sb.ToString();

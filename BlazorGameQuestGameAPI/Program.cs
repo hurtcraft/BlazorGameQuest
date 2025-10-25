@@ -31,6 +31,14 @@ builder.Services.AddCors(options =>
 
 
 var app = builder.Build();
+//opération pré lancement, remplissage table
+
+using (var scope = app.Services.CreateScope())
+{
+    var playerService = scope.ServiceProvider.GetRequiredService<PlayerService>();
+    await playerService.InitializeAsync();
+}
+
 app.UseCors("AllowLocalhost");
 app.UseSwagger();
 app.UseSwaggerUI(c =>

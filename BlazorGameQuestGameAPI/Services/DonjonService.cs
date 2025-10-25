@@ -20,16 +20,33 @@ namespace Service
             {
                 WriteIndented = true
             });
-            string DonjonsDirectory= Path.Combine(Directory.GetCurrentDirectory(), "Donjons");
+            string DonjonsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Donjons");
             Console.WriteLine("DONJON " + donjon.GameGrid.ToCsv());
-            // Chemin complet vers wwwroot/maps
-            //string folderPath = Path.Combine(_env.WebRootPath, "maps");
-            
+
+
             Directory.CreateDirectory(DonjonsDirectory);
 
-            string filePath = Path.Combine(DonjonsDirectory, donjon.Name);
+            string filePath = Path.Combine(DonjonsDirectory, donjon.Name+".csv");
 
-            await File.WriteAllTextAsync(filePath, "test msg");
+            await File.WriteAllTextAsync(filePath, donjon.GameGrid.ToCsv());
+        }
+        public async void LoadDonjon(int idDonjon)
+        {
+            string DonjonsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Donjons");
+            string fileName = $"donjon{idDonjon}.csv";
+            string filePath = Path.Combine(DonjonsDirectory, fileName);
+
+            string contenu = await File.ReadAllTextAsync(filePath);
+
+            Donjon d = StringToDonjon(contenu);
+
+        }
+
+
+        private Donjon StringToDonjon(string DonjonString)
+        {
+            Console.WriteLine(DonjonString);
+            return null;
         }
     }
 }

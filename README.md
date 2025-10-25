@@ -39,6 +39,13 @@ Patrick Wu, Julien Weng
 - ✅ Création "nouvelle interface"
 - ✅ Création d'un composant Blazor pour une salle statique
 
+
+## V2
+- ✅ création du projet Blazor et sa structure de base 
+- ✅ implémentation des pages de base (accueil, connexion admin, connexion joueur, leaderboard, joueur, admin)
+- ✅ mise en place du routing vers les differentes page apres connexion 
+- ✅ Création "nouvelle interface"
+- ✅ Création d'un composant Blazor pour une salle statique
 Code en cours de construction, ne pas effacer le code commenter
 
 

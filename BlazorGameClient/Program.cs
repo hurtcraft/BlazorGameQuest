@@ -9,6 +9,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped<DonjonService>();
+builder.Services.AddScoped<PlayerServices>();
 
 
 builder.Services.AddMudServices();

@@ -19,7 +19,10 @@ namespace Service
         {
             _context = context;
         }
-
+        public async Task InitializeAsync()
+        {
+            await SeedPlayersAsync();
+        }
         /// <summary>
         /// Récupère tous les joueurs de la base.
         /// </summary>
@@ -77,6 +80,32 @@ namespace Service
             _context.Players.Update(player);
             await _context.SaveChangesAsync();
             return true;
+        }
+        public async Task SeedPlayersAsync()
+        {
+            if (await _context.Players.AnyAsync())
+                return; 
+
+            var joueurs = new List<Player>
+            {
+                new Player {  Name = "Alpha", Score = 1200 },
+                new Player {  Name = "Bravo", Score = 950 },
+                new Player {  Name = "Charlie", Score = 1300 },
+                new Player {  Name = "Delta", Score = 1100 },
+                new Player {  Name = "Echo", Score = 1400 },
+                new Player {  Name = "Foxtrot", Score = 1250 },
+                new Player {  Name = "Golf", Score = 870 },
+                new Player {  Name = "Hotel", Score = 1180 },
+                new Player {  Name = "India", Score = 1020 },
+                new Player {  Name = "Juliet", Score = 1360 },
+                new Player {  Name = "Kilo", Score = 940 },
+                new Player {  Name = "Lima", Score = 1280 },
+                new Player {  Name = "Mike", Score = 1110 },
+                new Player {  Name = "November", Score = 1220 },
+            };
+
+            await _context.Players.AddRangeAsync(joueurs);
+            await _context.SaveChangesAsync();
         }
     }
 }

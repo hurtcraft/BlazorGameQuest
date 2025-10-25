@@ -23,9 +23,11 @@ public class DonjonController : ControllerBase
 
         return Ok(new { Message = "Donjon sauvegardé !" });
     }
-    [HttpGet("test")]
-    public string test()
+    [HttpGet("load/{donjonId}")]
+    public string load(int donjonId)
     {
+        _donjonService.LoadDonjon(donjonId);
+        
         return "taata";
     }
 }
