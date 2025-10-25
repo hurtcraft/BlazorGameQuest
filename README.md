@@ -41,11 +41,12 @@ Patrick Wu, Julien Weng
 
 
 ## V2
-- ✅ création du projet Blazor et sa structure de base 
-- ✅ implémentation des pages de base (accueil, connexion admin, connexion joueur, leaderboard, joueur, admin)
-- ✅ mise en place du routing vers les differentes page apres connexion 
-- ✅ Création "nouvelle interface"
-- ✅ Création d'un composant Blazor pour une salle statique
+- ✅ Définition des principaux model (Joueurs, Admin, Donjon)
+- ✅ Implémentation de EFCore InMemory
+- ✅ Mise en place du routing vers les differentes page apres connexion 
+- ✅ Création des microservices
+- ✅ Ajout swagger
+- ✅ Test via swagger IHM
 Code en cours de construction, ne pas effacer le code commenter
 
 
