@@ -28,14 +28,26 @@ namespace Controller
         }
 
         [HttpPost("Block/{id}")]
-        public async Task Block(int id)
+        public async Task<IActionResult> Block(int id)
         {
-            //à implémenter
+            var result = await _playerService.BlockPlayerAsync(id);
+            if (!result)
+                return NotFound($"Joueur avec l'id {id} introuvable.");
+            
+            return Ok($"Le statut de blocage du joueur {id} a été inversé.");
         }
         [HttpPut("Update/{id}")]
-        public async Task Update(int id)
+        public async Task<IActionResult> Update(int id, Player player)
         {
-            //à implémenter
+            // S'assurer que l'ID dans l'URL correspond à celui dans l'objet
+            if (id != player.Id)
+                return BadRequest("L'ID dans l'URL ne correspond pas à celui du joueur.");
+            
+            var result = await _playerService.UpdatePlayerAsync(player);
+            if (!result)
+                return NotFound($"Joueur avec l'id {id} introuvable.");
+            
+            return Ok($"Joueur {id} mis à jour avec succès.");
         }
     }
 

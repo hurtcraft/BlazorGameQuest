@@ -77,6 +77,29 @@ namespace Service
             var player = await GetPlayerByIdAsync(p.Id);
             if (player == null) return false;
 
+            // Mettre à jour toutes les propriétés
+            player.Name = p.Name;
+            player.Score = p.Score;
+            player.IsBlocked = p.IsBlocked;
+
+            _context.Players.Update(player);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        /// <summary>
+        /// Bloque ou débloque un joueur en inversant son statut IsBlocked.
+        /// </summary>
+        /// <param name="id">L'identifiant du joueur à bloquer/débloquer.</param>
+        /// <returns>True si l'opération a réussi, false si le joueur n'existe pas.</returns>
+        public async Task<bool> BlockPlayerAsync(int id)
+        {
+            var player = await GetPlayerByIdAsync(id);
+            if (player == null) return false;
+
+            // Inverser le statut IsBlocked
+            player.IsBlocked = !player.IsBlocked;
+            
             _context.Players.Update(player);
             await _context.SaveChangesAsync();
             return true;
