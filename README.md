@@ -1,3 +1,6 @@
+## Groupe
+Patrick Wu, Julien Weng
+
 ## Comment lancer le projet
 
 - Cloner le projet en local **git clone https://github.com/hurtcraft/BlazorGameQuest**
@@ -36,6 +39,14 @@
 - ✅ Création "nouvelle interface"
 - ✅ Création d'un composant Blazor pour une salle statique
 
+
+## V2
+- ✅ Définition des principaux model (Joueurs, Admin, Donjon)
+- ✅ Implémentation de EFCore InMemory
+- ✅ Mise en place du routing vers les differentes page apres connexion 
+- ✅ Création des microservices
+- ✅ Ajout swagger
+- ✅ Test via swagger IHM
 Code en cours de construction, ne pas effacer le code commenter
 
 

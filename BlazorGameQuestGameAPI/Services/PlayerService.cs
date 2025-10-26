@@ -19,7 +19,10 @@ namespace Service
         {
             _context = context;
         }
-
+        public async Task InitializeAsync()
+        {
+            await SeedPlayersAsync();
+        }
         /// <summary>
         /// Récupère tous les joueurs de la base.
         /// </summary>
@@ -74,9 +77,58 @@ namespace Service
             var player = await GetPlayerByIdAsync(p.Id);
             if (player == null) return false;
 
+            // Mettre à jour toutes les propriétés
+            player.Name = p.Name;
+            player.Score = p.Score;
+            player.IsBlocked = p.IsBlocked;
+
             _context.Players.Update(player);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        /// <summary>
+        /// Bloque ou débloque un joueur en inversant son statut IsBlocked.
+        /// </summary>
+        /// <param name="id">L'identifiant du joueur à bloquer/débloquer.</param>
+        /// <returns>True si l'opération a réussi, false si le joueur n'existe pas.</returns>
+        public async Task<bool> BlockPlayerAsync(int id)
+        {
+            var player = await GetPlayerByIdAsync(id);
+            if (player == null) return false;
+
+            // Inverser le statut IsBlocked
+            player.IsBlocked = !player.IsBlocked;
+            
+            _context.Players.Update(player);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        public async Task SeedPlayersAsync()
+        {
+            if (await _context.Players.AnyAsync())
+                return; 
+
+            var joueurs = new List<Player>
+            {
+                new Player {  Name = "Alpha", Score = 1200 },
+                new Player {  Name = "Bravo", Score = 950 },
+                new Player {  Name = "Charlie", Score = 1300 },
+                new Player {  Name = "Delta", Score = 1100 },
+                new Player {  Name = "Echo", Score = 1400 },
+                new Player {  Name = "Foxtrot", Score = 1250 },
+                new Player {  Name = "Golf", Score = 870 },
+                new Player {  Name = "Hotel", Score = 1180 },
+                new Player {  Name = "India", Score = 1020 },
+                new Player {  Name = "Juliet", Score = 1360 },
+                new Player {  Name = "Kilo", Score = 940 },
+                new Player {  Name = "Lima", Score = 1280 },
+                new Player {  Name = "Mike", Score = 1110 },
+                new Player {  Name = "November", Score = 1220 },
+            };
+
+            await _context.Players.AddRangeAsync(joueurs);
+            await _context.SaveChangesAsync();
         }
     }
 }

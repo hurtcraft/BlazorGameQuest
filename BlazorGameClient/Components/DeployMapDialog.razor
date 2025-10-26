@@ -1,0 +1,39 @@
+@using MudBlazor
+@using BlazorGameQuestClassLib
+<MudDialog>
+    <DialogContent>
+        <h1>Déploiement d'un donjon</h1>
+        <MudItem xs="12" sm="6" md="6">
+            <MudTextField @bind-Value="donjon.Name" Label="Nom Donjon" Variant="Variant.Outlined"></MudTextField>
+        </MudItem>
+
+        <MudText Class="pb-4"> choisir la difficulté : </MudText>
+        <MudSlider @bind-Value="donjon.Difficulty" Min="1" Max="5" Step="1" Color="Color.Primary" Style="width:70%;" />
+        <MudText Class="pb-4">Difficulté : @donjon.Difficulty</MudText>
+
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton Color="Color.Secondary" onclick="Cancel">Annuler</MudButton>
+        <MudButton Color="Color.Primary" onclick="Submit" Disabled="@string.IsNullOrWhiteSpace(donjon.Name)">Déployer
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] IMudDialogInstance MudDialog { get; set; } = default!;
+    [Parameter] public Donjon donjon{get;set;}=new Donjon();
+    private string MapName { get; set; } = string.Empty;
+    private int Difficulty { get; set; } = 1;
+
+    protected override void OnInitialized()
+    {
+       
+    }
+    private void Cancel() => MudDialog?.Cancel();
+
+    private void Submit()
+    {
+        MudDialog.Close(DialogResult.Ok(donjon));
+    }
+}
