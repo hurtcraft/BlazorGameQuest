@@ -10,7 +10,7 @@
 @code {
     @inject IJSRuntime JS
     [Parameter] public bool IsEditing { get; set; }
-    [Parameter] public required GameGrid gameGrid{get;set;}
+    [Parameter] public required GameGrid gameGrid { get; set; }
     public readonly int NB_SPRITE_LARGEUR = GameGrid.NB_SPRITE_LARGEUR; //20
     public readonly int NB_SPRITE_LONGUEUR = GameGrid.NB_SPRITE_LONGUEUR; //30
     public readonly int SPRITE_SIZE = GameGrid.SPRITE_SIZE;
@@ -39,25 +39,28 @@
         }
     }
 
-    private async Task DrawGrid()
+    public async Task DrawGrid()
     {
         await JS.InvokeVoidAsync("drawGrid", NB_SPRITE_LONGUEUR, NB_SPRITE_LARGEUR, SPRITE_SIZE);
     }
-
+    public async Task DrawFrame(string imagePath, int x, int y)
+    {
+        await JS.InvokeVoidAsync("drawTile", imagePath, x, y, SPRITE_SIZE);
+    }
 
     private async Task DrawSelectedTile(int x, int y)
     {
         if (!IsEditing) return;
         if (GameAsset.currentMapTile.HasValue)
         {
-            Console.WriteLine("appel drw tata");
 
             int indexTile = GameAsset.currentMapTile.Value;
             string tilePath = GameAsset.ListMapTile[indexTile];
-            if(gameGrid.grid[y][x][^1]!=indexTile){// si dernier elt == elt courant ne pas ajouter pour eco mémoire
-                gameGrid.grid[y][x].Add(indexTile) ;
+            if (gameGrid.grid[y][x][^1] != indexTile)
+            {// si dernier elt == elt courant ne pas ajouter pour eco mémoire
+                gameGrid.grid[y][x].Add(indexTile);
             }
-            
+
 
 
             await JS.InvokeVoidAsync("drawTile", tilePath, x, y, SPRITE_SIZE);
@@ -82,7 +85,38 @@
     ;
 
     }
+    public async Task DrawFromGameGrid(GameGrid _grid)
+    {
+        if (_grid == null) return;
+        //gameGrid = _grid;
+        gameGrid.grid = _grid.grid;
+        await DrawGrid();
 
+
+        // On efface le canvas avant de redraw
+        for (int i = 0; i < gameGrid.grid.Count(); i++)
+        {
+            for (int j = 0; j < gameGrid.grid[0].Count(); j++)
+            {
+                for (int k = 0; k < gameGrid.grid[i][j].Count(); k++)
+                {
+
+                    int tileIndex = gameGrid.grid[i][j][k];
+                    //Console.WriteLine(i+" "+j+" "+ string.Join(",",gameGrid.grid[i][j]));
+                    if (tileIndex != -1)
+                    {
+
+                        string tilePath = GameAsset.ListMapTile[tileIndex];
+                        await JS.InvokeVoidAsync("drawTile", tilePath, j, i, SPRITE_SIZE);
+                    }
+
+
+
+                }
+            }
+        }
+
+    }
     private void OnMouseUp(MouseEventArgs e)
     {
         if (!IsEditing) return;
@@ -108,6 +142,10 @@
 
 
     }
+    public async Task ClearTile(int x,int y){
+        await JS.InvokeVoidAsync("eraseTile", x, y, SPRITE_SIZE);
+
+    }
     private async Task EraseTile(int x, int y)
     {
         if (!IsEditing)
@@ -115,7 +153,7 @@
             return;
         }
         await JS.InvokeVoidAsync("eraseTile", x, y, SPRITE_SIZE);
-        gameGrid.grid[y][x]=new List<int>{-1};
+        gameGrid.grid[y][x] = new List<int> { -1 };
     }
     private async Task OnMouseClick(MouseEventArgs e)
     {

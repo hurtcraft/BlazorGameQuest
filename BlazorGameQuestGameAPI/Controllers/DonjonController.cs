@@ -23,11 +23,17 @@ public class DonjonController : ControllerBase
 
         return Ok(new { Message = "Donjon sauvegardé !" });
     }
-    [HttpGet("load/{donjonId}")]
-    public string load(int donjonId)
+    [HttpGet("load/{DonjonName}")]
+    public async Task<Donjon> loadAsync(string DonjonName)
     {
-        _donjonService.LoadDonjon(donjonId);
-        
-        return "taata";
+        Donjon donjon = await _donjonService.LoadDonjon(DonjonName);
+          
+        return donjon;
+    }
+
+    [HttpGet("allDonjons")]
+    public Task<string[]> allDonjons()
+    {
+        return _donjonService.GetListDonjon();
     }
 }

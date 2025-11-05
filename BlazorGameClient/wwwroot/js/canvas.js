@@ -12,7 +12,6 @@ window.drawCircle = function () {
 window.drawGrid = function (nbCols, nbRows, spriteSize) {
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
-    console.log("arkzpodj,zopisqd");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = '#cccccc'; 
     ctx.lineWidth = 1;
@@ -42,7 +41,12 @@ window.drawTile = async function (tilePath, x, y, size) {
         ctx.drawImage(img, x*size, y*size, size, size);
     };
 };
-
+window.clearCanvas = function() {
+    const canvas = document.getElementById("myCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
 window.eraseTile = function (x, y, size) {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
@@ -59,6 +63,19 @@ window.eraseTile = function (x, y, size) {
     ctx.fillRect(px, py, size, size);
     ctx.strokeRect(px, py,size, size);
 };
+
+window.drawRectOnCanvas = (canvasId, x, y, width, height, color) => {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, width, height);
+};
+
+
+
+
+
 document.addEventListener("contextmenu", (e) => {
     if (e.target.id === "myCanvas") e.preventDefault();
 });
