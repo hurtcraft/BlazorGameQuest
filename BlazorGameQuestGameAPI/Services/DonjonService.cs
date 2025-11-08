@@ -13,13 +13,14 @@ namespace Service
         }
         public async Task SaveDonjonAsync(Donjon donjon)
         {
-            if (donjon == null) return;
+            if (donjon == null || donjon.GameGrid==null ) return;
 
             // Sérialiser le donjon en JSON
             string json = JsonSerializer.Serialize(donjon, new JsonSerializerOptions
             {
                 WriteIndented = true
             });
+            
             Console.WriteLine("DONJON " + donjon.GameGrid.ToCsv());
 
 

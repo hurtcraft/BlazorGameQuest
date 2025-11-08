@@ -18,8 +18,8 @@
 </div>
 
 @code {
-    private AnimationHelper animationHelper;
-    private GridCanva gridCanva;
+    private AnimationHelper? animationHelper;
+    private GridCanva? gridCanva;
     private Player player = new Player();
     
     private bool isAnimating = false;
@@ -46,7 +46,10 @@
     }
     private async void Update()
     {
-        gridCanva.DrawGrid();
+        if(gridCanva==null){
+            return;
+        }
+        await gridCanva.DrawGrid();
         UpdatePlayerPosition();
         DrawPlayer();
         Console.WriteLine("player " + player.X + " " + player.Y);
@@ -95,6 +98,7 @@
     }
     private void StartAnimation()
     {
+        if(animationHelper==null)return;
         animationHelper.PlayAnimation("run_down");
 
         if (!isAnimating)
@@ -106,6 +110,7 @@
 
     private async Task AnimateLoop()
     {
+        if(animationHelper==null)return;
         while (isAnimating)
         {
             if (gridCanva != null)

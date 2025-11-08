@@ -19,7 +19,6 @@ public class DonjonService
         if (donjon == null) return;
 
         var response = await _http.PostAsJsonAsync("Donjon/save", donjon);
-        Console.WriteLine("dd" + donjon.GameGrid.ToCsv());
         if (response.IsSuccessStatusCode)
         {
             Console.WriteLine("Donjon sauvegardé côté serveur !");

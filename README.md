@@ -4,7 +4,11 @@ Patrick Wu, Julien Weng
 ## Comment lancer le projet
 
 - Cloner le projet en local **git clone https://github.com/hurtcraft/BlazorGameQuest**
-- Déplacer vous dans le dossier: **BlazorGameQuest/BlazorGameClient**
+### pour le Back end
+- Déplacer vous dans le dossier: **BlazorGameQuest/BlazorGameQuestGameApi**
+- lancer le projet via **dotnet run**
+### pour le Front end
+- Déplacer vous dans le dossier: **BlazorGameQuest/BlazorGameClient** 
 - lancer le projet via **dotnet run**
 
 
