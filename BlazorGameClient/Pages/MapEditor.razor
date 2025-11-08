@@ -19,20 +19,31 @@
     <div
         style="flex:1; padding: 5rem; overflow:auto; display:flex; flex-direction:column; align-items:center; justify-content:center;">
         <h1 style="margin-bottom:2rem;">Map Editor en construction</h1>
-        <GridCanva gameGrid="@gameGrid" IsEditing=true />
+        <GridCanva @ref="GridCanvaRef" gameGrid="@gameGrid" IsEditing=true />
     </div>
-    <MapEditorTools donjon="@donjon" />
+    <MapEditorTools donjon="@donjon" OnDonjonSelected="HandleDonjonSelected" />
 
 </div>
 
 @code {
 
     private GameGrid gameGrid = new GameGrid();
+    private GridCanva? GridCanvaRef;
 
     private Donjon? donjon;
 
     private int _mouseX;
     private int _mouseY;
+
+private async Task HandleDonjonSelected(Donjon loadedDonjon)
+{
+    donjon = loadedDonjon;
+    Console.WriteLine("mon donjon "+donjon);
+    if (donjon.GameGrid != null && GridCanvaRef!=null)
+    {
+        await GridCanvaRef.DrawFromGameGrid(donjon.GameGrid);
+    }
+}
     private void OnMouseMove(MouseEventArgs e)
     {
         // inversion pour la cohérence de la matrice grid

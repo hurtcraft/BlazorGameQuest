@@ -8,6 +8,11 @@ public class Donjon
     public string Name { get; set; } = string.Empty;
 
     public int Difficulty { get; set; } = 1;
+    public override string ToString()
+    {
+        var gridText = GameGrid != null ? GameGrid.ToCsv() : "null";
 
+        return $"Donjon Name='{Name}', Difficulty={Difficulty}, GameGrid={gridText}";
+    }
 
 }

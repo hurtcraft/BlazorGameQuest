@@ -1,13 +1,126 @@
 @page "/game"
 
+@using BlazorGameClient.Game.Utils
 @using MudBlazor
 @using BlazorGameQuestClassLib
 @using Components
 @using BlazorGameClient.Components.GamePlay
+@using System.Threading.Tasks
 
-
+@inject InputManager Input
+@inject IJSRuntime JS
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
     <h1>JEU en cours de construction</h1>
-    <GridCanva IsEditing=false/>
-    <GameRulesCard/>
+    <GridCanva @ref="gridCanva" IsEditing=false />
+    <button class="mud-button mud-button-filled" @onclick="StartAnimation">Lancer l'animation</button>
+
+    <GameRulesCard />
 </div>
+
+@code {
+    private AnimationHelper? animationHelper;
+    private GridCanva? gridCanva;
+    private Player player = new Player();
+    
+    private bool isAnimating = false;
+    private bool running = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Input.InitializeAsync();
+            _ = GameLoop(); // lance la boucle sans bloquer le thread UI
+        }
+    }
+    private async Task GameLoop()
+    {
+        const int frameDelay = 16; // environ 60 FPS
+        while (running)
+        {
+            Update();
+
+            await InvokeAsync(StateHasChanged);
+            await Task.Delay(frameDelay);
+        }
+    }
+    private async void Update()
+    {
+        if(gridCanva==null){
+            return;
+        }
+        await gridCanva.DrawGrid();
+        UpdatePlayerPosition();
+        DrawPlayer();
+        Console.WriteLine("player " + player.X + " " + player.Y);
+
+
+    }
+    private void DrawMap(){
+
+    }
+    private void UpdatePlayerPosition()
+    {
+        var pressedKeys = Input.GetPressedKeys(); // méthode à ajouter dans InputManager
+        foreach (var key in pressedKeys)
+        {
+            switch (key)
+            {
+                case "ArrowUp": player.Move(0, -1); break;
+                case "ArrowDown": player.Move(0, 1); break;
+                case "ArrowLeft": player.Move(-1, 0); break;
+                case "ArrowRight": player.Move(1, 0); break;
+            }
+        }
+    }
+    private async void DrawPlayer()
+    {
+        if (player == null) return;
+
+        await JS.InvokeVoidAsync("drawRectOnCanvas",
+        "myCanvas", // id du canvas
+        player.X, // position X
+        player.Y, // position Y
+        GameGrid.SPRITE_SIZE, // largeur
+        GameGrid.SPRITE_SIZE, // hauteur
+        "red"); // couleur
+    }
+    protected override void OnInitialized()
+    {
+        player.X = 100;
+        player.Y = 100;
+        var animations = AnimationHelper.GetAnimationsFromFolder("assets/PlayerAssets/Sprites/RUN/run_down/redim", 7);
+        Console.WriteLine("ANIMTION " + string.Join(",", animations));
+        Dictionary<string, List<string>> animationMap = new Dictionary<string, List<string>>();
+
+        animationMap.Add("run_down", animations);
+        animationHelper = new AnimationHelper(animationMap);
+    }
+    private void StartAnimation()
+    {
+        if(animationHelper==null)return;
+        animationHelper.PlayAnimation("run_down");
+
+        if (!isAnimating)
+        {
+            isAnimating = true;
+            _ = AnimateLoop();
+        }
+    }
+
+    private async Task AnimateLoop()
+    {
+        if(animationHelper==null)return;
+        while (isAnimating)
+        {
+            if (gridCanva != null)
+            {
+                await gridCanva.ClearTile(0, 0);
+                await gridCanva.DrawFrame(animationHelper.CurrentFrame, 0, 0);
+                animationHelper.Update(1f);
+
+            }
+            await Task.Delay(100); // 10 FPS, ajuste la valeur pour accélérer ou ralentir
+        }
+    }
+}

@@ -11,6 +11,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped<DonjonService>();
 builder.Services.AddScoped<PlayerServices>();
 
+builder.Services.AddScoped<InputManager>();
 
 builder.Services.AddMudServices();
 builder.Services.AddScoped(sp => new HttpClient
@@ -22,4 +23,5 @@ GameAsset.LoadAssets(
     MapTilePath: "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/character and tileset/tiles",
     MobTilePath: "assets/DungeonAssets/mobs"
 );
+
 await builder.Build().RunAsync();
