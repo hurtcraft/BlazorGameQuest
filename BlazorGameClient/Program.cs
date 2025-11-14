@@ -16,7 +16,7 @@ builder.Services.AddScoped<InputManager>();
 builder.Services.AddMudServices();
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://localhost:5270/api/")
+    BaseAddress = new Uri("http://localhost:5001/api/")
 });
 // builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 GameAsset.LoadAssets(

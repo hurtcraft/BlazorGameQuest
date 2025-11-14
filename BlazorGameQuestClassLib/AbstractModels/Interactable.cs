@@ -10,7 +10,7 @@ namespace BlazorGameQuestClassLib.AbstractModels
         public bool IsActive { get; set; } = true;
         public float X { get; set; }
         public float Y { get; set; }
-        public float Speed { get; set; } = 2.0f;
+        public float Speed { get; set; } = 1.0f;
 
         protected Dictionary<string, List<string>> AnimationMap { get; set; } = new();
         protected int currentFrameIndex = 0;
@@ -61,6 +61,7 @@ namespace BlazorGameQuestClassLib.AbstractModels
                 currentFrameIndex = 0;
                 animationTimer = 0f;
             }
+            Console.WriteLine("animation "+string.Join(",",AnimationMap[CurrentAnimation]) );
         }
         public void UpdateAnimation(float deltaTime)
         {

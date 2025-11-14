@@ -6,13 +6,13 @@
 @using Components
 @using BlazorGameClient.Components.GamePlay
 @using System.Threading.Tasks
-
+@inject DonjonService DonjonService
 @inject InputManager Input
 @inject IJSRuntime JS
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
     <h1>JEU en cours de construction</h1>
     <GridCanva @ref="gridCanva" IsEditing=false />
-    <button class="mud-button mud-button-filled" @onclick="StartAnimation">Lancer l'animation</button>
+    @* <button class="mud-button mud-button-filled" @onclick="StartAnimation">Lancer l'animation</button> *@
 
     <GameRulesCard />
 </div>
@@ -21,14 +21,37 @@
     private AnimationHelper? animationHelper;
     private GridCanva? gridCanva;
     private Player player = new Player();
-    
+    private List<Donjon> donjons = new();
+    private Donjon? CurrentDonjon;
+    private GameEntity game = new GameEntity();
+    private int currentDonjonIndex = 0;
+    private readonly int nbRandomDonjon = 5;
     private bool isAnimating = false;
     private bool running = true;
 
+    private float moveCooldown = 0.2f; // secondes entre chaque case
+    private float moveTimer = 0f;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender && gridCanva != null)
         {
+
+            donjons = await DonjonService.GetRandomDonjon(nbRandomDonjon);
+            CurrentDonjon = donjons[currentDonjonIndex];
+            if (CurrentDonjon.GameGrid != null)
+            {
+                if (CurrentDonjon.GameGrid.grid == null)
+                {
+                    Console.WriteLine("Le tableau interne grid est null !");
+                }
+                else
+                {
+                    Console.WriteLine("GameGrid prêt pour dessin");
+                    //await gridCanva.DrawFromGameGrid(CurrentDonjon.GameGrid);
+                }
+            }
+
             await Input.InitializeAsync();
             _ = GameLoop(); // lance la boucle sans bloquer le thread UI
         }
@@ -38,6 +61,8 @@
         const int frameDelay = 16; // environ 60 FPS
         while (running)
         {
+            //gridCanva.DrawFrame("/assets/Main Character/walk/walk_down/0.png",10,10);
+
             Update();
 
             await InvokeAsync(StateHasChanged);
@@ -46,59 +71,119 @@
     }
     private async void Update()
     {
-        if(gridCanva==null){
+        if (gridCanva == null || CurrentDonjon?.GameGrid == null)
             return;
-        }
-        await gridCanva.DrawGrid();
+
+        float deltaTime = 1f / 60f; // ~60 FPS
+        moveTimer -= deltaTime;
         UpdatePlayerPosition();
-        DrawPlayer();
-        Console.WriteLine("player " + player.X + " " + player.Y);
-
-
+        player.UpdateAnimation(deltaTime);
+        //await DrawGame(CurrentDonjon.GameGrid);
+        await DrawPlayer();
     }
-    private void DrawMap(){
 
-    }
     private void UpdatePlayerPosition()
     {
-        var pressedKeys = Input.GetPressedKeys(); // méthode à ajouter dans InputManager
+        var pressedKeys = Input.GetPressedKeys();
+
+        if (moveTimer > 0)
+            return; 
+        if(pressedKeys.Count()==0){
+            Console.WriteLine("PLATYER DOIT STOP");
+
+            player.Stop();
+        }
+        Console.WriteLine("pressed "+string.Join(separator: ",",pressedKeys)+ " count "+ pressedKeys.Count());
         foreach (var key in pressedKeys)
         {
             switch (key)
             {
-                case "ArrowUp": player.Move(0, -1); break;
-                case "ArrowDown": player.Move(0, 1); break;
-                case "ArrowLeft": player.Move(-1, 0); break;
-                case "ArrowRight": player.Move(1, 0); break;
+                case "ArrowUp": player.MoveUp(); break;
+                case "ArrowDown": player.MoveDown(); break;
+                case "ArrowLeft": player.MoveLeft(); break;
+                case "ArrowRight": player.MoveRight(); break;
+                case "KeyJ": player.Attack(); break;
+
+                default: player.Stop();break;
             }
+            moveTimer = moveCooldown; 
+            break;
         }
     }
-    private async void DrawPlayer()
+    private async Task drawFrame()
     {
-        if (player == null) return;
 
-        await JS.InvokeVoidAsync("drawRectOnCanvas",
-        "myCanvas", // id du canvas
-        player.X, // position X
-        player.Y, // position Y
-        GameGrid.SPRITE_SIZE, // largeur
-        GameGrid.SPRITE_SIZE, // hauteur
-        "red"); // couleur
+    }
+    private async Task DrawGame(GameGrid grid)
+    {
+        if (gridCanva == null || grid == null) return;
+
+        await gridCanva.DrawFromGameGrid(grid);
+    }
+    private async Task DrawPlayer()
+    {
+        if (player == null || gridCanva == null) return;
+
+        var framePath = player.GetCurrentFramePath();
+        if (!string.IsNullOrEmpty(framePath))
+        {
+            await JS.InvokeVoidAsync("drawTile", framePath, player.X, player.Y, GameGrid.SPRITE_SIZE);
+
+            //await gridCanva.DrawFrame(framePath, (int)player.X, (int)player.Y);
+        }
+        StateHasChanged();
+    }
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        player.X = 0;
+        player.Y = 0;
+
+
+    }
+
+
+    private void initPlayerAnimation()
+    {
+        //temporaraire pr test
+        player.AddAnimation("walk_down", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_down", 4));
+        player.AddAnimation("walk_up", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_up", 4));
+        player.AddAnimation("walk_left", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_left", 4));
+        player.AddAnimation("walk_right", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_right", 4));
+
+        player.AddAnimation("idle_down", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_down", 4));
+        player.AddAnimation("idle_up", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_up", 4));
+        player.AddAnimation("idle_left", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_left", 4));
+        player.AddAnimation("idle_right", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_right", 4));
+
+        player.AddAnimation("attack_down", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_down", 6));
+        player.AddAnimation("attack_up", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_up", 6));
+        player.AddAnimation("attack_left", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_left", 6));
+        player.AddAnimation("attack_right", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_right", 6));
+
+
+        //player.AddAnimation()
     }
     protected override void OnInitialized()
     {
-        player.X = 100;
-        player.Y = 100;
+        player.X = 0;
+        player.Y = 0;
+        //donjons = DonjonService.GetRandomDonjon(nbRandomDonjon);
         var animations = AnimationHelper.GetAnimationsFromFolder("assets/PlayerAssets/Sprites/RUN/run_down/redim", 7);
+        initPlayerAnimation();
         Console.WriteLine("ANIMTION " + string.Join(",", animations));
         Dictionary<string, List<string>> animationMap = new Dictionary<string, List<string>>();
 
         animationMap.Add("run_down", animations);
         animationHelper = new AnimationHelper(animationMap);
     }
+    @* 
+
     private void StartAnimation()
     {
-        if(animationHelper==null)return;
+        if (animationHelper == null) return;
         animationHelper.PlayAnimation("run_down");
 
         if (!isAnimating)
@@ -110,7 +195,7 @@
 
     private async Task AnimateLoop()
     {
-        if(animationHelper==null)return;
+        if (animationHelper == null) return;
         while (isAnimating)
         {
             if (gridCanva != null)
@@ -122,5 +207,5 @@
             }
             await Task.Delay(100); // 10 FPS, ajuste la valeur pour accélérer ou ralentir
         }
-    }
+    } *@
 }

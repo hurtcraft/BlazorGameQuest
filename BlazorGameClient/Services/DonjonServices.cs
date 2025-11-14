@@ -54,6 +54,21 @@ public class DonjonService
             return null;
         }
     }
+    public async Task<List<Donjon>> GetRandomDonjon(int nbRandomDonjon)
+    {
+        var response = await _http.GetAsync($"Donjon/getRandomDonjons/{nbRandomDonjon}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var donjons = await response.Content.ReadFromJsonAsync<List<Donjon>>();
+            return donjons ?? new List<Donjon>();
+        }
+        else
+        {
+            Console.WriteLine($"Erreur lors du chargement des donjons : {response.StatusCode}");
+            return new List<Donjon>();
+        }
+    }
 
     public async Task<string> TestAsync()
     {

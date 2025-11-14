@@ -1,13 +1,3 @@
-window.drawCircle = function () {
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext('2d');
-
-    ctx.fillStyle = 'blue';
-    ctx.beginPath();
-    ctx.arc(250, 150, 50, 0, 2 * Math.PI);
-    ctx.fill();
-};
-
 
 window.drawGrid = function (nbCols, nbRows, spriteSize) {
     const canvas = document.getElementById('myCanvas');
@@ -39,6 +29,16 @@ window.drawTile = async function (tilePath, x, y, size) {
     img.src = tilePath;
     img.onload = () => {
         ctx.drawImage(img, x*size, y*size, size, size);
+    };
+};
+window.drawRaw= async function (tilePath, x, y, size) {
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const img = new Image();
+    img.src = tilePath;
+    img.onload = () => {
+        ctx.drawImage(img, x, y, size, size);
     };
 };
 window.clearCanvas = function() {

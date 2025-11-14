@@ -10,7 +10,7 @@
 @code {
     @inject IJSRuntime JS
     [Parameter] public bool IsEditing { get; set; }
-    [Parameter] public required GameGrid gameGrid { get; set; }
+    [Parameter] public required GameGrid gameGrid { get; set; }=new GameGrid();
     public readonly int NB_SPRITE_LARGEUR = GameGrid.NB_SPRITE_LARGEUR; //20
     public readonly int NB_SPRITE_LONGUEUR = GameGrid.NB_SPRITE_LONGUEUR; //30
     public readonly int SPRITE_SIZE = GameGrid.SPRITE_SIZE;
@@ -87,11 +87,13 @@
     }
     public async Task DrawFromGameGrid(GameGrid _grid)
     {
+        Console.WriteLine("loooool "+gameGrid.grid);
+
+
         if (_grid == null) return;
         //gameGrid = _grid;
         gameGrid.grid = _grid.grid;
         await DrawGrid();
-
 
         // On efface le canvas avant de redraw
         for (int i = 0; i < gameGrid.grid.Count(); i++)
