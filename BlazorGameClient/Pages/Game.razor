@@ -87,8 +87,6 @@
         if (moveTimer > 0)
             return; 
         if(pressedKeys.Count()==0){
-            Console.WriteLine("PLATYER DOIT STOP");
-
             player.Stop();
         }
         Console.WriteLine("pressed "+string.Join(separator: ",",pressedKeys)+ " count "+ pressedKeys.Count());
