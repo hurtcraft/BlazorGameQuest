@@ -185,6 +185,6 @@ public class DonjonServiceTests : IDisposable
         var randomDonjons = await _donjonService.RequestRandomDonjon(10);
 
         Assert.NotNull(randomDonjons);
-        Assert.True(randomDonjons.Count <= 1);
+        Assert.Equal(1, randomDonjons.Count);
     }
 }
