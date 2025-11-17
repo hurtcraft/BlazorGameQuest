@@ -51,7 +51,7 @@ public class DonjonServiceTests : IDisposable
     [Fact]
     public async Task SaveDonjonAsync_WithNullDonjon_ShouldNotCreateFile()
     {
-        await _donjonService.SaveDonjonAsync(null);
+        await _donjonService.SaveDonjonAsync(null!);
 
         string donjonsDir = Path.Combine(_tempDirectory, "Donjons");
         if (Directory.Exists(donjonsDir))
@@ -185,6 +185,6 @@ public class DonjonServiceTests : IDisposable
         var randomDonjons = await _donjonService.RequestRandomDonjon(10);
 
         Assert.NotNull(randomDonjons);
-        Assert.Equal(1, randomDonjons.Count);
+        Assert.Single(randomDonjons);
     }
 }

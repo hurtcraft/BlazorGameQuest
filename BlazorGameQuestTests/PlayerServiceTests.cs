@@ -170,6 +170,7 @@ public class PlayerServiceTests : IDisposable
 
         await _playerService.BlockPlayerAsync(playerId);
         retrievedPlayer = await _playerService.GetPlayerByIdAsync(playerId);
+        Assert.NotNull(retrievedPlayer);
         Assert.False(retrievedPlayer.IsBlocked);
     }
 
