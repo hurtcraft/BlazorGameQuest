@@ -7,6 +7,7 @@ namespace Service
     {
         private readonly IWebHostEnvironment _env;
         private readonly string DonjonsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Donjons");
+        private readonly string ConfDirectory = Path.Combine(Directory.GetCurrentDirectory(), "conf");
         public DonjonService(IWebHostEnvironment env)
         {
             _env = env;
@@ -61,7 +62,7 @@ namespace Service
         {
             string[] listDonjon = await GetListDonjon();
             List<Donjon> selectedDonjons = new List<Donjon>();
-            
+
             if (listDonjon == null || listDonjon.Length == 0)
                 return selectedDonjons;
             Random rnd = new Random();
@@ -71,11 +72,24 @@ namespace Service
             {
                 int randomIndexDonjon = rnd.Next(0, nbDonjon);
                 Donjon d = await LoadDonjon(listDonjon[randomIndexDonjon]);
-                Console.WriteLine("d " + d.Name);
                 selectedDonjons.Add(d);
             }
             return selectedDonjons;
-            
+
+
+        }
+        public async Task<Dictionary<string, List<int>>> GetDonjonEltConf()
+        {
+            Dictionary<string, List<int>> dict = new();
+
+            string filePath = Path.Combine(ConfDirectory, "donjonElt.json");
+            string json = await File.ReadAllTextAsync(filePath);
+            var res = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(json);
+            if (res != null)
+            {
+                dict = res;
+            }
+            return dict;
 
         }
         private int GetDonjonDifficulty(string fileName)

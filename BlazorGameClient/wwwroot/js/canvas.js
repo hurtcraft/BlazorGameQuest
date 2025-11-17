@@ -21,16 +21,74 @@ window.drawGrid = function (nbCols, nbRows, spriteSize) {
     }
 };
 
+
 window.drawTile = async function (tilePath, x, y, size) {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
-
-    const img = new Image();
-    img.src = tilePath;
-    img.onload = () => {
-        ctx.drawImage(img, x*size, y*size, size, size);
-    };
+    
+    const img = await window.loadImage(tilePath);
+    ctx.drawImage(img, x * size, y * size, size, size);
 };
+
+window.imageCache = {};
+window.loadImage = function (path) {
+    return new Promise(resolve => {
+        if (window.imageCache[path]) {
+            resolve(window.imageCache[path]);
+            return;
+        }
+
+        const img = new Image();
+        img.src = path;
+        img.onload = () => {
+            window.imageCache[path] = img;
+            resolve(img);
+        };
+    });
+};
+
+
+window.preloadImages = async function(interactables, player) {
+    const paths = new Set();
+
+    interactables.forEach(row => {
+        row.forEach(item => paths.add(item.currentFramePath));
+    });
+    paths.add(player.currentFramePath);
+
+    const promises = Array.from(paths).map(path => new Promise(resolve => {
+        const img = new Image();
+        img.src = path;
+        img.onload = () => {
+            window.imageCache[path] = img;
+            resolve();
+        };
+    }));
+
+    await Promise.all(promises);
+};
+
+
+window.drawFrame = async function (interactables, player, tileSize) {
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < interactables.length; i++) {
+        for (let j = 0; j < interactables[i].length; j++) {
+            const item = interactables[i][j];
+            await window.drawTile(item.currentFramePath, item.y, item.x, tileSize);
+        }
+    }
+
+    await window.drawTile(player.currentFramePath, player.x, player.y, tileSize);
+};
+
+
+
+
+
 window.drawRaw= async function (tilePath, x, y, size) {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");

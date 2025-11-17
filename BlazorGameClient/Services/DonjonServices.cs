@@ -69,6 +69,22 @@ public class DonjonService
             return new List<Donjon>();
         }
     }
+    public async Task<Dictionary<string, List<int>>> GetDonjonEltConf()
+    {
+        var response = await _http.GetAsync("Donjon/getDonjonEltConf/");
+        if (response.IsSuccessStatusCode)
+        {
+            var config = await response.Content.ReadFromJsonAsync<Dictionary<string, List<int>>>();
+            return config??new();
+        }
+        else
+        {
+            Console.WriteLine($"Erreur lors du chargement de la conf des donjons : {response.StatusCode}");
+            return new();
+        }
+        
+
+    }
 
     public async Task<string> TestAsync()
     {

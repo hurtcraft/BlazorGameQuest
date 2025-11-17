@@ -21,8 +21,10 @@ public class FactoryInteractable
     }
     public static void Init()
     {
-        string json = File.ReadAllText("conf/donjonElt.json");
-
+        Console.WriteLine("jsopn " + Path.Combine(AppContext.BaseDirectory, "conf", "donjonElt.json"));
+        string json = File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "conf", "donjonElt.json")
+        );
         var res = JsonSerializer.Deserialize<Dictionary<string, List<int>>>(json);
         if (res != null)
         {

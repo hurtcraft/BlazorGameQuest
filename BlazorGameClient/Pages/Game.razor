@@ -1,6 +1,7 @@
 @page "/game"
 
 @using BlazorGameClient.Game.Utils
+@using BlazorGameQuestClassLib.AbstractModels
 @using MudBlazor
 @using BlazorGameQuestClassLib
 @using Components
@@ -19,17 +20,18 @@
 
 @code {
     private GridCanva? gridCanva;
+    private Dictionary<string, List<int>>? DonjonEltConfig;
     private Player player = new Player();
     private List<Donjon> donjons = new();
     private Donjon? CurrentDonjon;
-    private GameEntity game = new GameEntity();
+    List<List<Interactable>>? interactables;
     private int currentDonjonIndex = 0;
     private readonly int nbRandomDonjon = 5;
     private bool running = true;
 
     private float moveCooldown = 0.2f; // secondes entre chaque case
     private float moveTimer = 0f;
-
+    //private List<List<Interactable>>? interactables;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender && gridCanva != null)
@@ -37,26 +39,20 @@
 
             donjons = await DonjonService.GetRandomDonjon(nbRandomDonjon);
             CurrentDonjon = donjons[currentDonjonIndex];
-            if (CurrentDonjon.GameGrid != null)
-            {
-                if (CurrentDonjon.GameGrid.grid == null)
-                {
-                    Console.WriteLine("Le tableau interne grid est null !");
-                }
-                else
-                {
-                    Console.WriteLine("GameGrid prêt pour dessin");
-                    //await gridCanva.DrawFromGameGrid(CurrentDonjon.GameGrid);
-                }
-            }
+            DonjonEltConfig = await DonjonService.GetDonjonEltConf();
 
+            interactables = CurrentDonjon.AsInteractable(DonjonEltConfig);
+            Console.WriteLine("COUNT " + interactables.Count() + " " + interactables[0].Count());
             await Input.InitializeAsync();
-            _ = GameLoop(); 
+            await JS.InvokeVoidAsync("preloadImages", interactables, player);
+            await DrawFrame();
+
+            _ = GameLoop();
         }
     }
     private async Task GameLoop()
     {
-        const int frameDelay = 16; // environ 60 FPS
+        const int frameDelay = 1; // environ 60 FPS
         while (running)
         {
             //gridCanva.DrawFrame("/assets/Main Character/walk/walk_down/0.png",10,10);
@@ -72,12 +68,15 @@
         if (gridCanva == null || CurrentDonjon?.GameGrid == null)
             return;
 
-        float deltaTime = 1f / 60f; // ~60 FPS
+        float deltaTime = 1f / 10; // ~60 FPS
         moveTimer -= deltaTime;
         UpdatePlayerPosition();
         player.UpdateAnimation(deltaTime);
+
+        await DrawFrame();
+
         //await DrawGame(CurrentDonjon.GameGrid);
-        await DrawPlayer();
+        //await DrawPlayer();
     }
 
     private void UpdatePlayerPosition()
@@ -85,11 +84,11 @@
         var pressedKeys = Input.GetPressedKeys();
 
         if (moveTimer > 0)
-            return; 
-        if(pressedKeys.Count()==0){
+            return;
+        if (pressedKeys.Count() == 0)
+        {
             player.Stop();
         }
-        Console.WriteLine("pressed "+string.Join(separator: ",",pressedKeys)+ " count "+ pressedKeys.Count());
         foreach (var key in pressedKeys)
         {
             switch (key)
@@ -100,16 +99,16 @@
                 case "ArrowRight": player.MoveRight(); break;
                 case "KeyJ": player.Attack(); break;
 
-                default: player.Stop();break;
+                default: player.Stop(); break;
             }
-            moveTimer = moveCooldown; 
+            moveTimer = moveCooldown;
             break;
         }
     }
-    @* private async Task drawFrame()
+    private async Task DrawFrame()
     {
-
-    } *@
+        await JS.InvokeVoidAsync("drawFrame", interactables, player, GameGrid.SPRITE_SIZE);
+    }
     private async Task DrawGame(GameGrid grid)
     {
         if (gridCanva == null || grid == null) return;
@@ -145,9 +144,11 @@
         player.AddAnimation("idle_left", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_left", 4));
         player.AddAnimation("idle_right", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_right", 4));
 
-        player.AddAnimation("attack_down", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_down", 6));
+        player.AddAnimation("attack_down", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_down",
+        6));
         player.AddAnimation("attack_up", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_up", 6));
-        player.AddAnimation("attack_left", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_left", 6));
+        player.AddAnimation("attack_left", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_left",
+        6));
         player.AddAnimation("attack_right", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_right", 6));
 
 
@@ -160,6 +161,13 @@
         initPlayerAnimation();
         player.PlayAnimation("idle_down");
 
+
     }
-    
+    protected override async Task OnInitializedAsync()
+    {
+        // DonjonEltConfig = await DonjonService.GetDonjonEltConf();
+        //Console.WriteLine(string.Join("\n", DonjonEltConfig.Select(kvp => $"{kvp.Key}: {string.Join(", ", kvp.Value)}")));
+    }
+
+
 }

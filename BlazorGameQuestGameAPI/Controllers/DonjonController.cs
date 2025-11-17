@@ -41,4 +41,9 @@ public class DonjonController : ControllerBase
     {
         return _donjonService.RequestRandomDonjon(nbRandomDonjon);
     }
+    [HttpGet("getDonjonEltConf")]
+    public Task<Dictionary<string,List<int>>> GetDonjonEltConf()
+    {
+        return _donjonService.GetDonjonEltConf();
+    }
 }

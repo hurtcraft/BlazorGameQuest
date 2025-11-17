@@ -17,6 +17,7 @@ namespace BlazorGameQuestClassLib.AbstractModels
         protected float animationTimer = 0f;
         protected float frameDuration = 0.1f;
         public string CurrentAnimation { get; set; } = string.Empty;
+        public string CurrentFramePath => GetCurrentFramePath();
 
         public bool CheckCollision(ICollidable other)
         {
@@ -61,7 +62,6 @@ namespace BlazorGameQuestClassLib.AbstractModels
                 currentFrameIndex = 0;
                 animationTimer = 0f;
             }
-            Console.WriteLine("animation "+string.Join(",",AnimationMap[CurrentAnimation]) );
         }
         public void UpdateAnimation(float deltaTime)
         {
