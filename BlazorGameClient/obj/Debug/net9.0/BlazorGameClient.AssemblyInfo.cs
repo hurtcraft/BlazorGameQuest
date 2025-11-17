@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlazorGameClient")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f929ca111d1f5d3657d0b94fa7e6c4df9cd4546")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+358db79b6441a5a26ec395eaf9891fd31fcbda0c")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlazorGameClient")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlazorGameClient")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

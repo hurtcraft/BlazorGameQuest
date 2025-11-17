@@ -41,9 +41,9 @@ namespace BlazorGameQuestClassLib.AbstractModels
         }
 
 
-        public void Interact(IInteractable other)
+        public virtual void  Interact(IInteractable other)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Interactable touched at {X},{Y} {CurrentFramePath}");
         }
 
         public void Move(float deltaX, float deltaY)

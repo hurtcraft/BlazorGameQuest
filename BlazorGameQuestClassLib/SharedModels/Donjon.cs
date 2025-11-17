@@ -38,7 +38,7 @@ public class Donjon
 
                     if (elt != -1)
                     {
-                        Interactable interactable = Create(elt, i, j, config);
+                        Interactable interactable = Create(elt, j, i, config);
                         row.Add(interactable);
                         Console.WriteLine(elt+" "+i+" "+j+" "+interactable.GetCurrentFramePath()); 
                     }
@@ -84,6 +84,7 @@ public class Donjon
                         w.Y = y;
                         w.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
                         w.PlayAnimation("default");
+                        w.IsActive=true;
                         return w;
 
                 }
@@ -99,6 +100,7 @@ public class Donjon
         deco.Y = y;
         deco.AddAnimation("default", new List<string> { tilePath });
         deco.PlayAnimation("default");
+        deco.IsActive=false;
         return deco;
 
     }

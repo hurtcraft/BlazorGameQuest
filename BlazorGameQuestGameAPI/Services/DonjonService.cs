@@ -7,11 +7,12 @@ namespace Service
     {
         private readonly IWebHostEnvironment _env;
         private readonly string DonjonsDirectory;
-        private readonly string ConfDirectory = Path.Combine(Directory.GetCurrentDirectory(), "conf");
+        private readonly string ConfDirectory;
         public DonjonService(IWebHostEnvironment env)
         {
             _env = env;
             DonjonsDirectory = Path.Combine(_env.ContentRootPath, "Donjons");
+            ConfDirectory = Path.Combine(_env.ContentRootPath, "conf");
         }
         public async Task SaveDonjonAsync(Donjon donjon)
         {
