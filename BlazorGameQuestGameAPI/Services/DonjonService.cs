@@ -6,11 +6,12 @@ namespace Service
     public class DonjonService
     {
         private readonly IWebHostEnvironment _env;
-        private readonly string DonjonsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Donjons");
+        private readonly string DonjonsDirectory;
         private readonly string ConfDirectory = Path.Combine(Directory.GetCurrentDirectory(), "conf");
         public DonjonService(IWebHostEnvironment env)
         {
             _env = env;
+            DonjonsDirectory = Path.Combine(_env.ContentRootPath, "Donjons");
         }
         public async Task SaveDonjonAsync(Donjon donjon)
         {
@@ -70,7 +71,7 @@ namespace Service
 
             for (int i = 0; i < nbDonjon; i++)
             {
-                int randomIndexDonjon = rnd.Next(0, nbDonjon);
+                int randomIndexDonjon = rnd.Next(0, listDonjon.Length);
                 Donjon d = await LoadDonjon(listDonjon[randomIndexDonjon]);
                 selectedDonjons.Add(d);
             }

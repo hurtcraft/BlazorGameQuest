@@ -25,7 +25,7 @@ namespace BlazorGameQuestClassLib
                 string elt = splittedGameGridString[i].Trim();
 
 
-                gameGrid.grid[rowIndex][colIndex].AddRange(extractTileFromBracket(elt));
+                gameGrid.grid[rowIndex][colIndex] = extractTileFromBracket(elt);
 
 
 
