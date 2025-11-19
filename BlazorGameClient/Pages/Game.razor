@@ -96,10 +96,32 @@
         {
             switch (key)
             {
-                case "ArrowUp": player.MoveUp(); break;
-                case "ArrowDown": player.MoveDown(); break;
-                case "ArrowLeft": player.MoveLeft(); break;
-                case "ArrowRight": player.MoveRight(); break;
+                case "ArrowUp":
+                    if (PlayerCanMove(0, -1))
+                    {
+                        player.MoveUp();
+                    }
+                    break;
+                case "ArrowDown":
+                    if (PlayerCanMove(0, 1))
+                    {
+                        player.MoveDown();
+                    }
+                    break;
+
+                case "ArrowLeft":
+                    if (PlayerCanMove(-1, 0))
+                    {
+                        player.MoveLeft();
+                    }
+                    break;
+
+                case "ArrowRight":
+                    if (PlayerCanMove(1, 0))
+                    {
+                        player.MoveRight();
+                    }
+                    break;
                 case "KeyJ": player.Attack(); break;
 
                 default: player.Stop(); break;
@@ -108,8 +130,29 @@
             break;
         }
     }
+    private bool PlayerCanMove(int dx, int dy)
+    {
+        int nextX = (int)player.X + dx;
+        int nextY = (int)player.Y + dy;
 
+        if (IsBlocked(nextX, nextY))
+        {
+            player.Stop();
+            return false;
+        }
 
+        return true;
+
+    }
+
+    private bool IsBlocked(int nextX, int nextY)
+    {
+        if (actifInteractables == null)
+            return false;
+
+        return actifInteractables.Any(a =>
+        a is Wall w && w.X == nextX && w.Y == nextY);
+    }
     private void CheckCollisions()
     {
         if (actifInteractables == null) return;
@@ -216,8 +259,8 @@
     } *@
     protected override void OnInitialized()
     {
-        player.X = 0;
-        player.Y = 0;
+        player.X = 1;
+        player.Y = 1;
         //donjons = DonjonService.GetRandomDonjon(nbRandomDonjon);
         initPlayerAnimation();
         player.PlayAnimation("idle_down");
