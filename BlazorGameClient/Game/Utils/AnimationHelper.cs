@@ -31,7 +31,6 @@ namespace BlazorGameClient.Game.Utils
             List<string> files = new List<string>();
             for(int i = 0; i < nbSprite; i++)
             {
-                Console.WriteLine($"{folder}/{i}.png");
                 files.Add( $"{folder}/{i}.png");
             }
             return files;
@@ -47,7 +46,6 @@ namespace BlazorGameClient.Game.Utils
                 currentFrameIndex = 0;
                 timer = 0f;
             }
-            Console.WriteLine("current animation " + name);
         }
 
         public void Update(float deltaTime,float FrameRate=12f)
@@ -64,7 +62,6 @@ namespace BlazorGameClient.Game.Utils
             {
                 timer -= frameDuration;
                 currentFrameIndex = (currentFrameIndex + 1) % frames.Count;
-            Console.WriteLine("current frame index " + currentFrameIndex);
             }
                 
 

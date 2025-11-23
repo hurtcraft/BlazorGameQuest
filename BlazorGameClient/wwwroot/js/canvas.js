@@ -33,7 +33,6 @@ window.drawTile = async function (tilePath, x, y, size) {
 window.imageCache = {};
 window.preloadImages = async function (paths) {
     const uniquePaths = [...new Set(paths)]; // évite de charger 2 fois la même image
-    console.log("preload appelé")
     const promises = uniquePaths.map(path => {
         return new Promise(resolve => {
             const img = new Image();

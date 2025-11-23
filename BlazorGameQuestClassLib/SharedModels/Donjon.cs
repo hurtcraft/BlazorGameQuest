@@ -34,7 +34,6 @@ public class Donjon
                 for (int k = 0; k < grid[i][j].Count(); k++)
                 {
                     int elt = grid[i][j][k];
-                    //Console.WriteLine(elt+" "+i+" "+j); 
 
                     if (elt != -1)
                     {
@@ -51,73 +50,6 @@ public class Donjon
 
         return interactables;
     }
-    // private Interactable Create(int id, int x, int y, Dictionary<string, List<int>> config)
-    // {
-
-    //     // Console.WriteLine(id + " " + x + " " + y);
-    //     foreach (var entry in config)
-    //     {
-    //         string key = entry.Key;
-    //         List<int> values = entry.Value;
-    //         Console.WriteLine("entry " + entry);
-    //         if (values.Contains(id))
-    //         {
-    //             switch (key)
-    //             {
-    //                 case "wall":
-    //                     Wall w = new Wall();
-
-    //                     w.X = x;
-    //                     w.Y = y;
-    //                     w.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
-    //                     w.PlayAnimation("default");
-    //                     w.IsActive = true;
-    //                     return w;
-    //                 case "skeleton":
-    //                     Console.WriteLine("SKELETON DETECT = " + GameAsset.ListMapTile[id]);
-    //                     Skeleton skeleton = new Skeleton();
-    //                     skeleton.X = x;
-    //                     skeleton.Y = y;
-    //                     skeleton.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
-    //                     skeleton.PlayAnimation("default");
-    //                     skeleton.IsActive = true;
-    //                     return skeleton;
-    //                 case "coin":
-    //                     Console.WriteLine("COIN DETECTER = " + GameAsset.ListMapTile[id]);
-
-    //                     Coin coin = new Coin();
-    //                     coin.X = x;
-    //                     coin.Y = y;
-    //                     coin.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
-    //                     coin.PlayAnimation("default");
-    //                     coin.IsActive = true;
-    //                     return coin;
-    //                 case "door":
-    //                     Door door = new Door();
-    //                     door.X = x;
-    //                     door.Y = y;
-    //                     door.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
-    //                     door.PlayAnimation("default");
-    //                     door.IsActive = true;
-    //                     return door;
-
-    //             }
-    //         }
-
-
-    //     }
-    //     //temporaire 
-
-    //     string tilePath = GameAsset.ListMapTile[id];
-    //     Deco deco = new Deco();
-    //     deco.X = x;
-    //     deco.Y = y;
-    //     deco.AddAnimation("default", new List<string> { tilePath });
-    //     deco.PlayAnimation("default");
-    //     deco.IsActive = false;
-    //     return deco;
-
-    // }
 
     private Interactable Create(int id, int x, int y, Dictionary<string, List<int>> config)
     {
@@ -138,6 +70,7 @@ public class Donjon
         {
             if (entry.Value.Contains(id))
             {
+                Console.WriteLine("key "+entry.Key);
                 if (factory.TryGetValue(entry.Key, out var createFunc))
                 {
                     return InitInteractable(createFunc(), id, x, y, true);

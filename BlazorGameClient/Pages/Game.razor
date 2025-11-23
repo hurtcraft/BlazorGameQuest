@@ -57,7 +57,6 @@
         {
 
             donjons = await DonjonService.GetRandomDonjon(nbRandomDonjon);
-            Console.WriteLine(string.Join(",", donjons));
             CurrentDonjon = donjons[currentDonjonIndex];
             DonjonEltConfig = await DonjonService.GetDonjonEltConf();
             AnimationsConfig = await DonjonService.GetAnimationsConfig();
@@ -375,7 +374,7 @@
                     }
                 }
                 else if (inter is Poison poison)
-                {
+                {   
                     if (AnimationsConfig.ContainsKey("poison"))
                     {
                         InitAnimations("poison", poison);

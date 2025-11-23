@@ -24,7 +24,6 @@ namespace Service
                 WriteIndented = true
             });
 
-            Console.WriteLine("DONJON " + donjon.GameGrid.ToCsv());
 
 
             Directory.CreateDirectory(DonjonsDirectory);

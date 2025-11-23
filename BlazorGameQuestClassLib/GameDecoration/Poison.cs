@@ -11,8 +11,6 @@ public class Poison : Interactable
     {
         if(other is Player player && IsActive)
         {
-            // if( player.Health<=0) return;
-
             player.Health-=PoisonPoints;
             IsActive=false;
         }
