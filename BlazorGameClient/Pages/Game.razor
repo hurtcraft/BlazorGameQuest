@@ -40,23 +40,27 @@
     List<List<Interactable>>? interactables;
     List<Interactable>? actifInteractables;
     List<Interactable>? mobs;
+    List<Interactable>? consommables;
+    List<Interactable>? vents;
+
     private int currentDonjonIndex = 0;
     private readonly int nbRandomDonjon = 5;
     private bool running = true;
-    private Interactable CurrentEnnemie { get; set; }
+    private Interactable? CurrentEnnemie { get; set; }
     private float moveCooldown = 0.1f; // secondes entre chaque case
     private float moveTimer = 0f;
-    //private List<List<Interactable>>? interactables;
+    private float lastVentTime = -999f;
+    private const float ventCooldown = 2.0f;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender && gridCanva != null)
         {
 
             donjons = await DonjonService.GetRandomDonjon(nbRandomDonjon);
+            Console.WriteLine(string.Join(",", donjons));
             CurrentDonjon = donjons[currentDonjonIndex];
             DonjonEltConfig = await DonjonService.GetDonjonEltConf();
             AnimationsConfig = await DonjonService.GetAnimationsConfig();
-            //InitPlayerAnimation();
             InitAnimations("player", player);
             player.PlayAnimation("idle_down");
             interactables = CurrentDonjon.AsInteractable(DonjonEltConfig);
@@ -70,6 +74,16 @@
             mobs = interactables?
             .SelectMany(row => row)
             .Where(i => i is Skeleton)
+            .ToList();
+
+            consommables = interactables?
+            .SelectMany(row => row)
+            .Where(i => i is Coin || i is Heal || i is Poison || i is Key)
+            .ToList();
+
+            vents = interactables?
+            .SelectMany(row => row)
+            .Where(i => i is Vent)
             .ToList();
             await Input.InitializeAsync();
             await DrawFrame();
@@ -98,7 +112,7 @@
         moveTimer -= deltaTime;
         PlayerCheckInteraction();
         UpdateMobs(deltaTime);
-
+        UpdateConsommable(deltaTime);
         UpdatePlayerPosition();
         player.UpdateAnimation(deltaTime);
         if (player.Health <= 0)
@@ -127,6 +141,26 @@
 
                 HandleMobAttack(sk);
                 HandleMobMovement(sk, deltaTime);
+            }
+        }
+    }
+    private void UpdateConsommable(float deltaTime)
+    {
+        if (consommables == null || interactables == null)
+            return;
+
+        foreach (var consommable in consommables.ToList())
+        {
+            consommable.UpdateAnimation(deltaTime / 2);
+
+            if (player.X == consommable.X && player.Y == consommable.Y)
+            {
+                consommables.Remove(consommable);
+
+                foreach (var row in interactables)
+                {
+                    row.Remove(consommable);
+                }
             }
         }
     }
@@ -174,49 +208,37 @@
         }
     }
 
-
-
-    @* private void UpdateMobs(float deltaTime)
+    private void VentToVent()
     {
-        if (mobs == null) return;
+        float currentTime = (float)DateTime.Now.TimeOfDay.TotalSeconds;
 
-        foreach (var mob in mobs)
+        if (currentTime - lastVentTime < ventCooldown)
         {
-            mob.UpdateAnimation(deltaTime);
-
-            if (mob is Skeleton sk)
-            {
-                if (sk.Health <= 0)
-                {
-                    sk.Die();
-                    continue;
-                }
-                if (sk.CurrentAnimation.Contains("attack"))
-                {
-                    CurrentEnnemie = sk;
-                }
-
-                if (sk.CurrentAnimation.Contains("attack") &&
-                !(player.X == sk.X && player.Y == sk.Y))
-                {
-                    sk.ResumeWalk();
-                }
-
-                if (sk.CurrentAnimation.Contains("walk"))
-                {
-                    int dx = sk.CurrentAnimation.Contains("left") ? -1 : 1;
-
-                    if (!InteractableCanMove(sk, dx, 0))
-                        sk.ChangeDirection(deltaTime);
-                    else
-                    {
-                        if (dx < 0) sk.MoveLeft(deltaTime);
-                        else sk.MoveRight(deltaTime);
-                    }
-                }
-            }
+            player.OnVent = false;
+            return;
         }
-    } *@
+
+        if (vents == null || vents.Count < 2)
+            return;
+
+        var otherVents = vents
+        .Where(v => !(v.X == player.X && v.Y == player.Y))
+        .ToList();
+
+        if (otherVents.Count == 0)
+            return;
+
+        Random rng = new Random();
+        int index = rng.Next(otherVents.Count);
+
+        Vent target = (Vent)otherVents[index];
+
+        player.X = target.X;
+        player.Y = target.Y;
+
+        lastVentTime = currentTime;
+    }
+
 
     private void UpdatePlayerPosition()
     {
@@ -299,6 +321,16 @@
             {
                 item.Interact(player);
             }
+            if (player.GoNextDonjon)
+            {
+                currentDonjonIndex += 1;
+                //CurrentDonjon = donjons[currentDonjonIndex];
+                Console.WriteLine("PROCHAIN DONJON " + CurrentDonjon);
+            }
+            if (player.OnVent)
+            {
+                VentToVent();
+            }
 
         }
     }
@@ -316,6 +348,7 @@
         {
             foreach (var inter in group)
             {
+
                 if (inter is Skeleton skeleton)
                 {
                     if (AnimationsConfig.ContainsKey("skeleton1"))
@@ -324,6 +357,40 @@
                         skeleton.PlayAnimation("walk_left");
                     }
                 }
+                else if (inter is Coin coin)
+                {
+
+                    if (AnimationsConfig.ContainsKey("coin"))
+                    {
+                        InitAnimations("coin", coin);
+                        coin.PlayAnimation("default");
+                    }
+                }
+                else if (inter is Heal heal)
+                {
+                    if (AnimationsConfig.ContainsKey("heal"))
+                    {
+                        InitAnimations("heal", heal);
+                        heal.PlayAnimation("default");
+                    }
+                }
+                else if (inter is Poison poison)
+                {
+                    if (AnimationsConfig.ContainsKey("poison"))
+                    {
+                        InitAnimations("poison", poison);
+                        poison.PlayAnimation("default");
+                    }
+                }
+                else if (inter is Key key)
+                {
+                    if (AnimationsConfig.ContainsKey("key"))
+                    {
+                        InitAnimations("key", key);
+                        key.PlayAnimation("default");
+                    }
+                }
+
             }
         }
     }
@@ -354,8 +421,8 @@
 
     protected override void OnInitialized()
     {
-        player.X = 1;
-        player.Y = 1;
+        player.X = 15;
+        player.Y = 18;
 
     }
 

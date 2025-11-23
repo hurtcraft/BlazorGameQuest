@@ -1,7 +1,6 @@
 using BlazorGameQuestClassLib.AbstractModels;
 
 using System.Drawing;
-using BlazorGameQuestClassLib.AbstractModels;
 using BlazorGameQuestClassLib.Intefaces;
 
 namespace BlazorGameQuestClassLib
@@ -73,7 +72,7 @@ namespace BlazorGameQuestClassLib
         public void Die()
         {
             PlayAnimation("death");
-            currentFrameIndex=16;
+            currentFrameIndex = 16;
 
         }
         public void Attack()
@@ -111,7 +110,14 @@ namespace BlazorGameQuestClassLib
                 if (p.CurrentAnimation.Contains("attack"))
                 {
                     Health -= p.Damage;
-                    if(Health<=0)Health=0;
+                    if (Health <= 0)
+                    {
+
+                        Health = 0;
+                        p.Score += MaxHealth;
+
+                    };
+
                 }
 
             }

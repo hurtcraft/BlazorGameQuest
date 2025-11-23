@@ -45,73 +45,122 @@ public class Donjon
                 }
 
 
-                // Console.WriteLine("tile " + string.Join(",", tile));
             }
             interactables.Add(row);
         }
-        Console.WriteLine("=== Interactables ===");
 
-        for (int i = 0; i < interactables.Count; i++)
-        {
-
-            for (int j = 0; j < interactables[i].Count; j++)
-            {
-                var inter = interactables[i][j];
-                //Console.WriteLine($"  [{i},{j}] X={inter.X} Y={inter.Y} Frame={inter.GetCurrentFramePath()}");
-            }
-        }
         return interactables;
     }
+    // private Interactable Create(int id, int x, int y, Dictionary<string, List<int>> config)
+    // {
+
+    //     // Console.WriteLine(id + " " + x + " " + y);
+    //     foreach (var entry in config)
+    //     {
+    //         string key = entry.Key;
+    //         List<int> values = entry.Value;
+    //         Console.WriteLine("entry " + entry);
+    //         if (values.Contains(id))
+    //         {
+    //             switch (key)
+    //             {
+    //                 case "wall":
+    //                     Wall w = new Wall();
+
+    //                     w.X = x;
+    //                     w.Y = y;
+    //                     w.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
+    //                     w.PlayAnimation("default");
+    //                     w.IsActive = true;
+    //                     return w;
+    //                 case "skeleton":
+    //                     Console.WriteLine("SKELETON DETECT = " + GameAsset.ListMapTile[id]);
+    //                     Skeleton skeleton = new Skeleton();
+    //                     skeleton.X = x;
+    //                     skeleton.Y = y;
+    //                     skeleton.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
+    //                     skeleton.PlayAnimation("default");
+    //                     skeleton.IsActive = true;
+    //                     return skeleton;
+    //                 case "coin":
+    //                     Console.WriteLine("COIN DETECTER = " + GameAsset.ListMapTile[id]);
+
+    //                     Coin coin = new Coin();
+    //                     coin.X = x;
+    //                     coin.Y = y;
+    //                     coin.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
+    //                     coin.PlayAnimation("default");
+    //                     coin.IsActive = true;
+    //                     return coin;
+    //                 case "door":
+    //                     Door door = new Door();
+    //                     door.X = x;
+    //                     door.Y = y;
+    //                     door.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
+    //                     door.PlayAnimation("default");
+    //                     door.IsActive = true;
+    //                     return door;
+
+    //             }
+    //         }
+
+
+    //     }
+    //     //temporaire 
+
+    //     string tilePath = GameAsset.ListMapTile[id];
+    //     Deco deco = new Deco();
+    //     deco.X = x;
+    //     deco.Y = y;
+    //     deco.AddAnimation("default", new List<string> { tilePath });
+    //     deco.PlayAnimation("default");
+    //     deco.IsActive = false;
+    //     return deco;
+
+    // }
+
     private Interactable Create(int id, int x, int y, Dictionary<string, List<int>> config)
     {
+        var factory = new Dictionary<string, Func<Interactable>>()
+    {
+        { "wall", () => new Wall() },
+        { "skeleton", () => new Skeleton() },
+        { "coin", () => new Coin() },
+        { "door", () => new Door() },
+        { "heal",()=> new Heal()},
+        { "poison",()=> new Poison()},
+        { "key",()=> new Key()},
+        { "vent",()=> new Vent()},
 
-        // Console.WriteLine(id + " " + x + " " + y);
+    };
+
         foreach (var entry in config)
         {
-            string key = entry.Key;
-            List<int> values = entry.Value;
-
-            if (values.Contains(id))
+            if (entry.Value.Contains(id))
             {
-                switch (key)
+                if (factory.TryGetValue(entry.Key, out var createFunc))
                 {
-                    case "wall":
-                        Wall w = new Wall();
-
-                        w.X = x;
-                        w.Y = y;
-                        w.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
-                        w.PlayAnimation("default");
-                        w.IsActive=true;
-                        return w;
-                    case "skeleton":
-                    Console.WriteLine("SKELETON DETECT = "+GameAsset.ListMapTile[id]);
-                        Skeleton skeleton=new Skeleton();
-                        skeleton.X=x;
-                        skeleton.Y=y;
-                        skeleton.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
-                        skeleton.PlayAnimation("default");
-                        skeleton.IsActive=true;
-
-                        
-                        return skeleton;                        
-
+                    return InitInteractable(createFunc(), id, x, y, true);
                 }
             }
-
-
         }
-        //temporaire 
 
+        return InitInteractable(new Deco(), id, x, y, false);
+    }
+
+
+    private Interactable InitInteractable(Interactable obj, int id, int x, int y, bool isActive)
+    {
         string tilePath = GameAsset.ListMapTile[id];
-        Deco deco = new Deco();
-        deco.X = x;
-        deco.Y = y;
-        deco.AddAnimation("default", new List<string> { tilePath });
-        deco.PlayAnimation("default");
-        deco.IsActive=false;
-        return deco;
 
+        obj.X = x;
+        obj.Y = y;
+        obj.IsActive = isActive;
+
+        obj.AddAnimation("default", new List<string> { tilePath });
+        obj.PlayAnimation("default");
+
+        return obj;
     }
 
 

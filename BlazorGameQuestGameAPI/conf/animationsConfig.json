@@ -70,5 +70,30 @@
             "Folder": "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/mobs/skeleton1/death",
             "NbSprite": 17
         }
+    },
+    "coin": {
+        "default": {
+            "Folder": "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/items and trap_animation/coin",
+            "NbSprite": 4
+        }
+    },
+    "heal": {
+        "default": {
+            "Folder": "/assets/DungeonAssets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/heal",
+            "NbSprite": 4
+        }
+    },
+    "poison": {
+        "default": {
+            "Folder": "/assets/DungeonAssets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/poison",
+            "NbSprite": 4
+        }
+    },
+    "key": {
+        "default": {
+            "Folder": "/assets/DungeonAssets/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/goldKey",
+            "NbSprite": 4
+        }
     }
+    
 }

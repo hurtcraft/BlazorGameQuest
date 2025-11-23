@@ -15,6 +15,9 @@ namespace BlazorGameQuestClassLib
         public override int MaxHealth { get; set; } = 100;
 
         public override int Damage { get; set; } = 10;
+        public bool GoNextDonjon { get; set; } = false;
+
+        public bool OnVent { get; set; } = false;
 
         public void MoveLeft()
         {
