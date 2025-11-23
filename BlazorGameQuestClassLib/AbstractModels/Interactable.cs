@@ -18,7 +18,11 @@ namespace BlazorGameQuestClassLib.AbstractModels
         protected float frameDuration = 0.1f;
         public string CurrentAnimation { get; set; } = string.Empty;
         public string CurrentFramePath => GetCurrentFramePath();
+        
+        public virtual int Health { get; set; } = -1;//val defaut
+        public virtual int MaxHealth { get; set; } = -1;//val defaut
 
+        public virtual  int Damage { get; set; } = -1;//val defaut
         public bool CheckCollision(ICollidable other)
         {
             return GetBounds().IntersectsWith(other.GetBounds());
@@ -41,9 +45,11 @@ namespace BlazorGameQuestClassLib.AbstractModels
         }
 
 
-        public virtual void  Interact(IInteractable other)
+        public virtual void Interact(IInteractable other)
         {
-            Console.WriteLine($"Interactable touched at {X},{Y} {CurrentFramePath}");
+        }
+        public virtual void Stop()
+        {
         }
 
         public void Move(float deltaX, float deltaY)

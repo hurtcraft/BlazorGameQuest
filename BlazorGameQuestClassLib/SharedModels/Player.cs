@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Dynamic;
 using BlazorGameQuestClassLib.AbstractModels;
 using BlazorGameQuestClassLib.Intefaces;
 
@@ -10,7 +11,10 @@ namespace BlazorGameQuestClassLib
         public string Name { get; set; } = string.Empty;
         public int Score { get; set; }
         public bool IsBlocked { get; set; } = false;
+        public override int Health { get; set; } = 100;
+        public override int MaxHealth { get; set; } = 100;
 
+        public override int Damage { get; set; } = 10;
 
         public void MoveLeft()
         {
@@ -37,7 +41,7 @@ namespace BlazorGameQuestClassLib
             PlayAnimation("walk_right");
 
         }
-        public void Stop()
+        public override void Stop()
         {
             Move(0, 0);
 

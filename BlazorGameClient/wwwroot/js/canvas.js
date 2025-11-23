@@ -3,7 +3,7 @@ window.drawGrid = function (nbCols, nbRows, spriteSize) {
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = '#cccccc'; 
+    ctx.strokeStyle = '#cccccc';
     ctx.lineWidth = 1;
 
     for (let x = 0; x <= nbCols * spriteSize; x += spriteSize) {
@@ -25,7 +25,7 @@ window.drawGrid = function (nbCols, nbRows, spriteSize) {
 window.drawTile = async function (tilePath, x, y, size) {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
-    
+
     const img = await window.loadImage(tilePath);
     ctx.drawImage(img, x * size, y * size, size, size);
 };
@@ -66,27 +66,49 @@ window.loadImage = function (path) {
 
 
 
-window.drawFrame = async function (interactables, player, tileSize) {
+// window.drawFrame = function (interactables, player, tileSize) {
+//     const canvas = document.getElementById("myCanvas");
+//     const ctx = canvas.getContext("2d");
+
+//     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+//     for (let i = 0; i < interactables.length; i++) {
+//         for (let j = 0; j < interactables[i].length; j++) {
+//             const item = interactables[i][j];
+//             window.drawTile(item.currentFramePath, item.x, item.y, tileSize);
+//         }
+//     }
+
+//     window.drawTile(player.currentFramePath, player.x, player.y, tileSize);
+// };
+
+
+window.drawFrame = function (interactables, player, tileSize) {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < interactables.length; i++) {
-        for (let j = 0; j < interactables[i].length; j++) {
-            const item = interactables[i][j];
-            await window.drawTile(item.currentFramePath, item.x, item.y, tileSize);
+        const sortedRow = interactables[i].slice().sort((a, b) => {
+            if (a.isActive && !b.isActive) return 1;
+            if (!a.isActive && b.isActive) return -1;
+            return 0;
+        });
+
+        for (let j = 0; j < sortedRow.length; j++) {
+            const item = sortedRow[j];
+
+            window.drawTile(item.currentFramePath, item.x, item.y, tileSize);
         }
     }
 
-    await window.drawTile(player.currentFramePath, player.x, player.y, tileSize);
+    window.drawTile(player.currentFramePath, player.x, player.y, tileSize);
 };
 
 
 
-
-
-window.drawRaw= async function (tilePath, x, y, size) {
+window.drawRaw = async function (tilePath, x, y, size) {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -96,7 +118,7 @@ window.drawRaw= async function (tilePath, x, y, size) {
         ctx.drawImage(img, x, y, size, size);
     };
 };
-window.clearCanvas = function() {
+window.clearCanvas = function () {
     const canvas = document.getElementById("myCanvas");
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -116,7 +138,7 @@ window.eraseTile = function (x, y, size) {
 
 
     ctx.fillRect(px, py, size, size);
-    ctx.strokeRect(px, py,size, size);
+    ctx.strokeRect(px, py, size, size);
 };
 
 window.drawRectOnCanvas = (canvasId, x, y, width, height, color) => {

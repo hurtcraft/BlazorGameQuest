@@ -94,6 +94,25 @@ namespace Service
             return dict;
 
         }
+
+        public async Task<Dictionary<string, Dictionary<string, AnimationConfig>>> GetAnimationsConf()
+        {
+            Dictionary<string, Dictionary<string, AnimationConfig>> dict = new();
+
+            string filePath = Path.Combine(ConfDirectory, "animationsConfig.json");
+            string json = await File.ReadAllTextAsync(filePath);
+
+            var res = JsonSerializer.Deserialize<
+                Dictionary<string, Dictionary<string, AnimationConfig>>>(json);
+
+            if (res != null)
+            {
+                dict = res;
+            }
+
+            return dict;
+        }
+
         private int GetDonjonDifficulty(string fileName)
         {
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);

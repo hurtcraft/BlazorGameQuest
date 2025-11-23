@@ -11,25 +11,39 @@
 @inject InputManager Input
 @inject IJSRuntime JS
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <h1>JEU en cours de construction</h1>
-    <GridCanva @ref="gridCanva" IsEditing=false />
-    @* <button class="mud-button mud-button-filled" @onclick="StartAnimation">Lancer l'animation</button> *@
 
-    <GameRulesCard />
+
+
+    <div style="display:flex; flex-direction:column; align-items:center;">
+        <PlayerScore Player="@player" Label="Player Score" />
+
+        <HealthBar Interactable="@player" Label="Player HP" Color="green" />
+        @if (CurrentEnnemie != null)
+        {
+            <HealthBar Interactable="@CurrentEnnemie" Label="Current Ennemie HP " Color="red" />
+        }
+        <GridCanva @ref="gridCanva" IsEditing="false" />
+    </div>
+
+    <div style="margin-left: 20px; transform-origin: top left;">
+        <GameRulesCard />
+    </div>
 </div>
 
 @code {
     private GridCanva? gridCanva;
     private Dictionary<string, List<int>>? DonjonEltConfig;
+    private Dictionary<string, Dictionary<string, AnimationConfig>>? AnimationsConfig;
     private Player player = new Player();
     private List<Donjon> donjons = new();
     private Donjon? CurrentDonjon;
     List<List<Interactable>>? interactables;
     List<Interactable>? actifInteractables;
+    List<Interactable>? mobs;
     private int currentDonjonIndex = 0;
     private readonly int nbRandomDonjon = 5;
     private bool running = true;
-
+    private Interactable CurrentEnnemie { get; set; }
     private float moveCooldown = 0.1f; // secondes entre chaque case
     private float moveTimer = 0f;
     //private List<List<Interactable>>? interactables;
@@ -41,12 +55,23 @@
             donjons = await DonjonService.GetRandomDonjon(nbRandomDonjon);
             CurrentDonjon = donjons[currentDonjonIndex];
             DonjonEltConfig = await DonjonService.GetDonjonEltConf();
-
+            AnimationsConfig = await DonjonService.GetAnimationsConfig();
+            //InitPlayerAnimation();
+            InitAnimations("player", player);
+            player.PlayAnimation("idle_down");
             interactables = CurrentDonjon.AsInteractable(DonjonEltConfig);
+            InitInteractablesAnimations();
+
             actifInteractables = interactables
             .SelectMany(row => row)
             .Where(item => item != null && item.IsActive)
-            .ToList(); await Input.InitializeAsync();
+            .ToList();
+
+            mobs = interactables?
+            .SelectMany(row => row)
+            .Where(i => i is Skeleton)
+            .ToList();
+            await Input.InitializeAsync();
             await DrawFrame();
 
             _ = GameLoop();
@@ -54,10 +79,9 @@
     }
     private async Task GameLoop()
     {
-        const int frameDelay = 1; // environ 60 FPS
+        const int frameDelay = 1;
         while (running)
         {
-            //gridCanva.DrawFrame("/assets/Main Character/walk/walk_down/0.png",10,10);
 
             Update();
 
@@ -70,17 +94,129 @@
         if (gridCanva == null || CurrentDonjon?.GameGrid == null)
             return;
 
-        float deltaTime = 1f / 10f; // ~60 FPS
+        float deltaTime = 1f / 10f;
         moveTimer -= deltaTime;
-        CheckCollisions();
+        PlayerCheckInteraction();
+        UpdateMobs(deltaTime);
+
         UpdatePlayerPosition();
         player.UpdateAnimation(deltaTime);
-
+        if (player.Health <= 0)
+        {
+            player.Health = 0;
+            //gameover ici
+        }
         await DrawFrame();
 
-        //await DrawGame(CurrentDonjon.GameGrid);
-        //await DrawPlayer();
     }
+
+
+    private void UpdateMobs(float deltaTime)
+    {
+        if (mobs == null)
+            return;
+
+        foreach (var mob in mobs)
+        {
+            mob.UpdateAnimation(deltaTime);
+
+            if (mob is Skeleton sk)
+            {
+                if (HandleMobDeath(sk))
+                    continue;
+
+                HandleMobAttack(sk);
+                HandleMobMovement(sk, deltaTime);
+            }
+        }
+    }
+
+    private bool HandleMobDeath(Skeleton sk)
+    {
+        if (sk.Health <= 0)
+        {
+            sk.Die();
+            return true;
+        }
+        return false;
+    }
+
+    private void HandleMobAttack(Skeleton sk)
+    {
+        if (sk.CurrentAnimation.Contains("attack"))
+        {
+            CurrentEnnemie = sk;
+
+            if (!(player.X == sk.X && player.Y == sk.Y))
+            {
+                sk.ResumeWalk();
+            }
+        }
+    }
+
+    private void HandleMobMovement(Skeleton sk, float deltaTime)
+    {
+        if (!sk.CurrentAnimation.Contains("walk"))
+            return;
+
+        int dx = sk.CurrentAnimation.Contains("left") ? -1 : 1;
+
+        if (!InteractableCanMove(sk, dx, 0))
+        {
+            sk.ChangeDirection(deltaTime);
+        }
+        else
+        {
+            if (dx < 0)
+                sk.MoveLeft(deltaTime);
+            else
+                sk.MoveRight(deltaTime);
+        }
+    }
+
+
+
+    @* private void UpdateMobs(float deltaTime)
+    {
+        if (mobs == null) return;
+
+        foreach (var mob in mobs)
+        {
+            mob.UpdateAnimation(deltaTime);
+
+            if (mob is Skeleton sk)
+            {
+                if (sk.Health <= 0)
+                {
+                    sk.Die();
+                    continue;
+                }
+                if (sk.CurrentAnimation.Contains("attack"))
+                {
+                    CurrentEnnemie = sk;
+                }
+
+                if (sk.CurrentAnimation.Contains("attack") &&
+                !(player.X == sk.X && player.Y == sk.Y))
+                {
+                    sk.ResumeWalk();
+                }
+
+                if (sk.CurrentAnimation.Contains("walk"))
+                {
+                    int dx = sk.CurrentAnimation.Contains("left") ? -1 : 1;
+
+                    if (!InteractableCanMove(sk, dx, 0))
+                        sk.ChangeDirection(deltaTime);
+                    else
+                    {
+                        if (dx < 0) sk.MoveLeft(deltaTime);
+                        else sk.MoveRight(deltaTime);
+                    }
+                }
+            }
+        }
+    } *@
 
     private void UpdatePlayerPosition()
     {
@@ -97,27 +233,27 @@
             switch (key)
             {
                 case "ArrowUp":
-                    if (PlayerCanMove(0, -1))
+                    if (InteractableCanMove(player, 0, -1))
                     {
                         player.MoveUp();
                     }
                     break;
                 case "ArrowDown":
-                    if (PlayerCanMove(0, 1))
+                    if (InteractableCanMove(player, 0, 1))
                     {
                         player.MoveDown();
                     }
                     break;
 
                 case "ArrowLeft":
-                    if (PlayerCanMove(-1, 0))
+                    if (InteractableCanMove(player, -1, 0))
                     {
                         player.MoveLeft();
                     }
                     break;
 
                 case "ArrowRight":
-                    if (PlayerCanMove(1, 0))
+                    if (InteractableCanMove(player, 1, 0))
                     {
                         player.MoveRight();
                     }
@@ -130,14 +266,14 @@
             break;
         }
     }
-    private bool PlayerCanMove(int dx, int dy)
+    private bool InteractableCanMove(Interactable interactable, int dx, int dy)
     {
-        int nextX = (int)player.X + dx;
-        int nextY = (int)player.Y + dy;
+        int nextX = (int)interactable.X + dx;
+        int nextY = (int)interactable.Y + dy;
 
         if (IsBlocked(nextX, nextY))
         {
-            player.Stop();
+            interactable.Stop();
             return false;
         }
 
@@ -153,10 +289,9 @@
         return actifInteractables.Any(a =>
         a is Wall w && w.X == nextX && w.Y == nextY);
     }
-    private void CheckCollisions()
+    private void PlayerCheckInteraction()
     {
         if (actifInteractables == null) return;
-        Console.WriteLine("count actif " + actifInteractables.Count());
 
         foreach (var item in actifInteractables)
         {
@@ -171,106 +306,57 @@
     {
         await JS.InvokeVoidAsync("drawFrame", interactables, player, GameGrid.SPRITE_SIZE);
     }
-    private async Task DrawGame(GameGrid grid)
-    {
-        if (gridCanva == null || grid == null) return;
 
-        await gridCanva.DrawFromGameGrid(grid);
-    }
-    private async Task DrawPlayer()
+    private void InitInteractablesAnimations()
     {
-        if (player == null || gridCanva == null) return;
+        if (interactables == null || AnimationsConfig == null)
+            return;
 
-        var framePath = player.GetCurrentFramePath();
-        if (!string.IsNullOrEmpty(framePath))
+        foreach (var group in interactables)
         {
-            await JS.InvokeVoidAsync("drawTile", framePath, player.X, player.Y, GameGrid.SPRITE_SIZE);
-
-            //await gridCanva.DrawFrame(framePath, (int)player.X, (int)player.Y);
+            foreach (var inter in group)
+            {
+                if (inter is Skeleton skeleton)
+                {
+                    if (AnimationsConfig.ContainsKey("skeleton1"))
+                    {
+                        InitAnimations("skeleton1", skeleton);
+                        skeleton.PlayAnimation("walk_left");
+                    }
+                }
+            }
         }
-        StateHasChanged();
-    }
-    //j'ai mal à la tete
-    private void initPlayerAnimation()
-    {
-        // Walk animations
-        var walkDown = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_down", 4);
-        var walkUp = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_up", 4);
-        var walkLeft = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_left", 4);
-        var walkRight = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_right", 4);
-
-        player.AddAnimation("walk_down", walkDown);
-        player.AddAnimation("walk_up", walkUp);
-        player.AddAnimation("walk_left", walkLeft);
-        player.AddAnimation("walk_right", walkRight);
-
-        var allWalkImages = walkDown.Concat(walkUp).Concat(walkLeft).Concat(walkRight).ToList();
-        JS.InvokeVoidAsync("preloadImages", allWalkImages);
-
-        // Idle animations
-        var idleDown = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_down", 4);
-        var idleUp = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_up", 4);
-        var idleLeft = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_left", 4);
-        var idleRight = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_right", 4);
-
-        player.AddAnimation("idle_down", idleDown);
-        player.AddAnimation("idle_up", idleUp);
-        player.AddAnimation("idle_left", idleLeft);
-        player.AddAnimation("idle_right", idleRight);
-        var allIdleImages = idleDown.Concat(idleUp).Concat(idleLeft).Concat(idleRight).ToList();
-        JS.InvokeVoidAsync("preloadImages", allIdleImages);
-        // Attack animations
-        var attackDown = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_down", 6);
-        var attackUp = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_up", 6);
-        var attackLeft = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_left", 6);
-        var attackRight = AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_right", 6);
-
-        player.AddAnimation("attack_down", attackDown);
-        player.AddAnimation("attack_up", attackUp);
-        player.AddAnimation("attack_left", attackLeft);
-        player.AddAnimation("attack_right", attackRight);
-
-        var allAttackImages = attackDown.Concat(attackUp).Concat(attackLeft).Concat(attackRight).ToList();
-        JS.InvokeVoidAsync("preloadImages", allAttackImages);
     }
 
-    @* private void initPlayerAnimation()
+    private void InitAnimations(string entityName, Interactable entity)
     {
-        //temporaraire pr test
-        var walk_down_animation=AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_down", 4);
-        player.AddAnimation("walk_down", walk_down_animation);
-        player.AddAnimation("walk_up", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_up", 4));
-        player.AddAnimation("walk_left", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_left", 4));
-        player.AddAnimation("walk_right", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/walk/walk_right", 4));
+        if (AnimationsConfig == null || !AnimationsConfig.ContainsKey(entityName))
+            return;
 
-        player.AddAnimation("idle_down", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_down", 4));
-        player.AddAnimation("idle_up", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_up", 4));
-        player.AddAnimation("idle_left", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_left", 4));
-        player.AddAnimation("idle_right", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/idle/idle_right", 4));
+        var conf = AnimationsConfig[entityName];
+        var allImagesToPreload = new List<string>();
 
-        player.AddAnimation("attack_down", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_down",
-        6));
-        player.AddAnimation("attack_up", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_up", 6));
-        player.AddAnimation("attack_left", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_left",
-        6));
-        player.AddAnimation("attack_right", AnimationHelper.GetAnimationsFromFolder("/assets/Main Character/attack/attack_right", 6));
+        foreach (var kvp in conf)
+        {
+            string animationName = kvp.Key;
+            string folder = kvp.Value.Folder;
+            int nbSprite = kvp.Value.NbSprite;
 
+            var frames = AnimationHelper.GetAnimationsFromFolder(folder, nbSprite);
 
-    } *@
+            entity.AddAnimation(animationName, frames);
+
+            allImagesToPreload.AddRange(frames);
+        }
+
+        JS.InvokeVoidAsync("preloadImages", allImagesToPreload);
+    }
+
     protected override void OnInitialized()
     {
         player.X = 1;
         player.Y = 1;
-        //donjons = DonjonService.GetRandomDonjon(nbRandomDonjon);
-        initPlayerAnimation();
-        player.PlayAnimation("idle_down");
 
-
-    }
-    protected override async Task OnInitializedAsync()
-    {
-        // DonjonEltConfig = await DonjonService.GetDonjonEltConf();
-        //Console.WriteLine(string.Join("\n", DonjonEltConfig.Select(kvp => $"{kvp.Key}: {string.Join(", ", kvp.Value)}")));
     }
 
 

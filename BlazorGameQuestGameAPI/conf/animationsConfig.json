@@ -1,0 +1,74 @@
+{
+    "player": {
+        "walk_down": {
+            "Folder": "/assets/Main Character/walk/walk_down",
+            "NbSprite": 4
+        },
+        "walk_up": {
+            "Folder": "/assets/Main Character/walk/walk_up",
+            "NbSprite": 4
+        },
+        "walk_left": {
+            "Folder": "/assets/Main Character/walk/walk_left",
+            "NbSprite": 4
+        },
+        "walk_right": {
+            "Folder": "/assets/Main Character/walk/walk_right",
+            "NbSprite": 4
+        },
+        "idle_down": {
+            "Folder": "/assets/Main Character/idle/idle_down",
+            "NbSprite": 4
+        },
+        "idle_up": {
+            "Folder": "/assets/Main Character/idle/idle_up",
+            "NbSprite": 4
+        },
+        "idle_left": {
+            "Folder": "/assets/Main Character/idle/idle_left",
+            "NbSprite": 4
+        },
+        "idle_right": {
+            "Folder": "/assets/Main Character/idle/idle_right",
+            "NbSprite": 4
+        },
+        "attack_down": {
+            "Folder": "/assets/Main Character/attack/attack_down",
+            "NbSprite": 6
+        },
+        "attack_up": {
+            "Folder": "/assets/Main Character/attack/attack_up",
+            "NbSprite": 6
+        },
+        "attack_left": {
+            "Folder": "/assets/Main Character/attack/attack_left",
+            "NbSprite": 6
+        },
+        "attack_right": {
+            "Folder": "/assets/Main Character/attack/attack_right",
+            "NbSprite": 6
+        }
+    },
+    "skeleton1": {
+        "walk_left": {
+            "Folder": "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/mobs/skeleton1/walk_left",
+            "NbSprite": 10
+        },
+        "walk_right": {
+            "Folder": "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/mobs/skeleton1/walk_right",
+            "NbSprite": 10
+        },
+        "attack_right": {
+            "Folder": "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/mobs/skeleton1/attack_right",
+            "NbSprite": 9
+        },
+        "attack_left": {
+            "Folder": "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/mobs/skeleton1/attack_left",
+            "NbSprite": 9
+        },
+        "death": {
+            "Folder": "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/mobs/skeleton1/death",
+            "NbSprite": 17
+        }
+    }
+}

@@ -82,10 +82,25 @@ public class DonjonService
             Console.WriteLine($"Erreur lors du chargement de la conf des donjons : {response.StatusCode}");
             return new();
         }
-        
 
     }
 
+    public async Task<Dictionary<string, Dictionary<string, AnimationConfig>>> GetAnimationsConfig()
+    {
+        var response = await _http.GetAsync("Donjon/getAnimationConf/");
+        if (response.IsSuccessStatusCode)
+        {
+            var config = await response.Content.ReadFromJsonAsync<Dictionary<string, Dictionary<string, AnimationConfig>>>();
+            return config??new();
+        }
+        else
+        {
+            Console.WriteLine($"Erreur lors du chargement des animations : {response.StatusCode}");
+            return new();
+        }
+
+    }
+    
     public async Task<string> TestAsync()
     {
         var response = await _http.GetAsync("Donjon/test");

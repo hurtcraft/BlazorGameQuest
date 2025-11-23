@@ -21,7 +21,7 @@ builder.Services.AddScoped(sp => new HttpClient
 // builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 GameAsset.LoadAssets(
     MapTilePath: "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/character and tileset/tiles",
-    MobTilePath: "assets/DungeonAssets/mobs"
+    MobTilePath: "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/mobs/mobsTiles"
 );
 
 await builder.Build().RunAsync();

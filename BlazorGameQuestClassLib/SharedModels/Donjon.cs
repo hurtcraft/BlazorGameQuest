@@ -40,7 +40,6 @@ public class Donjon
                     {
                         Interactable interactable = Create(elt, j, i, config);
                         row.Add(interactable);
-                        Console.WriteLine(elt+" "+i+" "+j+" "+interactable.GetCurrentFramePath()); 
                     }
 
                 }
@@ -54,7 +53,6 @@ public class Donjon
 
         for (int i = 0; i < interactables.Count; i++)
         {
-            Console.WriteLine($"Row {i}:");
 
             for (int j = 0; j < interactables[i].Count; j++)
             {
@@ -86,6 +84,17 @@ public class Donjon
                         w.PlayAnimation("default");
                         w.IsActive=true;
                         return w;
+                    case "skeleton":
+                    Console.WriteLine("SKELETON DETECT = "+GameAsset.ListMapTile[id]);
+                        Skeleton skeleton=new Skeleton();
+                        skeleton.X=x;
+                        skeleton.Y=y;
+                        skeleton.AddAnimation("default", new List<string> { GameAsset.ListMapTile[id] });
+                        skeleton.PlayAnimation("default");
+                        skeleton.IsActive=true;
+
+                        
+                        return skeleton;                        
 
                 }
             }
