@@ -39,6 +39,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZXBsb3lNYXBEaWFsb2cucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Components/GamePlay/GameOverScreen.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHYW1lUGxheVxHYW1lT3ZlclNjcmVlbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Components/GamePlay/GameRulesCard.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHYW1lUGxheVxHYW1lUnVsZXNDYXJkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -71,16 +75,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2FtZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Pages/Joueur.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSm91ZXVyLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Pages/MapEditor.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFwRWRpdG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/Pages/TableauScore.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFibGVhdVNjb3JlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Hurtcraft/Desktop/csharp/projet/BlazorGameQuest/BlazorGameClient/_Imports.razor]

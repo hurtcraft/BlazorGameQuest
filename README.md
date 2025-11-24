@@ -54,10 +54,24 @@ Patrick Wu, Julien Weng
 
 
 ## V3
-- ✅ Déplacement du joueur les flèches du clavier + attaque avec la touche J dans /game
-- ✅ Implémentation d'un editeur de donjon dans /mapEditor pour la partie admin
+- ✅ Rendez vous directement dans http://localhost:5000/game pour jouer
+    - Déplacement avec les flèches directionnelles
+    - Attaque avec la touche J
+    - Les potions rouges rendent des pts de vie
+    - Les potions bleus sont des poisons et enlèvent des pts de vie
+    - Les passages secret peuvent être vos amis comme ennemies
+    - Gare au monstres qui rodent dans le Donjon, en tuer vous rapporte des points
+    - Les pièces et les clefs vous rapporte également des points 
 
-Code en cours de construction, ne pas effacer le code commenter
+- ✅ Rendez vous dans http://localhost:5000/mapEditor pour editer des niveaux
+    - Selectionner les items à placer en deroulant l'onglet "mapAssets"
+    - Placer les élèments de jeu via le click gauche, pauser plusieurs élèments en maintenant le click gauche
+    - Effacer les élèments via le click droit, effacer plusieurs élèments en maintenant le click droit
+    - Certains élèments ne sont pas totalement implémentés mais le necessaire l'est
+    - Une fois satisfait de votre donjon, cliquer sur déployer map pour la sauvegarder coté serveur
+    - Vous pouvez également éditer d'ancien donjon via l'onglet "charger Map"
+    - N'oubliez pas de rafraichir l'onglet "charger Map" via le bouton ⟳ en haut à gauche de l'onglet. Cette opération est utile après chaque déploiement de Donjon.
+
 
 
 ## assets utilisés

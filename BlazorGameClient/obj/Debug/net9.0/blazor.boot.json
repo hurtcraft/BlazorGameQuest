@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BlazorGameClient",
   "resources": {
-    "hash": "sha256-UtwRugq8Q3GxtFrfiY8mGwfF7Adqamkfh1XqvEed6dA=",
+    "hash": "sha256-7PFHHCelVTOdCXOALpsMkQqW1qm43UBo4IRCRkR7HMo=",
     "fingerprinting": {
       "Blazor.Extensions.Canvas.JS.iokb7a5y98.wasm": "Blazor.Extensions.Canvas.JS.wasm",
       "Blazor.Extensions.Canvas.45bjdsigtk.wasm": "Blazor.Extensions.Canvas.wasm",
@@ -206,10 +206,10 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "BlazorGameQuestClassLib.z47ugl6g3d.wasm": "BlazorGameQuestClassLib.wasm",
-      "BlazorGameQuestClassLib.gqza51v5j7.pdb": "BlazorGameQuestClassLib.pdb",
-      "BlazorGameClient.9l18wdkqpb.wasm": "BlazorGameClient.wasm",
-      "BlazorGameClient.wfqxz667tc.pdb": "BlazorGameClient.pdb"
+      "BlazorGameQuestClassLib.59nxhs5nug.wasm": "BlazorGameQuestClassLib.wasm",
+      "BlazorGameQuestClassLib.3aev1pdh6x.pdb": "BlazorGameQuestClassLib.pdb",
+      "BlazorGameClient.adsx3wmdtp.wasm": "BlazorGameClient.wasm",
+      "BlazorGameClient.1ifuvodgdf.pdb": "BlazorGameClient.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.9ih887ebfz.js": "sha256-oS7IRiQoVt9ThQ7Y2UM3XoeY0JqPD02cg9IvRdufn2w="
@@ -424,12 +424,12 @@
       "WindowsBase.vy2l5u79y6.wasm": "sha256-ufB9Mo5joMyUs3DzXWWBFFIZNEVrt6h9N5stYB6Oln4=",
       "mscorlib.xd6mv31d55.wasm": "sha256-1YSLR2eZt3ceALFV//vZUF2AloxVil3VlrW1zZYPSEI=",
       "netstandard.kaml52uspo.wasm": "sha256-HLEwBpLfzKw2/zGSVzHzFJxznCkt/WIjahrziiMrOpA=",
-      "BlazorGameQuestClassLib.z47ugl6g3d.wasm": "sha256-o2O0C9twwdhy6Y7ECS09sYajAITWSIH/qm9gmVJW2F0=",
-      "BlazorGameClient.9l18wdkqpb.wasm": "sha256-De7IhIiA2lchkg5UiGoYOf3QkzspRCWde7DsSU78/bI="
+      "BlazorGameQuestClassLib.59nxhs5nug.wasm": "sha256-B1tZcrKm65fGnsHjA8BgYx0VrwRjtFqMP7uYXuuFTPQ=",
+      "BlazorGameClient.adsx3wmdtp.wasm": "sha256-3hCvIJGSGaIXhcJrvepCsHydLY7JgCm6Taef6dc/3QY="
     },
     "pdb": {
-      "BlazorGameQuestClassLib.gqza51v5j7.pdb": "sha256-aMyLe6RCELdY64Pokl83FJhJJptVfjb50HZUJMXQhxU=",
-      "BlazorGameClient.wfqxz667tc.pdb": "sha256-5ABsjYCr2aastbd8ioxL8oSztM7hGNltiVAFbjhclbM="
+      "BlazorGameQuestClassLib.3aev1pdh6x.pdb": "sha256-Cw8qU49laOM28AWxwiVfn9xE9oiUCBR5i6qi9jgq3uo=",
+      "BlazorGameClient.1ifuvodgdf.pdb": "sha256-+VjwxDtYGDgzyyiNZ7zRrKXJ4IHuTabH/WVb84SFG9s="
     }
   },
   "cacheBootResources": true,
