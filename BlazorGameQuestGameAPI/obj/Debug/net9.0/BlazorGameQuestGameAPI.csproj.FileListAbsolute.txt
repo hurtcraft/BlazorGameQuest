@@ -47,3 +47,5 @@ C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestGameAPI\
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestGameAPI\obj\Debug\net9.0\BlazorGameQuestGameAPI.pdb
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestGameAPI\obj\Debug\net9.0\BlazorGameQuestGameAPI.genruntimeconfig.cache
 C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestGameAPI\obj\Debug\net9.0\ref\BlazorGameQuestGameAPI.dll
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestGameAPI\bin\Debug\net9.0\conf\donjonElt.json
+C:\Users\Hurtcraft\Desktop\csharp\projet\BlazorGameQuest\BlazorGameQuestGameAPI\bin\Debug\net9.0\conf\animationsConfig.json

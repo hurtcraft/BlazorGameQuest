@@ -16,12 +16,12 @@ builder.Services.AddScoped<InputManager>();
 builder.Services.AddMudServices();
 builder.Services.AddScoped(sp => new HttpClient
 {
-    BaseAddress = new Uri("http://localhost:5270/api/")
+    BaseAddress = new Uri("http://localhost:5001/api/")
 });
 // builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 GameAsset.LoadAssets(
     MapTilePath: "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/character and tileset/tiles",
-    MobTilePath: "assets/DungeonAssets/mobs"
+    MobTilePath: "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/mobs/mobsTiles"
 );
 
 await builder.Build().RunAsync();

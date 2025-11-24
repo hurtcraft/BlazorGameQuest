@@ -10,14 +10,19 @@ namespace BlazorGameQuestClassLib.AbstractModels
         public bool IsActive { get; set; } = true;
         public float X { get; set; }
         public float Y { get; set; }
-        public float Speed { get; set; } = 2.0f;
+        public float Speed { get; set; } = 1.0f;
 
         protected Dictionary<string, List<string>> AnimationMap { get; set; } = new();
         protected int currentFrameIndex = 0;
         protected float animationTimer = 0f;
         protected float frameDuration = 0.1f;
         public string CurrentAnimation { get; set; } = string.Empty;
+        public string CurrentFramePath => GetCurrentFramePath();
+        
+        public virtual int Health { get; set; } = -1;//val defaut
+        public virtual int MaxHealth { get; set; } = -1;//val defaut
 
+        public virtual  int Damage { get; set; } = -1;//val defaut
         public bool CheckCollision(ICollidable other)
         {
             return GetBounds().IntersectsWith(other.GetBounds());
@@ -40,9 +45,11 @@ namespace BlazorGameQuestClassLib.AbstractModels
         }
 
 
-        public void Interact(IInteractable other)
+        public virtual void Interact(IInteractable other)
         {
-            throw new NotImplementedException();
+        }
+        public virtual void Stop()
+        {
         }
 
         public void Move(float deltaX, float deltaY)

@@ -1,0 +1,26 @@
+@using BlazorGameQuestClassLib
+@using BlazorGameQuestClassLib.AbstractModels
+
+@code {
+    [Parameter]
+    public Interactable Interactable { get; set; } = default!;
+
+    [Parameter]
+    public string Label { get; set; } = default!;
+
+    [Parameter]
+    public string Color { get; set; } = default!;
+
+
+}
+
+<div style="display: flex; flex-direction: column; width: 100%;">
+    <h3 style="text-align: left;">@Label : @(Interactable.Health) / @(Interactable.MaxHealth)</h3>
+    <div style="width: 100%; height: 25px; border: 2px solid black; margin-bottom: 20px;">
+        <div style="
+            height: 100%; 
+            background-color: @Color; 
+            width:@($"{(Interactable.Health * 100 / Interactable.MaxHealth)}%");">
+        </div>
+    </div>
+</div>

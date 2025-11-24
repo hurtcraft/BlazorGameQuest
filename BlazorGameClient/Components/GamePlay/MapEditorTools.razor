@@ -9,54 +9,52 @@
 
     <MudList T="string">
 
-    <MudListItem Icon="@Icons.Material.Filled.Download" Text="Charger map">
-        <NestedList>
-                    <MudIconButton Icon="@Icons.Material.Filled.Refresh" Size="Size.Small" 
-                           OnClick="@GetListDonjon" Style="margin-left:auto;" />
-             <div style="max-height:300px; overflow:auto; padding:0;">
-        @if (ListDonjons == null)
-        {
-            <MudText Class="pa-2">Chargement...</MudText>
-        }
-        else if (ListDonjons.Length == 0)
-        {
-            <MudText Class="pa-2">Aucun donjon trouvé</MudText>
-        }
-        else
-        {
-            <MudList Dense="true">
-                @foreach (var donjon in ListDonjons)
-                {
-                    <MudListItem Text="@donjon" Icon="@Icons.Material.Filled.Folder" @onclick="() => GetDonjonByName(donjon)" />
-                }
-            </MudList>
-        }
-    </div>
-        </NestedList>
-    </MudListItem>
+        <MudListItem Icon="@Icons.Material.Filled.Download" Text="Charger map">
+            <NestedList>
+                <MudIconButton Icon="@Icons.Material.Filled.Refresh" Size="Size.Small" OnClick="@GetListDonjon"
+                    Style="margin-left:auto;" />
+                <div style="max-height:300px; overflow:auto; padding:0;">
+                    @if (ListDonjons == null)
+                    {
+                        <MudText Class="pa-2">Chargement...</MudText>
+                    }
+                    else if (ListDonjons.Length == 0)
+                    {
+                        <MudText Class="pa-2">Aucun donjon trouvé</MudText>
+                    }
+                    else
+                    {
+                        <MudList Dense="true">
+                            @foreach (var donjon in ListDonjons)
+                            {
+                                <MudListItem Text="@donjon" Icon="@Icons.Material.Filled.Folder"
+                                    @onclick="() => GetDonjonByName(donjon)" />
+                            }
+                        </MudList>
+                    }
+                </div>
+            </NestedList>
+        </MudListItem>
         <MudListItem @onclick="OpenDialog" Text="Déployer map" Icon="@Icons.Material.Filled.Send" />
 
-        
+
 
 
         <MudDivider />
 
         <MudListItem Icon="@Icons.Material.Filled.Image" Text="Map Assets">
             <NestedList>
-                <div style="max-height:300px; overflow:auto; padding:0;">  <!-- conteneur scrollable -->
+                <div style="max-height:300px; overflow:auto; padding:0;"> <!-- conteneur scrollable -->
                     <MudGrid>
-                        @for (int i = 0; i < 100; i++)
+                        @for (int i = 0; i < GameAsset.ListMapTile.Count(); i++)
                         {
                             var index = i;
                             bool isSelected = selectedTile == index;
                             string mapTile = GameAsset.ListMapTile[i];
                             <MudItem>
-                            
-                                <img src=@mapTile
-                                    alt=@($"Tile {index:D3}")
-                                    width="32px" height="32px"
-                                    style=@($"object-fit:cover; border:2px solid {(isSelected ? "red" : "#ccc")}; margin:0; cursor:pointer;")
-                                    @onclick="() => TileOnClick(index)" />
+
+                                <img src=@mapTile alt=@($"Tile {index:D3}") width="32px" height="32px"
+                                    style=@($"object-fit:cover; border:2px solid {(isSelected ? "red" : "#ccc")}; margin:0; cursor:pointer;") @onclick="() => TileOnClick(index)" />
                             </MudItem>
                         }
                     </MudGrid>
@@ -64,22 +62,30 @@
             </NestedList>
         </MudListItem>
 
-
+@* 
         <MudListItem Icon="@Icons.Material.Filled.Image" Text="Mob Assets">
             <NestedList>
-                <MudGrid >
-                    @for (int i = 0; i < 10; i++)
-                    {
-                        <MudItem>
-                            <MudPaper
-                                Style="width:32px; height:32px; background-color:#1976d2; display:flex; align-items:center; justify-content:center; color:white;">
-                                @i
-                            </MudPaper>
-                        </MudItem>
-                    }
-                </MudGrid>
+                @if (GameAsset.ListMobTile != null && GameAsset.ListMobTile.Count > 0)
+                {
+                    <MudGrid>
+                        @for (int i = 0; i < GameAsset.ListMobTile.Count; i++)
+                        {
+                            var index = i;
+                            bool isSelected = selectedTile == index;
+                            string mapTile = GameAsset.ListMobTile[i];
+                            <MudItem>
+                                <img src=@mapTile alt=@($"Tile {index:D3}") width="32px" height="32px"
+                                    style=@($"object-fit:cover; border:2px solid {(isSelected ? "red" : "#ccc")}; margin:0; cursor:pointer;") @onclick="() => TileOnClick(index)" />
+                            </MudItem>
+                        }
+                    </MudGrid>
+                }
+                else
+                {
+                    <p>No tiles available</p>
+                }
             </NestedList>
-        </MudListItem>
+        </MudListItem> *@
         @* <MudImage Src="assets/DungeonAssets/2D Pixel Dungeon Asset Pack/Dungeon_Character_at.png" Alt="Here's Johnny" Elevation="25" Class="rounded-lg ma-4" FallbackSrc="images/mony.jpg" /> *@
 
 
@@ -89,7 +95,7 @@
 
 @code {
     private int? selectedTile = null;
-    private string LastMapName=string.Empty;
+    private string LastMapName = string.Empty;
     private string[]? ListDonjons;
     [Parameter] public EventCallback<Donjon> OnDonjonSelected { get; set; }
 
@@ -103,9 +109,9 @@
     private void TileOnClick(int index)
     {
         selectedTile = selectedTile == index ? null : index;
-        GameAsset.currentMapTile=selectedTile;
+        GameAsset.currentMapTile = selectedTile;
 
-        Console.WriteLine("tile : "+GameAsset.currentMapTile);
+        Console.WriteLine("tile : " + GameAsset.currentMapTile);
     }
 
     private async Task GetListDonjon()
@@ -113,7 +119,8 @@
         ListDonjons = await DonjonService.GetListDonjon();
         StateHasChanged();
     }
-    private async Task GetDonjonByName(string donjonName){
+    private async Task GetDonjonByName(string donjonName)
+    {
         Donjon? loadedDonjon = await DonjonService.GetDonjon(donjonName);
         if (loadedDonjon != null)
         {
@@ -123,14 +130,14 @@
         }
     }
     private async Task OpenDialog()
-    {   
-        var parameters=new DialogParameters<DeployMapDialog>{{x=>x.donjon,donjon}};
-        var dialog = await DialogService.ShowAsync<DeployMapDialog>("deploy map",parameters);
+    {
+        var parameters = new DialogParameters<DeployMapDialog> { { x => x.donjon, donjon } };
+        var dialog = await DialogService.ShowAsync<DeployMapDialog>("deploy map", parameters);
         var result = await dialog.Result;
         if (result is not null && !result.Canceled && result.Data is Donjon d)
         {
-            donjon.Difficulty=d.Difficulty;
-            donjon.Name=d.Name;
+            donjon.Difficulty = d.Difficulty;
+            donjon.Name = d.Name;
             await SaveDonjon(donjon);
         }
     }

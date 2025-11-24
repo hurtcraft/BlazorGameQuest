@@ -27,7 +27,7 @@ public class DonjonController : ControllerBase
     public async Task<Donjon> loadAsync(string DonjonName)
     {
         Donjon donjon = await _donjonService.LoadDonjon(DonjonName);
-          
+
         return donjon;
     }
 
@@ -35,5 +35,22 @@ public class DonjonController : ControllerBase
     public Task<string[]> allDonjons()
     {
         return _donjonService.GetListDonjon();
+    }
+    [HttpGet("getRandomDonjons/{nbRandomDonjon}")]
+    public Task<List<Donjon>> GetRandomDonjon(int nbRandomDonjon)
+    {
+        return _donjonService.RequestRandomDonjon(nbRandomDonjon);
+    }
+    [HttpGet("getDonjonEltConf")]
+    public Task<Dictionary<string, List<int>>> GetDonjonEltConf()
+    {
+        return _donjonService.GetDonjonEltConf();
+    }
+
+
+    [HttpGet("getAnimationConf")]
+    public Task<Dictionary<string, Dictionary<string, AnimationConfig>>> GetAnimationConf()
+    {
+        return _donjonService.GetAnimationsConf();
     }
 }

@@ -51,6 +51,12 @@ Patrick Wu, Julien Weng
 - ✅ Création des microservices
 - ✅ Ajout swagger
 - ✅ Test via swagger IHM
+
+
+## V3
+- ✅ Déplacement du joueur les flèches du clavier + attaque avec la touche J dans /game
+- ✅ Implémentation d'un editeur de donjon dans /mapEditor pour la partie admin
+
 Code en cours de construction, ne pas effacer le code commenter
 
 

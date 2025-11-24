@@ -1,0 +1,12 @@
+@using BlazorGameQuestClassLib
+@code {
+    [Parameter]
+    public Player Player { get; set; } = default!;
+
+    [Parameter]
+    public string Label { get; set; } = "Score";
+}
+
+<div style="display: flex; align-items: center;">
+    <h2 style="margin: 0;">@Label : @Player.Score</h2>
+</div>

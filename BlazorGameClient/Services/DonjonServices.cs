@@ -54,7 +54,53 @@ public class DonjonService
             return null;
         }
     }
+    public async Task<List<Donjon>> GetRandomDonjon(int nbRandomDonjon)
+    {
+        var response = await _http.GetAsync($"Donjon/getRandomDonjons/{nbRandomDonjon}");
 
+        if (response.IsSuccessStatusCode)
+        {
+            var donjons = await response.Content.ReadFromJsonAsync<List<Donjon>>();
+            return donjons ?? new List<Donjon>();
+        }
+        else
+        {
+            Console.WriteLine($"Erreur lors du chargement des donjons : {response.StatusCode}");
+            return new List<Donjon>();
+        }
+    }
+    public async Task<Dictionary<string, List<int>>> GetDonjonEltConf()
+    {
+        var response = await _http.GetAsync("Donjon/getDonjonEltConf/");
+        if (response.IsSuccessStatusCode)
+        {
+            var config = await response.Content.ReadFromJsonAsync<Dictionary<string, List<int>>>();
+            return config??new();
+        }
+        else
+        {
+            Console.WriteLine($"Erreur lors du chargement de la conf des donjons : {response.StatusCode}");
+            return new();
+        }
+
+    }
+
+    public async Task<Dictionary<string, Dictionary<string, AnimationConfig>>> GetAnimationsConfig()
+    {
+        var response = await _http.GetAsync("Donjon/getAnimationConf/");
+        if (response.IsSuccessStatusCode)
+        {
+            var config = await response.Content.ReadFromJsonAsync<Dictionary<string, Dictionary<string, AnimationConfig>>>();
+            return config??new();
+        }
+        else
+        {
+            Console.WriteLine($"Erreur lors du chargement des animations : {response.StatusCode}");
+            return new();
+        }
+
+    }
+    
     public async Task<string> TestAsync()
     {
         var response = await _http.GetAsync("Donjon/test");

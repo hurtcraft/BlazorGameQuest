@@ -10,12 +10,15 @@ public static class GameAsset
     {
         ;
         // Chargement des tuiles de carte
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 101; i++)
         {
             ListMapTile.Add($"{MapTilePath}/tile{i:D3}.png");
         }
-
-
+        int startIndexMobs=500;
+        for(int i = startIndexMobs; i < startIndexMobs + 1; i++)
+        {
+            ListMobTile.Add($"{MobTilePath}/tile{i:D3}.png");
+        }
         // // Chargement des sprites de monstres 
         // for (int i = 0; i < 20; i++)
         // {

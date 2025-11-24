@@ -1,43 +1,101 @@
 @page "/game"
 
 @using BlazorGameClient.Game.Utils
+@using BlazorGameQuestClassLib.AbstractModels
 @using MudBlazor
 @using BlazorGameQuestClassLib
 @using Components
 @using BlazorGameClient.Components.GamePlay
 @using System.Threading.Tasks
-
+@inject DonjonService DonjonService
 @inject InputManager Input
 @inject IJSRuntime JS
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <h1>JEU en cours de construction</h1>
-    <GridCanva @ref="gridCanva" IsEditing=false />
-    <button class="mud-button mud-button-filled" @onclick="StartAnimation">Lancer l'animation</button>
 
-    <GameRulesCard />
+
+
+    <div style="display:flex; flex-direction:column; align-items:center;">
+        <PlayerScore Player="@player" Label="Player Score" />
+
+        <HealthBar Interactable="@player" Label="Player HP" Color="green" />
+        @if (CurrentEnnemie != null)
+        {
+            <HealthBar Interactable="@CurrentEnnemie" Label="Current Ennemie HP " Color="red" />
+        }
+        <GridCanva @ref="gridCanva" IsEditing="false" />
+    </div>
+
+    <div style="margin-left: 20px; transform-origin: top left;">
+        <GameRulesCard />
+    </div>
 </div>
 
 @code {
-    private AnimationHelper? animationHelper;
     private GridCanva? gridCanva;
+    private Dictionary<string, List<int>>? DonjonEltConfig;
+    private Dictionary<string, Dictionary<string, AnimationConfig>>? AnimationsConfig;
     private Player player = new Player();
-    
-    private bool isAnimating = false;
-    private bool running = true;
+    private List<Donjon> donjons = new();
+    private Donjon? CurrentDonjon;
+    List<List<Interactable>>? interactables;
+    List<Interactable>? actifInteractables;
+    List<Interactable>? mobs;
+    List<Interactable>? consommables;
+    List<Interactable>? vents;
 
+    private int currentDonjonIndex = 0;
+    private readonly int nbRandomDonjon = 5;
+    private bool running = true;
+    private Interactable? CurrentEnnemie { get; set; }
+    private float moveCooldown = 0.1f; // secondes entre chaque case
+    private float moveTimer = 0f;
+    private float lastVentTime = -999f;
+    private const float ventCooldown = 2.0f;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (firstRender && gridCanva != null)
         {
+
+            donjons = await DonjonService.GetRandomDonjon(nbRandomDonjon);
+            CurrentDonjon = donjons[currentDonjonIndex];
+            DonjonEltConfig = await DonjonService.GetDonjonEltConf();
+            AnimationsConfig = await DonjonService.GetAnimationsConfig();
+            InitAnimations("player", player);
+            player.PlayAnimation("idle_down");
+            interactables = CurrentDonjon.AsInteractable(DonjonEltConfig);
+            InitInteractablesAnimations();
+
+            actifInteractables = interactables
+            .SelectMany(row => row)
+            .Where(item => item != null && item.IsActive)
+            .ToList();
+
+            mobs = interactables?
+            .SelectMany(row => row)
+            .Where(i => i is Skeleton)
+            .ToList();
+
+            consommables = interactables?
+            .SelectMany(row => row)
+            .Where(i => i is Coin || i is Heal || i is Poison || i is Key)
+            .ToList();
+
+            vents = interactables?
+            .SelectMany(row => row)
+            .Where(i => i is Vent)
+            .ToList();
             await Input.InitializeAsync();
-            _ = GameLoop(); // lance la boucle sans bloquer le thread UI
+            await DrawFrame();
+
+            _ = GameLoop();
         }
     }
     private async Task GameLoop()
     {
-        const int frameDelay = 16; // environ 60 FPS
+        const int frameDelay = 1;
         while (running)
         {
+
             Update();
 
             await InvokeAsync(StateHasChanged);
@@ -46,81 +104,326 @@
     }
     private async void Update()
     {
-        if(gridCanva==null){
+        if (gridCanva == null || CurrentDonjon?.GameGrid == null)
+            return;
+
+        float deltaTime = 1f / 10f;
+        moveTimer -= deltaTime;
+        PlayerCheckInteraction();
+        UpdateMobs(deltaTime);
+        UpdateConsommable(deltaTime);
+        UpdatePlayerPosition();
+        player.UpdateAnimation(deltaTime);
+        if (player.Health <= 0)
+        {
+            player.Health = 0;
+            //gameover ici
+        }
+        await DrawFrame();
+
+    }
+
+
+    private void UpdateMobs(float deltaTime)
+    {
+        if (mobs == null)
+            return;
+
+        foreach (var mob in mobs)
+        {
+            mob.UpdateAnimation(deltaTime);
+
+            if (mob is Skeleton sk)
+            {
+                if (HandleMobDeath(sk))
+                    continue;
+
+                HandleMobAttack(sk);
+                HandleMobMovement(sk, deltaTime);
+            }
+        }
+    }
+    private void UpdateConsommable(float deltaTime)
+    {
+        if (consommables == null || interactables == null)
+            return;
+
+        foreach (var consommable in consommables.ToList())
+        {
+            consommable.UpdateAnimation(deltaTime / 2);
+
+            if (player.X == consommable.X && player.Y == consommable.Y)
+            {
+                consommables.Remove(consommable);
+
+                foreach (var row in interactables)
+                {
+                    row.Remove(consommable);
+                }
+            }
+        }
+    }
+
+    private bool HandleMobDeath(Skeleton sk)
+    {
+        if (sk.Health <= 0)
+        {
+            sk.Die();
+            return true;
+        }
+        return false;
+    }
+
+    private void HandleMobAttack(Skeleton sk)
+    {
+        if (sk.CurrentAnimation.Contains("attack"))
+        {
+            CurrentEnnemie = sk;
+
+            if (!(player.X == sk.X && player.Y == sk.Y))
+            {
+                sk.ResumeWalk();
+            }
+        }
+    }
+
+    private void HandleMobMovement(Skeleton sk, float deltaTime)
+    {
+        if (!sk.CurrentAnimation.Contains("walk"))
+            return;
+
+        int dx = sk.CurrentAnimation.Contains("left") ? -1 : 1;
+
+        if (!InteractableCanMove(sk, dx, 0))
+        {
+            sk.ChangeDirection(deltaTime);
+        }
+        else
+        {
+            if (dx < 0)
+                sk.MoveLeft(deltaTime);
+            else
+                sk.MoveRight(deltaTime);
+        }
+    }
+
+    private void VentToVent()
+    {
+        float currentTime = (float)DateTime.Now.TimeOfDay.TotalSeconds;
+
+        if (currentTime - lastVentTime < ventCooldown)
+        {
+            player.OnVent = false;
             return;
         }
-        await gridCanva.DrawGrid();
-        UpdatePlayerPosition();
-        DrawPlayer();
-        Console.WriteLine("player " + player.X + " " + player.Y);
 
+        if (vents == null || vents.Count < 2)
+            return;
 
+        var otherVents = vents
+        .Where(v => !(v.X == player.X && v.Y == player.Y))
+        .ToList();
+
+        if (otherVents.Count == 0)
+            return;
+
+        Random rng = new Random();
+        int index = rng.Next(otherVents.Count);
+
+        Vent target = (Vent)otherVents[index];
+
+        player.X = target.X;
+        player.Y = target.Y;
+
+        lastVentTime = currentTime;
     }
-    private void DrawMap(){
 
-    }
+
     private void UpdatePlayerPosition()
     {
-        var pressedKeys = Input.GetPressedKeys(); // méthode à ajouter dans InputManager
+        var pressedKeys = Input.GetPressedKeys();
+
+        if (moveTimer > 0)
+            return;
+        if (pressedKeys.Count() == 0)
+        {
+            player.Stop();
+        }
         foreach (var key in pressedKeys)
         {
             switch (key)
             {
-                case "ArrowUp": player.Move(0, -1); break;
-                case "ArrowDown": player.Move(0, 1); break;
-                case "ArrowLeft": player.Move(-1, 0); break;
-                case "ArrowRight": player.Move(1, 0); break;
+                case "ArrowUp":
+                    if (InteractableCanMove(player, 0, -1))
+                    {
+                        player.MoveUp();
+                    }
+                    break;
+                case "ArrowDown":
+                    if (InteractableCanMove(player, 0, 1))
+                    {
+                        player.MoveDown();
+                    }
+                    break;
+
+                case "ArrowLeft":
+                    if (InteractableCanMove(player, -1, 0))
+                    {
+                        player.MoveLeft();
+                    }
+                    break;
+
+                case "ArrowRight":
+                    if (InteractableCanMove(player, 1, 0))
+                    {
+                        player.MoveRight();
+                    }
+                    break;
+                case "KeyJ": player.Attack(); break;
+
+                default: player.Stop(); break;
+            }
+            moveTimer = moveCooldown;
+            break;
+        }
+    }
+    private bool InteractableCanMove(Interactable interactable, int dx, int dy)
+    {
+        int nextX = (int)interactable.X + dx;
+        int nextY = (int)interactable.Y + dy;
+
+        if (IsBlocked(nextX, nextY))
+        {
+            interactable.Stop();
+            return false;
+        }
+
+        return true;
+
+    }
+
+    private bool IsBlocked(int nextX, int nextY)
+    {
+        if (actifInteractables == null)
+            return false;
+
+        return actifInteractables.Any(a =>
+        a is Wall w && w.X == nextX && w.Y == nextY);
+    }
+    private void PlayerCheckInteraction()
+    {
+        if (actifInteractables == null) return;
+
+        foreach (var item in actifInteractables)
+        {
+            if (player.X == item.X && player.Y == item.Y)
+            {
+                item.Interact(player);
+            }
+            if (player.GoNextDonjon)
+            {
+                currentDonjonIndex += 1;
+                //CurrentDonjon = donjons[currentDonjonIndex];
+                Console.WriteLine("PROCHAIN DONJON " + CurrentDonjon);
+            }
+            if (player.OnVent)
+            {
+                VentToVent();
+            }
+
+        }
+    }
+    private async Task DrawFrame()
+    {
+        await JS.InvokeVoidAsync("drawFrame", interactables, player, GameGrid.SPRITE_SIZE);
+    }
+
+    private void InitInteractablesAnimations()
+    {
+        if (interactables == null || AnimationsConfig == null)
+            return;
+
+        foreach (var group in interactables)
+        {
+            foreach (var inter in group)
+            {
+
+                if (inter is Skeleton skeleton)
+                {
+                    if (AnimationsConfig.ContainsKey("skeleton1"))
+                    {
+                        InitAnimations("skeleton1", skeleton);
+                        skeleton.PlayAnimation("walk_left");
+                    }
+                }
+                else if (inter is Coin coin)
+                {
+
+                    if (AnimationsConfig.ContainsKey("coin"))
+                    {
+                        InitAnimations("coin", coin);
+                        coin.PlayAnimation("default");
+                    }
+                }
+                else if (inter is Heal heal)
+                {
+                    if (AnimationsConfig.ContainsKey("heal"))
+                    {
+                        InitAnimations("heal", heal);
+                        heal.PlayAnimation("default");
+                    }
+                }
+                else if (inter is Poison poison)
+                {   
+                    if (AnimationsConfig.ContainsKey("poison"))
+                    {
+                        InitAnimations("poison", poison);
+                        poison.PlayAnimation("default");
+                    }
+                }
+                else if (inter is Key key)
+                {
+                    if (AnimationsConfig.ContainsKey("key"))
+                    {
+                        InitAnimations("key", key);
+                        key.PlayAnimation("default");
+                    }
+                }
+
             }
         }
     }
-    private async void DrawPlayer()
-    {
-        if (player == null) return;
 
-        await JS.InvokeVoidAsync("drawRectOnCanvas",
-        "myCanvas", // id du canvas
-        player.X, // position X
-        player.Y, // position Y
-        GameGrid.SPRITE_SIZE, // largeur
-        GameGrid.SPRITE_SIZE, // hauteur
-        "red"); // couleur
+    private void InitAnimations(string entityName, Interactable entity)
+    {
+        if (AnimationsConfig == null || !AnimationsConfig.ContainsKey(entityName))
+            return;
+
+        var conf = AnimationsConfig[entityName];
+        var allImagesToPreload = new List<string>();
+
+        foreach (var kvp in conf)
+        {
+            string animationName = kvp.Key;
+            string folder = kvp.Value.Folder;
+            int nbSprite = kvp.Value.NbSprite;
+
+            var frames = AnimationHelper.GetAnimationsFromFolder(folder, nbSprite);
+
+            entity.AddAnimation(animationName, frames);
+
+            allImagesToPreload.AddRange(frames);
+        }
+
+        JS.InvokeVoidAsync("preloadImages", allImagesToPreload);
     }
+
     protected override void OnInitialized()
     {
-        player.X = 100;
-        player.Y = 100;
-        var animations = AnimationHelper.GetAnimationsFromFolder("assets/PlayerAssets/Sprites/RUN/run_down/redim", 7);
-        Console.WriteLine("ANIMTION " + string.Join(",", animations));
-        Dictionary<string, List<string>> animationMap = new Dictionary<string, List<string>>();
+        player.X = 15;
+        player.Y = 18;
 
-        animationMap.Add("run_down", animations);
-        animationHelper = new AnimationHelper(animationMap);
-    }
-    private void StartAnimation()
-    {
-        if(animationHelper==null)return;
-        animationHelper.PlayAnimation("run_down");
-
-        if (!isAnimating)
-        {
-            isAnimating = true;
-            _ = AnimateLoop();
-        }
     }
 
-    private async Task AnimateLoop()
-    {
-        if(animationHelper==null)return;
-        while (isAnimating)
-        {
-            if (gridCanva != null)
-            {
-                await gridCanva.ClearTile(0, 0);
-                await gridCanva.DrawFrame(animationHelper.CurrentFrame, 0, 0);
-                animationHelper.Update(1f);
 
-            }
-            await Task.Delay(100); // 10 FPS, ajuste la valeur pour accélérer ou ralentir
-        }
-    }
 }

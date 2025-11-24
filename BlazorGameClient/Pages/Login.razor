@@ -6,12 +6,13 @@
 @using BlazorGameClient.Components
 
 
-<MudGrid Justify="Justify.Center" Style="height:90vh; display:flex; align-items:flex-start; padding-top:40px;">
-    <MudItem xs="12" sm="8" md="6" lg="4">
-
-        <MudImage Src="assets/BlazorGameQuestLogo.png" Alt="Logo du projet" 
-                  Style="width:50%; max-width:200px; display:block; margin:0 auto 16px auto;" />
-
-        <LoginForm />
-    </MudItem>
-</MudGrid>
+<MudContainer Style="min-height:100vh; overflow-y:auto;">
+    <MudGrid Justify="Justify.Center" Class="pt-10">
+        <MudItem xs="12" sm="8" md="6" lg="4">
+            <MudImage Src="assets/BlazorGameQuestLogo.png"
+                      Alt="Logo du projet"
+                      Style="width:50%; max-width:200px; display:block; margin:0 auto 16px auto;" />
+            <LoginForm />
+        </MudItem>
+    </MudGrid>
+</MudContainer>
