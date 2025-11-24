@@ -66,19 +66,21 @@ namespace Service
 
             if (listDonjon == null || listDonjon.Length == 0)
                 return selectedDonjons;
+
             Random rnd = new Random();
+            listDonjon = listDonjon.OrderBy(_ => rnd.Next()).ToArray();
+
             nbDonjon = Math.Min(nbDonjon, listDonjon.Length);
 
             for (int i = 0; i < nbDonjon; i++)
             {
-                int randomIndexDonjon = rnd.Next(0, listDonjon.Length);
-                Donjon d = await LoadDonjon(listDonjon[randomIndexDonjon]);
+                Donjon d = await LoadDonjon(listDonjon[i]);
                 selectedDonjons.Add(d);
             }
+
             return selectedDonjons;
-
-
         }
+
         public async Task<Dictionary<string, List<int>>> GetDonjonEltConf()
         {
             Dictionary<string, List<int>> dict = new();
@@ -122,3 +124,5 @@ namespace Service
 
     }
 }
+
+

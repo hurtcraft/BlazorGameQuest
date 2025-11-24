@@ -4,20 +4,23 @@
 @using BlazorGameQuestClassLib.AbstractModels
 @using MudBlazor
 @using BlazorGameQuestClassLib
-@using Components
 @using BlazorGameClient.Components.GamePlay
+@using BlazorGameClient.Components
 @using System.Threading.Tasks
 @inject DonjonService DonjonService
+@inject PlayerServices PlayerServices
 @inject InputManager Input
 @inject IJSRuntime JS
+@inject NavigationManager Nav
+@inject NavigationManager NavigationManager
+
+
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-
-
+    <GameOverScreen Label="@GameOverLabel" IsVisible="@IsGameOver" OnReplay="RestartGame" OnSave="SavePlayerGame" />
 
     <div style="display:flex; flex-direction:column; align-items:center;">
-        <PlayerScore Player="@player" Label="Player Score" />
-
-        <HealthBar Interactable="@player" Label="Player HP" Color="green" />
+        <PlayerScore Player="@player" Label="@($"{player.Name} Score")" />
+        <HealthBar Interactable="@player" Label="@($"{player.Name} HP")" Color="green" />
         @if (CurrentEnnemie != null)
         {
             <HealthBar Interactable="@CurrentEnnemie" Label="Current Ennemie HP " Color="red" />
@@ -29,6 +32,9 @@
         <GameRulesCard />
     </div>
 </div>
+
+
+
 
 @code {
     private GridCanva? gridCanva;
@@ -42,15 +48,16 @@
     List<Interactable>? mobs;
     List<Interactable>? consommables;
     List<Interactable>? vents;
-
+    string GameOverLabel="GameOver";
     private int currentDonjonIndex = 0;
     private readonly int nbRandomDonjon = 5;
-    private bool running = true;
     private Interactable? CurrentEnnemie { get; set; }
     private float moveCooldown = 0.1f; // secondes entre chaque case
     private float moveTimer = 0f;
     private float lastVentTime = -999f;
     private const float ventCooldown = 2.0f;
+    private bool IsGameOver = false;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender && gridCanva != null)
@@ -64,26 +71,7 @@
             player.PlayAnimation("idle_down");
             interactables = CurrentDonjon.AsInteractable(DonjonEltConfig);
             InitInteractablesAnimations();
-
-            actifInteractables = interactables
-            .SelectMany(row => row)
-            .Where(item => item != null && item.IsActive)
-            .ToList();
-
-            mobs = interactables?
-            .SelectMany(row => row)
-            .Where(i => i is Skeleton)
-            .ToList();
-
-            consommables = interactables?
-            .SelectMany(row => row)
-            .Where(i => i is Coin || i is Heal || i is Poison || i is Key)
-            .ToList();
-
-            vents = interactables?
-            .SelectMany(row => row)
-            .Where(i => i is Vent)
-            .ToList();
+            InitGame();
             await Input.InitializeAsync();
             await DrawFrame();
 
@@ -93,7 +81,7 @@
     private async Task GameLoop()
     {
         const int frameDelay = 1;
-        while (running)
+        while (!IsGameOver)
         {
 
             Update();
@@ -104,6 +92,7 @@
     }
     private async void Update()
     {
+
         if (gridCanva == null || CurrentDonjon?.GameGrid == null)
             return;
 
@@ -117,13 +106,25 @@
         if (player.Health <= 0)
         {
             player.Health = 0;
-            //gameover ici
+            IsGameOver = true;
+            await InvokeAsync(StateHasChanged);
         }
         await DrawFrame();
 
     }
 
+    private void RestartGame()
+    {
+        Nav.NavigateTo(Nav.Uri, forceLoad: true);
+    }
 
+    private async void SavePlayerGame()
+    {
+        await PlayerServices.AddOrUpdatePlayerIfExist(player);
+
+        NavigationManager.NavigateTo("/TableauScore");
+
+    }
     private void UpdateMobs(float deltaTime)
     {
         if (mobs == null)
@@ -322,9 +323,25 @@
             }
             if (player.GoNextDonjon)
             {
+                player.GoNextDonjon = false;
+
                 currentDonjonIndex += 1;
-                //CurrentDonjon = donjons[currentDonjonIndex];
-                Console.WriteLine("PROCHAIN DONJON " + CurrentDonjon);
+                if (currentDonjonIndex < donjons.Count && DonjonEltConfig!=null)
+                {
+ 
+                    CurrentDonjon = donjons[currentDonjonIndex];
+                    interactables = CurrentDonjon.AsInteractable(DonjonEltConfig);
+                    InitInteractablesAnimations();
+                    InitGame();
+                    InitPlayerPos();
+                    player.PlayAnimation("idle_down");
+
+                }
+                else
+                {
+                    IsGameOver = true;
+                    GameOverLabel="Fin Feliciation !";
+                }
             }
             if (player.OnVent)
             {
@@ -337,7 +354,34 @@
     {
         await JS.InvokeVoidAsync("drawFrame", interactables, player, GameGrid.SPRITE_SIZE);
     }
+    private void InitGame()
+    {
+        if(interactables==null) return;
+        actifInteractables = interactables
+        .SelectMany(row => row)
+        .Where(i => i != null && i.IsActive)
+        .ToList();
 
+        mobs = interactables?
+        .SelectMany(row => row)
+        .Where(i => i is Skeleton)
+        .ToList();
+
+        consommables = interactables?
+        .SelectMany(row => row)
+        .Where(i => i is Coin || i is Heal || i is Poison || i is Key)
+        .ToList();
+
+        vents = interactables?
+        .SelectMany(row => row)
+        .Where(i => i is Vent)
+        .ToList();
+    }
+    private void InitPlayerPos(){
+        if(player==null)return;
+        player.X = 15;
+        player.Y = 18;
+    }
     private void InitInteractablesAnimations()
     {
         if (interactables == null || AnimationsConfig == null)
@@ -374,7 +418,7 @@
                     }
                 }
                 else if (inter is Poison poison)
-                {   
+                {
                     if (AnimationsConfig.ContainsKey("poison"))
                     {
                         InitAnimations("poison", poison);
@@ -420,9 +464,8 @@
 
     protected override void OnInitialized()
     {
-        player.X = 15;
-        player.Y = 18;
-
+        InitPlayerPos();
+        player.Name = "Julien"; //temporaire
     }
 
 
