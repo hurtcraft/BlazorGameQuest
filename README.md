@@ -62,6 +62,8 @@ Patrick Wu, Julien Weng
     - Les passages secret peuvent être vos amis comme ennemies
     - Gare au monstres qui rodent dans le Donjon, en tuer vous rapporte des points
     - Les pièces et les clefs vous rapporte également des points 
+    - Lorsque vous mourrez ou finissez le jeu, un écran de fin s'affiche en conséquence.
+    - Vous pouvez alors soit rejouer directement dans ce cas la sauvegarde de l'état du joueur ne se fait pas, soit sauvegarder, dans ce cas l'état du joueur est sauvegardé et vous serez redirigé vers le tableau des scores 
 
 - ✅ Rendez vous dans http://localhost:5000/mapEditor pour editer des niveaux
     - Selectionner les items à placer en deroulant l'onglet "mapAssets"
