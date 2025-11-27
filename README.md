@@ -79,3 +79,25 @@ Patrick Wu, Julien Weng
 ## assets utilisés
 - https://xzany.itch.io/top-down-adventurer-character
 - https://pixel-poem.itch.io/dungeon-assetpuck
+
+
+## Déploiement avec Docker
+
+### Prérequis
+- Docker Desktop installé et en cours d'exécution
+
+### Commandes Docker
+
+**Première fois ou après modification du code :**
+docker-compose up --build
+
+**Les fois suivantes (si rien n'a changé) :**
+docker-compose up
+
+**Démarrer en arrière-plan :**
+docker-compose up -d
+
+### Accès à l'application
+- **Client Blazor** : http://localhost:5000
+- **API** : http://localhost:5001
+- **Swagger UI** : http://localhost:5001/swagger
