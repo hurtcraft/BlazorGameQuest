@@ -1,0 +1,19 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: BlazorGameQuestGameAPI/Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_URLS=http://+:5001
+
+  client:
+    build:
+      context: .
+      dockerfile: BlazorGameClient/Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - api
+
