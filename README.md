@@ -74,8 +74,35 @@ Patrick Wu, Julien Weng
     - Vous pouvez également éditer d'ancien donjon via l'onglet "charger Map"
     - N'oubliez pas de rafraichir l'onglet "charger Map" via le bouton ⟳ en haut à gauche de l'onglet. Cette opération est utile après chaque déploiement de Donjon.
 
+## V4
+- ✅ tableau de bord admin
+- ✅ controle des joueurs
+- ✅ création des maps
+- ✅ export des joueurs
 
 
 ## assets utilisés
 - https://xzany.itch.io/top-down-adventurer-character
 - https://pixel-poem.itch.io/dungeon-assetpuck
+
+
+## Déploiement avec Docker
+
+### Prérequis
+- Docker Desktop installé et en cours d'exécution
+
+### Commandes Docker
+
+**Première fois ou après modification du code :**
+docker-compose up --build
+
+**Les fois suivantes (si rien n'a changé) :**
+docker-compose up
+
+**Démarrer en arrière-plan :**
+docker-compose up -d
+
+### Accès à l'application
+- **Client Blazor** : http://localhost:5000
+- **API** : http://localhost:5001
+- **Swagger UI** : http://localhost:5001/swagger

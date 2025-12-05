@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost",
         policy => policy
-            .WithOrigins("http://localhost:5000")
+            .WithOrigins("http://localhost:5000", "http://client:80")
             .AllowAnyHeader()
             .AllowAnyMethod());
 });

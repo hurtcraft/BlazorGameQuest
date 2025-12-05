@@ -14,11 +14,11 @@ builder.Services.AddScoped<PlayerServices>();
 builder.Services.AddScoped<InputManager>();
 
 builder.Services.AddMudServices();
+// URL de l'API - fonctionne en développement local et avec Docker (port exposé)
 builder.Services.AddScoped(sp => new HttpClient
 {
     BaseAddress = new Uri("http://localhost:5001/api/")
 });
-// builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 GameAsset.LoadAssets(
     MapTilePath: "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/character and tileset/tiles",
     MobTilePath: "assets/DungeonAssets/2D Pixel Dungeon Asset Pack/mobs/mobsTiles"
