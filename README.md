@@ -74,6 +74,11 @@ Patrick Wu, Julien Weng
     - Vous pouvez également éditer d'ancien donjon via l'onglet "charger Map"
     - N'oubliez pas de rafraichir l'onglet "charger Map" via le bouton ⟳ en haut à gauche de l'onglet. Cette opération est utile après chaque déploiement de Donjon.
 
+## V4
+- ✅ tableau de bord admin
+- ✅ controle des joueurs
+- ✅ création des maps
+- ✅ export des joueurs
 
 
 ## assets utilisés
