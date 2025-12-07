@@ -1,0 +1,57 @@
+@page "/authentication/{action}"
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using BlazorGameClient.Components
+@inject NavigationManager Navigation
+
+<RemoteAuthenticatorView Action="@Action">
+    <LoggingIn>
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+            <p>Connexion en cours...</p>
+        </div>
+    </LoggingIn>
+    <CompletingLoggingIn>
+        @if (Action == "login-callback")
+        {
+            <AuthenticationCallback />
+        }
+        else
+        {
+            <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+                <p>Finalisation de la connexion...</p>
+            </div>
+        }
+    </CompletingLoggingIn>
+    <LogInFailed>
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;">
+            <p>Échec de la connexion.</p>
+            <button @onclick="RedirectToLogin">Réessayer</button>
+        </div>
+    </LogInFailed>
+    <CompletingLogOut>
+        @if (Action == "logout-callback")
+        {
+            <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;">
+                <p>Déconnexion réussie. Redirection...</p>
+            </div>
+        }
+        else
+        {
+            <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+                <p>Déconnexion en cours...</p>
+            </div>
+        }
+    </CompletingLogOut>
+    <LogOutSucceeded>
+        <LogoutCallback />
+    </LogOutSucceeded>
+</RemoteAuthenticatorView>
+
+@code{
+    [Parameter] public string? Action { get; set; }
+    
+    private void RedirectToLogin()
+    {
+        Navigation.NavigateTo("/");
+    }
+}
+

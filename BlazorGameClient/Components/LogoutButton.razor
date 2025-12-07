@@ -1,0 +1,24 @@
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.AspNetCore.Components.Authorization
+@using MudBlazor
+@inject NavigationManager Navigation
+
+<AuthorizeView>
+    <Authorized>
+        <MudButton Variant="Variant.Filled" 
+                   Color="Color.Error" 
+                   StartIcon="@Icons.Material.Filled.Logout"
+                   OnClick="Logout"
+                   Size="Size.Small">
+            Déconnexion
+        </MudButton>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    private void Logout()
+    {
+        Navigation.NavigateToLogout("authentication/logout");
+    }
+}
+

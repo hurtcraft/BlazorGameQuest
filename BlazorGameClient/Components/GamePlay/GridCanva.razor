@@ -87,9 +87,6 @@
     }
     public async Task DrawFromGameGrid(GameGrid _grid)
     {
-        Console.WriteLine("loooool "+gameGrid.grid);
-
-
         if (_grid == null) return;
         //gameGrid = _grid;
         gameGrid.grid = _grid.grid;
@@ -172,8 +169,7 @@
     }
     private void PrintGrid()
     {
-        // Sérialise directement la grille en JSON
-        Console.WriteLine(gameGrid.grid[0][0]);
+        // Méthode pour sérialiser la grille si nécessaire
     }
     private void PreventContextMenu(MouseEventArgs e)
     {

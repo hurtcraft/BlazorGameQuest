@@ -4,8 +4,17 @@
 @using System.Text.RegularExpressions
 @using System.ComponentModel.DataAnnotations
 @using BlazorGameClient.Components
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager Navigation
 
-
+<AuthorizeView>
+    <Authorized>
+        @{
+            RedirectToHome();
+        }
+    </Authorized>
+    <NotAuthorized>
 <MudContainer Style="min-height:100vh; overflow-y:auto;">
     <MudGrid Justify="Justify.Center" Class="pt-10">
         <MudItem xs="12" sm="8" md="6" lg="4">
@@ -16,3 +25,25 @@
         </MudItem>
     </MudGrid>
 </MudContainer>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            if (authState.User.Identity?.IsAuthenticated == true)
+            {
+                // Rediriger vers la page par défaut si déjà authentifié
+                Navigation.NavigateTo("/TableauScore", forceLoad: true);
+            }
+        }
+    }
+    
+    private void RedirectToHome()
+    {
+        Navigation.NavigateTo("/TableauScore", forceLoad: true);
+    }
+}

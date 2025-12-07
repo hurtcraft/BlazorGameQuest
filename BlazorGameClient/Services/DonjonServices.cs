@@ -8,10 +8,10 @@ public class DonjonService
 {
     private readonly HttpClient _http;
 
-    // HttpClient injecté par Blazor
-    public DonjonService(HttpClient http)
+    // HttpClient injecté par Blazor avec authentification
+    public DonjonService(IHttpClientFactory httpClientFactory)
     {
-        _http = http;
+        _http = httpClientFactory.CreateClient("BlazorGameQuestGameAPI");
     }
 
     public async Task SaveDonjonAsync(Donjon donjon)
@@ -19,14 +19,7 @@ public class DonjonService
         if (donjon == null) return;
 
         var response = await _http.PostAsJsonAsync("Donjon/save", donjon);
-        if (response.IsSuccessStatusCode)
-        {
-            Console.WriteLine("Donjon sauvegardé côté serveur !");
-        }
-        else
-        {
-            Console.WriteLine($"Erreur : {response.StatusCode}");
-        }
+        response.EnsureSuccessStatusCode();
     }
     public async Task<string[]> GetListDonjon()
     {
@@ -50,7 +43,6 @@ public class DonjonService
         }
         else
         {
-            Console.WriteLine($"Erreur lors du chargement du donjon : {response.StatusCode}");
             return null;
         }
     }
@@ -65,7 +57,6 @@ public class DonjonService
         }
         else
         {
-            Console.WriteLine($"Erreur lors du chargement des donjons : {response.StatusCode}");
             return new List<Donjon>();
         }
     }
@@ -79,7 +70,6 @@ public class DonjonService
         }
         else
         {
-            Console.WriteLine($"Erreur lors du chargement de la conf des donjons : {response.StatusCode}");
             return new();
         }
 
@@ -95,7 +85,6 @@ public class DonjonService
         }
         else
         {
-            Console.WriteLine($"Erreur lors du chargement des animations : {response.StatusCode}");
             return new();
         }
 

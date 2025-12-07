@@ -1,129 +1,33 @@
 @inject NavigationManager Navigation
 
 @using MudBlazor
-<div class="login-container @slideClass" >
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+<div class="login-container">
     <MudPaper Class="pa-6 mx-auto mt-12" Elevation="8" MaxWidth="400px">
         <MudText Typo="Typo.h5" Align="Align.Center" GutterBottom="true">
-            Connexion (@_selectedRole)
+            Connexion à BlazorGameQuest
         </MudText>
 
-
-        <div class="d-flex justify-center">
-            <MudMenu Label=@_selectedRole Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.KeyboardArrowDown">
-                <MudMenuItem Label="joueur" OnClick="@(() => SetRole(_JOUEUR))"/>
-                <MudMenuItem Label="admin" OnClick="@(() => SetRole(_ADMIN))"/>
-            </MudMenu>
-        </div>
-        <MudText Typo="Typo.caption" Color="Color.Secondary">
-            Dans le cadre de la v1, l'identifiant temporaire est : <b>"@_selectedRole"</b>  et le mot de passe temporaire : <b>"@_selectedRole"</b>.
+        <MudText Typo="Typo.body2" Color="Color.Secondary" Align="Align.Center" Class="mb-4">
+            Connectez-vous avec votre compte Keycloak pour accéder au jeu.
         </MudText>
-        <MudForm @ref="_form" Class="mt-4">
-            <MudTextField @bind-Value="_identifiant"
-                          Label=@("Id " + _selectedRole)
-                          Required="true"
-                          Variant="Variant.Outlined"
-                          FullWidth="true"
-                          Adornment="Adornment.Start"
-                          AdornmentIcon="@Icons.Material.Filled.Email" />
 
-            <MudTextField @bind-Value="_password"
-                          Label="Mot de passe"
-                          InputType="InputType.Password"
-                          Required="true"
-                          Variant="Variant.Outlined"
-                          FullWidth="true"
-                          Adornment="Adornment.Start"
-                          AdornmentIcon="@Icons.Material.Filled.Lock" />
-
-            <MudButton OnClick="Submit"
-                    Disabled="@isSubmitting"
+        <MudButton OnClick="BeginSignIn"
                     Variant="Variant.Filled"
                     Color="Color.Primary"
                     FullWidth="true"
+                Size="Size.Large"
+                StartIcon="@Icons.Material.Filled.Login"
                     Class="mt-4">
-                Se connecter
+            Se connecter avec Keycloak
             </MudButton>
-        </MudForm>
     </MudPaper>
 </div>
 
 @code {
-    private string slideClass="slide-down";
-    private  string _JOUEUR="joueur";
-    private string _ADMIN="admin";
-    private bool isSubmitting = false;
-
-    private MudForm? _form;
-    private string _identifiant = string.Empty;
-    private string _password = string.Empty;
-    private string _selectedRole = string.Empty;
-
-    private string _joueurURI="/TableauScore";
-    private string _adminURI="/admin";
-
-    protected override void OnInitialized()
+    private void BeginSignIn()
     {
-        _selectedRole = _JOUEUR; 
-    }
-    private async Task Submit()
-    {
-        Console.WriteLine("submitting");
-        isSubmitting = true;
-
-        if (_form != null)
-        {
-            await _form.Validate();
-            if (_form.IsValid)
-            {
-                if (_selectedRole == _ADMIN)
-                    await AuthAsAdmin();
-                else
-                    await AuthAsJoueur();
-            }
-        }
-
-        isSubmitting = false;
-    }
-
-    private Task<bool> AuthAsJoueur()
-    {
-        //temporaire pour test
-        Console.WriteLine(value: "Authentification utilisateur...");
-        if(_identifiant==_selectedRole && _password==_selectedRole){
-            Navigation.NavigateTo(uri: _joueurURI);
-            return Task.FromResult(true);
-        };
-        return Task.FromResult(false);
-    }
-
-    private Task<bool> AuthAsAdmin()
-    {
-        //temporaire pour test
-        Console.WriteLine("Authentification administrateur...");
-        if(_identifiant==_selectedRole && _password==_selectedRole){
-            Console.WriteLine("connexion admin");
-            Navigation.NavigateTo(uri: _adminURI);
-            return Task.FromResult(true);
-        }
-        return Task.FromResult(false);
-        
-    }
-
-
-    private async void SetRole(string role)
-    {
-        if(role==_selectedRole){
-            return ;
-        }
-        slideClass = "slide-up";
-        StateHasChanged();
-        await Task.Delay(300);
-        _selectedRole = role;
-        if (_form != null)
-        {
-            await _form.ResetAsync();
-        }
-        slideClass = "slide-down";
-        StateHasChanged();
+        Navigation.NavigateToLogin("authentication/login");
     }
 }

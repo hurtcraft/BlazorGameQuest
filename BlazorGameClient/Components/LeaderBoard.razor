@@ -1,33 +1,84 @@
 @using MudBlazor
 @using BlazorGameQuestClassLib
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject PlayerServices PlayerServices
+@inject NavigationManager Navigation
 
-<MudDataGrid T="Player" Items="@Joueurs" SortMode="SortMode.Single" Height="50vh"
-    style="box-shadow: 10px 10px 10px rgba(0,0,0,0.3); border: 4mm ridge rgba(169, 70, 189, 0.6);">
-    <Columns>
-        <PropertyColumn Property="x => x.Name">
-            <HeaderTemplate>
-                <b>Nom</b>
-            </HeaderTemplate>
-        </PropertyColumn>
-        <PropertyColumn Property="x => x.Score">
-            <HeaderTemplate>
-                <b>Score</b>
-            </HeaderTemplate>
-        </PropertyColumn>
-    </Columns>
-</MudDataGrid>
+@if (isLoading)
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" />
+    <MudText>Chargement des scores...</MudText>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert Severity="Severity.Error" Class="mb-4">
+        @errorMessage
+    </MudAlert>
+    <MudButton Variant="Variant.Filled" 
+               Color="Color.Primary" 
+               OnClick="RedirectToLogin"
+               StartIcon="@Icons.Material.Filled.Login">
+        Se connecter
+    </MudButton>
+}
+else
+{
+    <MudDataGrid T="Player" Items="@Joueurs" SortMode="SortMode.Single" Height="50vh"
+        style="box-shadow: 10px 10px 10px rgba(0,0,0,0.3); border: 4mm ridge rgba(169, 70, 189, 0.6);">
+        <Columns>
+            <PropertyColumn Property="x => x.Name">
+                <HeaderTemplate>
+                    <b>Nom</b>
+                </HeaderTemplate>
+            </PropertyColumn>
+            <PropertyColumn Property="x => x.Score">
+                <HeaderTemplate>
+                    <b>Score</b>
+                </HeaderTemplate>
+            </PropertyColumn>
+        </Columns>
+    </MudDataGrid>
+}
 
 @code {
 
 
 
     private IEnumerable<Player> Joueurs = new List<Player>();
+    private bool isLoading = true;
+    private string? errorMessage = null;
 
     protected override async Task OnInitializedAsync()
     {
-        var players = await PlayerServices.GetAllAsync();
-        Joueurs = players.OrderByDescending(x => x.Score).ToList();
+        try
+        {
+            isLoading = true;
+            var players = await PlayerServices.GetAllAsync();
+            Joueurs = players.OrderByDescending(x => x.Score).ToList();
+            errorMessage = null;
+        }
+        catch (System.Net.Http.HttpRequestException ex) when (ex.Message.Contains("401"))
+        {
+            errorMessage = "Erreur d'authentification. Veuillez vous reconnecter.";
+        }
+        catch (AccessTokenNotAvailableException ex)
+        {
+            // Si le token n'est pas disponible, rediriger vers la connexion
+            ex.Redirect();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Erreur lors du chargement des données: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void RedirectToLogin()
+    {
+        Navigation.NavigateToLogin("authentication/login");
     }
 
 }

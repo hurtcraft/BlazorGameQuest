@@ -7,10 +7,10 @@ public class PlayerServices
 {
     private readonly HttpClient _http;
 
-    // HttpClient injecté par Blazor
-    public PlayerServices(HttpClient http)
+    // HttpClient injecté par Blazor avec authentification
+    public PlayerServices(IHttpClientFactory httpClientFactory)
     {
-        _http = http;
+        _http = httpClientFactory.CreateClient("BlazorGameQuestGameAPI");
     }
 
     public async Task<List<Player>> GetAllAsync()

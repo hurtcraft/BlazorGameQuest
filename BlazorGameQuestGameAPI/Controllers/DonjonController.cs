@@ -1,9 +1,11 @@
 using BlazorGameQuestClassLib;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Service;
 
 [ApiController]
 [Route("api/[Controller]")]
+[Authorize]
 public class DonjonController : ControllerBase
 {
     private readonly DonjonService _donjonService;

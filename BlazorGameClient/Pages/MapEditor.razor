@@ -1,4 +1,6 @@
 @page "/MapEditor"
+@attribute [Authorize]
+
 @using Blazor.Extensions
 @using Blazor.Extensions.Canvas
 @using Blazor.Extensions.Canvas.Canvas2D
@@ -38,7 +40,6 @@
 private async Task HandleDonjonSelected(Donjon loadedDonjon)
 {
     donjon = loadedDonjon;
-    Console.WriteLine("mon donjon "+donjon);
     if (donjon.GameGrid != null && GridCanvaRef!=null)
     {
         await GridCanvaRef.DrawFromGameGrid(donjon.GameGrid);
@@ -63,7 +64,7 @@ private async Task HandleDonjonSelected(Donjon loadedDonjon)
 
     private void OnMouseClick(MouseEventArgs e)
     {
-        Console.WriteLine($"Cellule : {_mouseX}, {_mouseY}");
+        // Gestion du clic souris
     }
 
 

@@ -80,6 +80,16 @@ Patrick Wu, Julien Weng
 - ✅ création des maps
 - ✅ export des joueurs
 
+## V5 - Intégration Keycloak
+- ✅ Authentification OpenID Connect avec Keycloak
+- ✅ Page de connexion intégrée dans Blazor
+- ✅ Protection de toutes les pages (authentification requise)
+- ✅ Attribution et gestion des rôles (joueur, admin)
+- ✅ Sécurisation des API avec validation JWT
+- ✅ Handler personnalisé pour l'ajout automatique du token Bearer
+- ✅ Factory personnalisée pour l'extraction des rôles depuis le token
+- ✅ Redirection automatique vers Keycloak pour les utilisateurs non authentifiés
+
 
 ## assets utilisés
 - https://xzany.itch.io/top-down-adventurer-character
@@ -106,3 +116,30 @@ docker-compose up -d
 - **Client Blazor** : http://localhost:5000
 - **API** : http://localhost:5001
 - **Swagger UI** : http://localhost:5001/swagger
+
+## Configuration Keycloak
+
+### Démarrer Keycloak
+- Keycloak est inclus dans le `docker-compose.yml` et démarre automatiquement avec `docker-compose up --build`
+- Accéder à la console d'administration : http://localhost:8080
+- Identifiants : `admin` / `admin`
+- ⚠️ Attendre 1-2 minutes que Keycloak soit complètement prêt avant de configurer
+
+### Configuration Keycloak
+Voir le guide détaillé dans **`KEYCLOAK_CONFIGURATION.md`**
+
+**Étapes principales :**
+1. Créer le Realm : `blazorgamequest`
+2. Créer le Client : `blazor-client`
+   - Valid Redirect URIs : `http://localhost:5000/authentication/login-callback`
+   - Web Origins : `http://localhost:5000`
+3. Créer les rôles : `joueur` et `admin` (dans Realm Roles)
+4. Créer des utilisateurs et leur attribuer les rôles
+5. Configurer le mapper de rôles pour inclure les rôles dans le token
+
+### Fonctionnalités
+- ✅ Authentification OpenID Connect avec Keycloak
+- ✅ Toutes les pages nécessitent une authentification
+- ✅ Seuls les utilisateurs créés dans Keycloak peuvent se connecter
+- ✅ Sécurisation des API avec validation JWT
+- ✅ Support des rôles `joueur` et `admin`

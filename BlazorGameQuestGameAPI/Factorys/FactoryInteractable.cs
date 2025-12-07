@@ -15,13 +15,10 @@ public class FactoryInteractable
 
     public static IInteractable create(int id)
     {
-        Console.WriteLine("dict " + dict);
-
         return new Wall();
     }
     public static void Init()
     {
-        Console.WriteLine("jsopn " + Path.Combine(AppContext.BaseDirectory, "conf", "donjonElt.json"));
         string json = File.ReadAllText(
             Path.Combine(AppContext.BaseDirectory, "conf", "donjonElt.json")
         );
@@ -34,6 +31,5 @@ public class FactoryInteractable
         {
             dict = new Dictionary<string, List<int>>();
         }
-        Console.WriteLine("dict " + dict);
     }
 }

@@ -110,8 +110,6 @@
     {
         selectedTile = selectedTile == index ? null : index;
         GameAsset.currentMapTile = selectedTile;
-
-        Console.WriteLine("tile : " + GameAsset.currentMapTile);
     }
 
     private async Task GetListDonjon()
@@ -125,7 +123,6 @@
         if (loadedDonjon != null)
         {
             donjon = loadedDonjon;
-            Console.WriteLine(donjon);
             await OnDonjonSelected.InvokeAsync(loadedDonjon);
         }
     }

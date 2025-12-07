@@ -1,11 +1,13 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Service;
 using BlazorGameQuestClassLib;
 namespace Controller
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PlayerController : ControllerBase
     {
         private readonly PlayerService _playerService;

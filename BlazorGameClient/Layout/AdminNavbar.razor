@@ -12,6 +12,8 @@
 
 
 
+@using BlazorGameClient.Components
+
 <MudPaper Class="p-0 m-0 w-100" Elevation="10" Style="background-color:#2c3e50; color:white; height:100vh;">
     <MudNavMenu>
         <MudText Typo="Typo.h6" Class="px-4">Admin Panel</MudText>
@@ -19,5 +21,9 @@
         <MudNavLink Href="/admin" Class="text-white">Gestion Joueur</MudNavLink>
         <MudDivider Class="my-1" />
         <MudNavLink Href="/MapEditor" Class="text-white">Map Editor</MudNavLink>
+        <MudDivider Class="my-2" />
+        <div style="padding: 8px;">
+            <LogoutButton />
+        </div>
     </MudNavMenu>
 </MudPaper>

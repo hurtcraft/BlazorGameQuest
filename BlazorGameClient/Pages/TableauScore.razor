@@ -1,6 +1,10 @@
 @page "/TableauScore"
+@attribute [Authorize]
+
 @using BlazorGameClient.Components
+@using Microsoft.AspNetCore.Components.Authorization
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 
 <div style="display:flex; justify-content:center; margin-top:10vh; ">
@@ -21,6 +25,17 @@
 
 
 @code {
+    protected override async Task OnInitializedAsync()
+    {
+        // Vérifier l'état d'authentification
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        if (authState.User.Identity?.IsAuthenticated != true)
+        {
+            // Si non authentifié, rediriger vers la page de connexion
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
     private void GoToGame()
     {
         NavigationManager.NavigateTo("/game");
