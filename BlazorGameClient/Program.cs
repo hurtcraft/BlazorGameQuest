@@ -62,7 +62,8 @@ builder.Services.AddScoped<AuthorizedHttpHandler>();
 
 builder.Services.AddHttpClient("BlazorGameQuestGameAPI", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5001/api/");
+    // Utiliser la Gateway comme point d'entrée unique pour les APIs
+    client.BaseAddress = new Uri("http://localhost:5000/api/");
 })
 .AddHttpMessageHandler<AuthorizedHttpHandler>();
 

@@ -89,6 +89,8 @@ Patrick Wu, Julien Weng
 - ✅ Handler personnalisé pour l'ajout automatique du token Bearer
 - ✅ Factory personnalisée pour l'extraction des rôles depuis le token
 - ✅ Redirection automatique vers Keycloak pour les utilisateurs non authentifiés
+- ✅ Gateway nginx configurée comme point d'entrée unique pour toutes les APIs
+- ✅ Déploiement sous Docker
 
 
 ## assets utilisés
@@ -100,6 +102,12 @@ Patrick Wu, Julien Weng
 
 ### Prérequis
 - Docker Desktop installé et en cours d'exécution
+
+### Architecture
+- **Gateway nginx** : Point d'entrée unique pour toutes les APIs (port 5000)
+- **API** : Service backend (exposé uniquement via la Gateway)
+- **Client** : Application Blazor (servi via la Gateway)
+- **Keycloak** : Service d'authentification (port 8080)
 
 ### Commandes Docker
 
@@ -113,9 +121,11 @@ docker-compose up
 docker-compose up -d
 
 ### Accès à l'application
-- **Client Blazor** : http://localhost:5000
-- **API** : http://localhost:5001
-- **Swagger UI** : http://localhost:5001/swagger
+- **Gateway (point d'entrée unique)** : http://localhost:5000
+  - Client Blazor : http://localhost:5000
+  - APIs : http://localhost:5000/api/
+  - Swagger UI : http://localhost:5000/api/swagger
+- **Keycloak** : http://localhost:8080
 
 ## Configuration Keycloak
 
